@@ -19,7 +19,7 @@ export default function Home(){
         </div>
         <div id="preis" className="priceStrip"><div><small>ARBEITSZEIT</small><b>{site.rate}</b></div><div><small>EINSATZGEBIET</small><b>bis 200 km</b></div><div><small>KONTAKT</small><b>WhatsApp</b></div></div>
       </div>
-      <div className="heroVisual" aria-hidden="true"><div className="line lineOne"/><div className="line lineTwo"/><div className="stamp">V<span>HANDWERK<br/>MEMMINGEN</span></div><div className="number">01</div></div>
+      <div className="heroWork" aria-label="Arbeitsbereiche"><div className="workScene garden"><span>01</span><b>Garten</b><small>Pflege & Arbeiten</small></div><div className="workScene fence"><span>02</span><b>Zäune</b><small>Montage & Bau</small></div><div className="workScene kitchen"><span>03</span><b>Küchen</b><small>Montage</small></div><div className="workScene build"><span>04</span><b>Gartenbau</b><small>Häuser & Carports</small></div></div>
     </section>
 
     <section id="leistungen" className="services">
