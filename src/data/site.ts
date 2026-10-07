@@ -1,1 +1,13 @@
-export const site={rate:"48 € / Std.",instagram:"https://www.instagram.com/vershnyk_com",youtube:"https://youtube.com/@vershnyk_com",services:["Gartenpflege","Zaunmontage","Gartenbau & Konstruktionen","Möbelmontage","Küchenmontage","Renovierung & Innenausbau"],hero:["Gartenarbeiten","Zaunmontage","Küchenmontage","Gartenhäuser & Carports"]};
+export const site={
+  rate:"48 € / Std.",
+  instagram:"https://www.instagram.com/vershnyk_com",
+  youtube:"https://youtube.com/@vershnyk_com",
+  serviceDetails:[
+    {title:"Gartenpflege",text:"Baumschnitt, Rasenpflege, Strauch- und Heckenschnitt."},
+    {title:"Zaunmontage",text:"Metall-, Fertig-, Holz- sowie Draht- und Gitterzäune."},
+    {title:"Gartenbau & Konstruktionen",text:"Gartenhäuser, Carports, Gartenmöbel und weitere Konstruktionen."},
+    {title:"Möbelmontage",text:"Montage von IKEA, POCO und anderen Möbelherstellern."},
+    {title:"Küchenmontage",text:"IKEA, Schüller, Nobilia und weitere Küchen — von einfach bis hochwertig."},
+    {title:"Renovierung & Innenausbau",text:"Spachteln, Malern, Tapeten, Trockenbau, Decken, Parkett, Laminat und dekorative Oberflächen."}
+  ]
+};
