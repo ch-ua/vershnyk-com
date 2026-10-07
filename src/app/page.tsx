@@ -19,7 +19,7 @@ export default function Home(){
         </div>
         <div id="preis" className="priceStrip"><div><small>ARBEITSZEIT</small><b>{site.rate}</b></div><div><small>EINSATZGEBIET</small><b>bis 200 km</b></div><div><small>KONTAKT</small><b>WhatsApp</b></div></div>
       </div>
-      <div className="heroWork" aria-label="Arbeitsbereiche"><div className="workScene garden"><span>01</span><b>Garten</b><small>Pflege & Arbeiten</small></div><div className="workScene fence"><span>02</span><b>Zäune</b><small>Montage & Bau</small></div><div className="workScene kitchen"><span>03</span><b>Küchen</b><small>Montage</small></div><div className="workScene build"><span>04</span><b>Gartenbau</b><small>Häuser & Carports</small></div></div>
+      <div className="heroWork" aria-label="Arbeitsbereiche"><div className="workScene garden"><span>01</span><i>✂</i><b>Garten</b><small>Pflege & Arbeiten</small></div><div className="workScene fence"><span>02</span><i>╫</i><b>Zäune</b><small>Montage & Bau</small></div><div className="workScene kitchen"><span>03</span><i>⌂</i><b>Küchen</b><small>Montage</small></div><div className="workScene build"><span>04</span><i>⌁</i><b>Gartenbau</b><small>Häuser & Carports</small></div></div>
     </section>
 
     <section id="leistungen" className="services">
@@ -29,7 +29,7 @@ export default function Home(){
 
     <section id="termine" className="availability">
       <div><p className="eyebrow">VERFÜGBARKEIT</p><h2>Wann passt<br/><em>es für Sie?</em></h2><p>Hier werden freie Zeitfenster angezeigt. Ein Termin wird erst nach persönlicher Bestätigung verbindlich.</p></div>
-      <div className="calendarCard"><div className="calendarHead"><strong>Freie Termine</strong><span>Kalender</span></div><div className="calendarPlaceholder"><b>Google Kalender</b><p>Die Live-Verfügbarkeit wird hier eingebunden.</p></div><a className="button" href={site.whatsapp} target="_blank" rel="noreferrer">Termin anfragen <span>↗</span></a></div>
+      <div className="calendarCard"><div className="calendarHead"><strong>Freie Termine</strong><span>Kalender</span></div><div className="calendarMock"><div className="week"><span>MO<small>12</small></span><span>DI<small>13</small></span><span className="free">MI<small>14</small></span><span>DO<small>15</small></span><span className="free">FR<small>16</small></span></div><div className="slots"><span>09:00</span><span className="available">FREI</span><span>13:00</span><span className="available">FREI</span></div></div><a className="button" href={site.whatsapp} target="_blank" rel="noreferrer">Termin anfragen <span>↗</span></a></div>
     </section>
 
     <section id="referenzen" className="proof">
