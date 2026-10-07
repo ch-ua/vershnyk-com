@@ -14,7 +14,7 @@ export default function Home(){
         <h1>Was muss<br/><em>gemacht werden?</em></h1>
         <p className="lead">Garten, Zaun, Möbel, Küche oder Renovierung — wählen Sie die passende Arbeit und senden Sie Ihre Anfrage unkompliziert per WhatsApp.</p>
         <div className="heroActions">
-          <a className="button" href="#anfrage">WhatsApp Anfrage <span>↗</span></a>
+          <a className="button" href={site.whatsapp} target="_blank" rel="noreferrer">WhatsApp Anfrage <span>↗</span></a>
           <a className="textLink" href="#termine">Freie Termine ansehen ↓</a>
         </div>
         <div id="preis" className="priceStrip"><div><small>ARBEITSZEIT</small><b>{site.rate}</b></div><div><small>EINSATZGEBIET</small><b>bis 200 km</b></div><div><small>KONTAKT</small><b>WhatsApp</b></div></div>
@@ -29,7 +29,7 @@ export default function Home(){
 
     <section id="termine" className="availability">
       <div><p className="eyebrow">VERFÜGBARKEIT</p><h2>Wann passt<br/><em>es für Sie?</em></h2><p>Hier werden freie Zeitfenster angezeigt. Ein Termin wird erst nach persönlicher Bestätigung verbindlich.</p></div>
-      <div className="calendarCard"><div className="calendarHead"><strong>Freie Termine</strong><span>Kalender</span></div><div className="calendarPlaceholder"><b>Google Kalender</b><p>Die Live-Verfügbarkeit wird hier eingebunden.</p></div><a className="button" href="#anfrage">Termin anfragen <span>↗</span></a></div>
+      <div className="calendarCard"><div className="calendarHead"><strong>Freie Termine</strong><span>Kalender</span></div><div className="calendarPlaceholder"><b>Google Kalender</b><p>Die Live-Verfügbarkeit wird hier eingebunden.</p></div><a className="button" href={site.whatsapp} target="_blank" rel="noreferrer">Termin anfragen <span>↗</span></a></div>
     </section>
 
     <section id="referenzen" className="proof">
@@ -37,7 +37,7 @@ export default function Home(){
       <div className="proofCards"><a href={site.instagram} target="_blank" rel="noreferrer"><small>PROJEKTE & EINBLICKE</small><strong>Instagram</strong><span>↗</span></a><a href={site.youtube} target="_blank" rel="noreferrer"><small>ARBEITEN IN AKTION</small><strong>YouTube</strong><span>↗</span></a><div><small>KUNDENSTIMMEN</small><strong>Google Bewertungen</strong><span>★</span></div></div>
     </section>
 
-    <section id="anfrage" className="contact"><div><p className="eyebrow">ANFRAGE</p><h2>Foto. Adresse.<br/><em>Kurz beschreiben.</em></h2></div><div className="contactSide"><p>Senden Sie über WhatsApp Ihre Adresse, eine kurze Beschreibung und Fotos. Danach klären wir Aufwand, Fahrtkosten und einen passenden Termin.</p><div className="button disabled">WhatsApp öffnen <span>↗</span></div><small>Die WhatsApp-Direktverknüpfung wird nach Hinterlegung der Geschäftsnummer aktiviert.</small></div></section>
+    <section id="anfrage" className="contact"><div><p className="eyebrow">ANFRAGE</p><h2>Foto. Adresse.<br/><em>Kurz beschreiben.</em></h2></div><div className="contactSide"><p>Senden Sie über WhatsApp Ihre Adresse, eine kurze Beschreibung und Fotos. Danach klären wir Aufwand, Fahrtkosten und einen passenden Termin.</p><a className="button" href={site.whatsapp} target="_blank" rel="noreferrer">WhatsApp öffnen <span>↗</span></a><small>Direkter Kontakt über WhatsApp. Keine telefonische Terminannahme.</small></div></section>
 
     <footer><div className="brand"><span>V</span><strong>VERSHNYK</strong></div><div className="footerLinks"><a href={site.instagram}>Instagram</a><a href={site.youtube}>YouTube</a><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div><p>Handwerk & Montage · Memmingen / Allgäu</p></footer>
   </main>
