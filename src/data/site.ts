@@ -1,0 +1,1 @@
+export const site={rate:"48 € / Std.",instagram:"https://www.instagram.com/vershnyk_com",youtube:"https://youtube.com/@vershnyk_com",services:["Gartenpflege","Zaunmontage","Gartenbau & Konstruktionen","Möbelmontage","Küchenmontage","Renovierung & Innenausbau"],hero:["Gartenarbeiten","Zaunmontage","Küchenmontage","Gartenhäuser & Carports"]};
