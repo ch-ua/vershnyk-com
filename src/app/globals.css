@@ -23,3 +23,19 @@
 .infoRow,.reviews{position:relative}.reviews{background:linear-gradient(180deg,#fffaf0,#f8efdc)}
 .review{box-shadow:0 4px 14px #173d3210}
 @media(max-width:800px){.headActions{margin-left:auto}.headActions .socialIcon.instagram,.headActions .socialIcon.youtube{display:none!important}.headActions .socialIcon.whatsapp{display:grid!important}.headActions .wa{display:none}.heroApproved:before{width:100%;opacity:.5}.heroPhoto{border-radius:10px}.approvedServices:before,.approvedServices:after{display:none}}
+
+/* Match approved reference composition */
+main{max-width:1680px}
+.topbar{height:86px;padding:0 5.5%;gap:24px}
+.brand{min-width:310px}.brand img{width:60px;height:60px}.brand b{font-size:25px}.brand small{font-size:9px}
+.topbar nav{gap:34px}.topbar nav a{font-size:12px}.headActions{gap:10px}.socialIcon{width:42px;height:42px}.wa{padding:15px 20px}
+.heroApproved{min-height:640px;grid-template-columns:34% 66%;background:#f8f0df}
+.heroText{padding:55px 3% 50px 9%}.heroText .script{font-size:24px;line-height:1.15}.heroText h1{font-size:64px;line-height:.9;margin-top:20px}.heroText>p:not(.script){font-size:17px;max-width:390px}
+.rate{padding:7px 28px;margin-top:22px}.rate b{font-size:44px}.waButton{font-size:14px}
+.heroPhoto{min-height:590px;background-position:center;border-radius:0}.heroPhoto:after{background:linear-gradient(90deg,#f8f0df 0%,#f8f0dfd9 4%,transparent 20%)}
+.heroThumbs{right:4%;bottom:24px;grid-template-columns:repeat(4,170px);gap:10px}.heroThumbs div{height:94px}
+.photoLabel{right:7%;bottom:27%;font-size:17px}
+.facts{padding:28px 8%;min-height:105px}.facts i{font-size:42px}.facts b{font-size:13px}.facts small{font-size:10px}
+.approvedServices{padding-top:54px}.approvedServices header{padding-left:4%}.approvedServices .script{font-size:19px}.approvedServices h2{font-size:37px}.cards{gap:11px}.cardImg{height:165px}.cards h3{font-size:16px}.cards li{font-size:11px}
+.infoRow{padding-top:44px;padding-bottom:44px}.reviews{padding-top:42px;padding-bottom:42px}
+@media(max-width:800px){.topbar{height:76px}.brand{min-width:0}.brand img{width:48px;height:48px}.heroApproved{display:block}.heroText{padding:34px 6% 24px}.heroText h1{font-size:43px}.heroPhoto{min-height:270px;margin:0 4%;border-radius:10px}.heroThumbs{display:flex;padding:12px 4% 22px}.heroThumbs div{min-width:125px;height:82px}.facts{min-height:0}.approvedServices{padding-top:38px}}
