@@ -24,7 +24,7 @@ export default function Home(){
 
     <section id="leistungen" className="services">
       <div className="sectionIntro"><p className="eyebrow">LEISTUNGEN</p><h2>Finden Sie<br/><em>Ihre Arbeit.</em></h2><p>Direkt sehen, ob VERSHNYK die passende Leistung anbietet. Weitere Arbeiten können individuell angefragt werden.</p></div>
-      <div className="serviceGrid">{site.serviceDetails.map((x,i)=><article key={x.title}><div><small>{String(i+1).padStart(2,"0")}</small><span>↗</span></div><h3>{x.title}</h3><p>{x.text}</p><a href="#anfrage">Diese Arbeit anfragen →</a></article>)}</div>
+      <div className="serviceGrid">{site.serviceDetails.map((x,i)=><article key={x.title}><div><small>{String(i+1).padStart(2,"0")}</small><span>↗</span></div><h3>{x.title}</h3><p>{x.text}</p><ul>{x.items.map(item=><li key={item}>{item}</li>)}</ul><div className="serviceMeta"><b>{site.rate}</b><small>+ Fahrtkosten</small></div><a href={site.whatsapp} target="_blank" rel="noreferrer">Diese Arbeit anfragen →</a></article>)}</div>
     </section>
 
     <section id="termine" className="availability">
