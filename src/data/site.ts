@@ -1,5 +1,6 @@
 export const site={
   rate:"48 € / Std.",
+  whatsapp:"https://wa.me/491627586510",
   instagram:"https://www.instagram.com/vershnyk_com",
   youtube:"https://youtube.com/@vershnyk_com",
   serviceDetails:[
