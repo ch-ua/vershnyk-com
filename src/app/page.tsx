@@ -14,7 +14,11 @@ export default function Home(){
   <header className="topbar">
    <a className="brand" href="#top"><img src={logo} alt="VERSHNYK"/><span><b>VERSHNYK</b><small>HANDWERK & MONTAGE</small></span></a>
    <nav><a href="#top">Startseite</a><a href="#leistungen">Leistungen</a><a href="#projekte">Projekte</a><a href="#ablauf">So funktioniert’s</a><a href="#bewertungen">Bewertungen</a></nav>
-   <div className="headActions"><a href={site.instagram}>◎</a><a href={site.youtube}>▶</a><a className="wa" href={site.whatsapp}>◉ Anfrage über WhatsApp →</a></div>
+   <div className="headActions">
+<a className="socialIcon instagram" href={site.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><span></span></a>
+<a className="socialIcon youtube" href={site.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><span></span></a>
+<a className="socialIcon whatsapp" href={site.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><span>☎</span></a>
+<a className="wa" href={site.whatsapp} target="_blank" rel="noreferrer">◉ Anfrage über WhatsApp →</a></div>
   </header>
 
   <section id="top" className="heroApproved">
