@@ -39,3 +39,31 @@ main{max-width:1680px}
 .approvedServices{padding-top:54px}.approvedServices header{padding-left:4%}.approvedServices .script{font-size:19px}.approvedServices h2{font-size:37px}.cards{gap:11px}.cardImg{height:165px}.cards h3{font-size:16px}.cards li{font-size:11px}
 .infoRow{padding-top:44px;padding-bottom:44px}.reviews{padding-top:42px;padding-bottom:42px}
 @media(max-width:800px){.topbar{height:76px}.brand{min-width:0}.brand img{width:48px;height:48px}.heroApproved{display:block}.heroText{padding:34px 6% 24px}.heroText h1{font-size:43px}.heroPhoto{min-height:270px;margin:0 4%;border-radius:10px}.heroThumbs{display:flex;padding:12px 4% 22px}.heroThumbs div{min-width:125px;height:82px}.facts{min-height:0}.approvedServices{padding-top:38px}}
+
+/* Decorative layer from approved mockup */
+body{background:#163c31}
+main{background-color:#f8f1df;background-image:radial-gradient(#876f4212 .7px,transparent .8px),radial-gradient(#ffffff75 .7px,transparent .8px);background-size:17px 17px,23px 23px;background-position:0 0,8px 11px}
+.topbar{background:#fffdf6f5;box-shadow:none}
+.heroApproved{background-color:#f8f0df;background-image:radial-gradient(#7b6c4a12 .8px,transparent .9px);background-size:18px 18px}
+.heroText:before{content:"";position:absolute;left:1.5%;top:6%;width:95px;height:230px;opacity:.17;background:radial-gradient(ellipse at center,#397149 0 15%,transparent 16%) 0 0/38px 54px;transform:rotate(-18deg);pointer-events:none}
+.heroText .script{font-family:"Segoe Print","Bradley Hand",cursive;font-style:normal;transform:rotate(-3deg);display:inline-block}
+.heroText .script:after{content:"";display:block;width:105%;height:8px;margin-top:-2px;background:#efbd35;clip-path:polygon(0 38%,100% 0,96% 58%,3% 100%);opacity:.9}
+.heroText h1{font-family:"Arial Black",Arial,sans-serif;font-weight:950;letter-spacing:-.055em}
+.heroText h1 mark{background:none;position:relative;z-index:1}.heroText h1 mark:after{content:"";position:absolute;z-index:-1;left:-2%;right:-3%;bottom:2px;height:18px;background:#f1bd31;clip-path:polygon(0 22%,100% 0,98% 88%,2% 100%)}
+.rate{border-radius:2px;position:relative;background:#f5c433;clip-path:polygon(2% 5%,98% 0,100% 91%,0 100%)}
+.waButton,.wa,.smallWa{box-shadow:inset 0 -2px 0 #006b30,0 5px 13px #0b67351c}
+.photoLabel{font-family:"Arial Black",Arial,sans-serif;background:#fff8e7;clip-path:polygon(2% 5%,98% 0,100% 92%,0 100%)}
+.approvedServices header .script,.reviews header .script,.steps>.script,.projects header .script{font-family:"Segoe Print","Bradley Hand",cursive;font-style:normal}
+.approvedServices header h2,.reviews h2,.steps h2,.projects h2,.finalWa h2{font-family:"Arial Black",Arial,sans-serif;font-weight:950;letter-spacing:-.04em}
+.approvedServices header h2:after,.reviews h2:after{height:9px;background:#16824c;clip-path:polygon(0 35%,100% 0,96% 62%,2% 100%)}
+.cards article{background:#fffaf0;border:1px solid #e5dcc8;border-radius:8px}
+.cardImg{position:relative}.cards article:nth-child(1) .cardImg:after,.cards article:nth-child(2) .cardImg:after,.cards article:nth-child(3) .cardImg:after,.cards article:nth-child(4) .cardImg:after,.cards article:nth-child(5) .cardImg:after,.cards article:nth-child(6) .cardImg:after{position:absolute;left:12px;bottom:-17px;width:34px;height:34px;border-radius:50%;background:#fffdf6;border:2px solid #d9d2c1;display:grid;place-items:center;font-size:18px;color:#174538}
+.cards article:nth-child(1) .cardImg:after{content:"⌁"}.cards article:nth-child(2) .cardImg:after{content:"╫"}.cards article:nth-child(3) .cardImg:after{content:"⌂"}.cards article:nth-child(4) .cardImg:after{content:"▱"}.cards article:nth-child(5) .cardImg:after{content:"▦"}.cards article:nth-child(6) .cardImg:after{content:"⌕"}
+.cards h3{margin-top:22px}
+.infoRow{background-color:#fbf4e5;background-image:linear-gradient(90deg,transparent 0 33.3%,#cfc6b744 33.3% 33.4%,transparent 33.4% 66.6%,#cfc6b744 66.6% 66.7%,transparent 66.7%)}
+.reviews:before{content:"";position:absolute;left:-20px;bottom:-20px;width:150px;height:120px;opacity:.16;background:radial-gradient(ellipse,#347447 0 16%,transparent 17%) 0 0/42px 50px;transform:rotate(14deg)}
+.reviews:after{content:"";position:absolute;right:-25px;top:-10px;width:140px;height:120px;opacity:.13;background:radial-gradient(ellipse,#347447 0 16%,transparent 17%) 0 0/42px 50px;transform:rotate(-20deg)}
+.review,.rating{position:relative;z-index:2}
+.projects figure{box-shadow:0 8px 22px #153c321c}
+.finalWa{background-color:#f1c33d;background-image:radial-gradient(#6d59251a .7px,transparent .8px);background-size:16px 16px}
+@media(max-width:800px){.heroText:before{left:-25px;top:5px;opacity:.11}.heroText .script{font-size:18px}.heroText h1 mark:after{height:13px}.cards article .cardImg:after{width:29px!important;height:29px!important;bottom:-14px!important;font-size:14px!important}.infoRow{background-image:none}.reviews:before,.reviews:after{opacity:.08}}
