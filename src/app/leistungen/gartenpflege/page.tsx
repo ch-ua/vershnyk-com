@@ -1,5 +1,6 @@
 "use client";
 import {site} from "@/data/site";
+import {logo} from "@/data/logo";
 const hero="https://aimbestmowing.com/_next/image?q=75&url=%2Fhedge-trimming-wide.png&w=3840";
 export default function Gartenpflege(){
  const items=["Rasen mähen & pflegen","Hecken schneiden","Baum- und Strauchschnitt","Beete und Gartenflächen pflegen","Saisonale Gartenarbeiten","Aufräum- und Rückschnittarbeiten"];
