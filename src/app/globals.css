@@ -79,3 +79,29 @@
 @media(max-width:430px){
  .hero{grid-template-columns:43% 57%}
 }
+
+/* Triptych redesign */
+.triptych{padding:54px 5%;gap:18px;background:#f7efdf}
+.triptych article{position:relative;overflow:hidden;display:flex;align-items:flex-start;gap:24px;min-height:285px;padding:30px;border:1px solid #ded3bd;border-radius:14px;background:#fffaf0;box-shadow:0 8px 24px #254b3b0b}
+.triptych article:not(:last-child){border-right:1px solid #ded3bd}
+.triptych .eyebrow{margin:0 0 8px;color:#168a55;font-size:10px;font-weight:900;letter-spacing:.12em}
+.triptych h3{margin:0 0 14px;font-size:21px;line-height:1.08;color:#124c3c}
+.triptych p{font-size:12px;line-height:1.55}
+.triptych small{font-size:9px;line-height:1.45;color:#4d675d}
+.regionGraphic{flex:0 0 118px;width:118px;height:118px;border-radius:50%;background:#adc49b;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#087c49}
+.regionGraphic span{font-size:28px;line-height:1}.regionGraphic strong{font-size:31px;line-height:1;margin-top:4px}.regionGraphic small{font-size:9px;color:#087c49}
+.calendarIcon,.waMark{flex:0 0 54px;width:54px;height:54px;border:2px solid #159158;border-radius:12px;display:grid;place-items:center;color:#159158;font-size:31px;font-style:normal}
+.waMark{border-radius:50%}
+.availability{display:flex;gap:7px;margin:16px 0 13px}.availability b{padding:7px 12px;border-radius:999px;background:#d9eee1;color:#176246;font-size:9px}.availability .busy{background:#e5e1d8;color:#7b776e}
+.textLink{display:inline-block;margin-top:14px;font-size:10px;font-weight:900;color:#0b6845;text-decoration:underline;text-underline-offset:4px}
+.requestCard{background:#15503f!important;color:#fff!important;border-color:#15503f!important}.requestCard .eyebrow,.requestCard h3,.requestCard p,.requestCard small{color:#fff}.requestCard .waMark{border-color:#f4c43e;color:#f4c43e}
+.requestButton{display:inline-block;margin:14px 0 12px;padding:12px 15px;border-radius:8px;background:#f2c33d;color:#123f34!important;font-size:10px;font-weight:900;text-decoration:none}
+.requestCard small{display:block;opacity:.75}
+@media(max-width:800px){
+ .triptych{padding:28px 5%;gap:14px}
+ .triptych article{min-height:0;padding:22px 20px;gap:17px;border-bottom:1px solid #ded3bd}
+ .triptych h3{font-size:20px}.triptych p{font-size:12px}.triptych small{font-size:9px}
+ .regionGraphic{flex-basis:92px;width:92px;height:92px}.regionGraphic strong{font-size:25px}
+ .calendarIcon,.waMark{flex-basis:44px;width:44px;height:44px;font-size:25px}
+ .requestButton{font-size:11px;padding:12px 14px}
+}
