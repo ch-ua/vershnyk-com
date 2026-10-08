@@ -1,0 +1,14 @@
+"use client";
+import {site} from "@/data/site";
+const hero="https://aimbestmowing.com/_next/image?q=75&url=%2Fhedge-trimming-wide.png&w=3840";
+export default function Gartenpflege(){
+ const items=["Rasen mähen & pflegen","Hecken schneiden","Baum- und Strauchschnitt","Beete und Gartenflächen pflegen","Saisonale Gartenarbeiten","Aufräum- und Rückschnittarbeiten"];
+ return <main className="servicePage">
+  <header className="subHeader"><a href="/" className="back">← Startseite</a><strong>VERSHNYK <small>HANDWERK & MONTAGE</small></strong><a className="subWa" href={site.whatsapp}>WhatsApp →</a></header>
+  <section className="serviceHero"><div className="serviceHeroCopy"><p className="hand">Haus & Garten</p><h1>GARTEN<br/><span>PFLEGE.</span></h1><p>Zuverlässige Gartenpflege für private Grundstücke – sauber, direkt und ohne unnötige Umwege.</p><div className="servicePrice"><b>48 €</b><span>pro Stunde<small>zzgl. Fahrtkosten</small></span></div><a className="heroWa" href={site.whatsapp}>Projekt über WhatsApp senden →</a></div><div className="serviceHeroPhoto" style={{backgroundImage:`url("${hero}")`}}><span>GARTENPFLEGE</span></div></section>
+  <section className="serviceIntro"><div><p className="hand">Was ich für Sie mache</p><h2>PFLEGE, DIE MAN SIEHT.</h2><p>Von regelmäßiger Pflege bis zum einmaligen Rückschnitt: Sie senden mir kurz, was gemacht werden soll, idealerweise mit Fotos. Danach klären wir Umfang und Termin direkt über WhatsApp.</p></div><div className="serviceFacts"><b>48 € / Std.</b><span>+ Fahrtkosten</span><b>bis 200 km</b><span>Einsatzgebiet</span><b>WhatsApp</b><span>direkte Abstimmung</span></div></section>
+  <section className="serviceList"><p className="hand">Leistungen</p><h2>GARTENPFLEGE IM ÜBERBLICK</h2><div>{items.map((x,i)=><article key={x}><b>0{i+1}</b><span>{x}</span></article>)}</div></section>
+  <section className="serviceGallery"><div style={{backgroundImage:`url("${hero}")`}}></div><div className="galleryCopy"><p className="hand">Einfach anfragen</p><h2>FOTOS SENDEN.<br/>AUFWAND KLÄREN.<br/><span>TERMIN FINDEN.</span></h2><p>Schicken Sie Fotos, Adresse und eine kurze Beschreibung. So kann ich den Aufwand vorab besser einschätzen.</p><a className="heroWa" href={site.whatsapp}>Jetzt über WhatsApp anfragen →</a></div></section>
+  <section className="serviceBottom"><div><b>⌖</b><h3>BIS 200 KM</h3><p>Rund um Memmingen / Allgäu. Weiter auf Anfrage.</p></div><div><b>▦</b><h3>TERMIN</h3><p>Verfügbarkeit ansehen, Termin nach Bestätigung.</p></div><div><b>◉</b><h3>WHATSAPP</h3><p>Fotos und Projektdetails direkt senden.</p></div></section>
+ </main>
+}
