@@ -65,3 +65,17 @@
  .services:before,.services:after{width:125px;height:230px;opacity:.18}
  .hero:before{width:125px;height:180px;left:-30px;bottom:55px;opacity:.30}
 }
+
+/* Confirmed hero proportion + botanical treatment */
+@media(min-width:801px){
+ .hero{grid-template-columns:32% 68%}
+ .heroCopy{padding-left:10%;padding-right:3%}
+}
+.services:before,.services:after{opacity:.20;filter:grayscale(1) sepia(.15) saturate(.65)}
+@media(max-width:800px){
+ .hero{grid-template-columns:42% 58%}
+ .heroCopy{padding-left:7%;padding-right:2%}
+}
+@media(max-width:430px){
+ .hero{grid-template-columns:43% 57%}
+}
