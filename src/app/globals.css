@@ -135,3 +135,11 @@
  .quick b{font-size:11px}
  .quick small{font-size:8px}
 }
+
+/* Gartenpflege approved refinements */
+.detailHeader{grid-template-columns:1fr auto 1fr}.detailHeader .brand{justify-self:start}.detailHeader .actions{justify-self:end}.detailHeader .whatsapp{display:none}
+.detailHero .servicePrice{clip-path:polygon(0 25%,7% 15%,18% 18%,31% 10%,45% 15%,59% 8%,73% 14%,88% 9%,100% 18%,96% 47%,100% 78%,91% 87%,76% 82%,61% 91%,45% 85%,29% 93%,14% 86%,2% 92%,5% 61%);transform:rotate(-1.5deg);padding-left:28px;padding-right:31px}
+.serviceIntro{position:relative;overflow:hidden;background:linear-gradient(135deg,#fffaf0 0%,#fffaf0 72%,#f2e5c7 100%)}.serviceIntro:after{content:"";position:absolute;right:-55px;bottom:-90px;width:230px;height:300px;opacity:.12;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 210 300'%3E%3Cpath d='M35 290C60 205 96 128 150 28' fill='none' stroke='%230c6b43' stroke-width='4'/%3E%3Cellipse cx='72' cy='205' rx='31' ry='13' transform='rotate(35 72 205)' fill='%237da34f'/%3E%3Cellipse cx='120' cy='145' rx='29' ry='12' transform='rotate(-30 120 145)' fill='%238eaa58'/%3E%3Ccircle cx='153' cy='105' r='8' fill='%23d79b38'/%3E%3C/svg%3E")}
+.serviceFacts{position:relative;z-index:1;background:#f6ecd6;border-left:4px solid #159158;border-radius:0 12px 12px 0;padding:24px 26px}
+.detailFooter{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:28px 5%;background:#123f34;color:#fff}.detailFooter strong{display:block;font-size:16px}.detailFooter small{font-size:7px}.detailFooter p{font-size:9px;opacity:.7}.detailFooter nav{display:flex;justify-content:flex-end;gap:18px}.detailFooter a{color:#fff;text-decoration:none;font-size:9px}
+@media(max-width:800px){.detailHeader .brand img{width:42px;height:42px}.detailHeader .brand strong{font-size:15px}.detailHeader .actions>a:not(.whatsapp){display:grid;width:34px;height:34px}.detailHeader .actions svg{width:19px;height:19px}.detailHero .servicePrice{padding-left:16px;padding-right:18px}.serviceFacts{padding:18px}.detailFooter{grid-template-columns:1fr auto;padding:24px 5%}.detailFooter p{display:none}.detailFooter nav{gap:12px}}
