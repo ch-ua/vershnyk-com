@@ -21,7 +21,7 @@ export default function Kalender(){
    <p>Sehen Sie auf einen Blick, wann VERSHNYK verfügbar ist. Persönliche Termindaten bleiben privat.</p>
   </section>
   <section className="calendarWrap">
-   <div className="calendarTop"><div><p className="eyebrow">VERFÜGBARKEIT</p><div className="monthNav"><button onClick={()=>setMonth(m=>Math.max(0,m-1))} disabled={month===0} aria-label="Vorheriger Monat">‹</button><h2>{current.name}</h2><button onClick={()=>setMonth(m=>Math.min(months.length-1,m+1))} disabled={month===months.length-1} aria-label="Nächster Monat">›</button></div></div><div className="calendarLegend"><span><i className="free"></i> FREI</span><span><i className="busy"></i> BELEGT</span></div></div>
+   <div className="calendarTop"><div><p className="eyebrow">VERFÜGBARKEIT</p><h2>{current.name}</h2></div><div className="calendarTools"><div className="calendarLegend"><span><i className="free"></i> FREI</span><span><i className="busy"></i> BELEGT</span></div><div className="monthLinks">{month>0&&<button onClick={()=>setMonth(month-1)} aria-label={"Zu "+months[month-1].name}>← {months[month-1].name.split(" ")[0]}</button>}{month<months.length-1&&<button onClick={()=>setMonth(month+1)} aria-label={"Zu "+months[month+1].name}>{months[month+1].name.split(" ")[0]} →</button>}</div></div></div>
    <div className="publicCalendar">
     {["Mo","Di","Mi","Do","Fr","Sa","So"].map(d=><b className="weekday" key={d}>{d}</b>)}
     {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
