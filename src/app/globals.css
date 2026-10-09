@@ -244,3 +244,14 @@
 
 .calendarTools{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.monthLinks{display:flex;align-items:center;gap:8px}.monthLinks button{min-height:40px;padding:0 15px;border:0;border-radius:999px;background:#123f34;color:#fff;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 3px 8px #123f3420}.monthLinks button:hover{background:#0c884b}
 @media(max-width:800px){.calendarTools{width:100%;justify-content:space-between;gap:10px}.monthLinks{width:100%;justify-content:space-between}.monthLinks button{min-height:42px;padding:0 13px;font-size:11px}}
+
+/* Calendar legend and month navigation stay on one row */
+.calendarTools{display:flex;align-items:center;justify-content:flex-end;gap:22px;flex-wrap:nowrap}
+.calendarTools .calendarLegend{flex:none}
+.calendarTools .monthLinks{flex:none;margin-left:auto}
+@media(max-width:800px){
+ .calendarTools{width:auto;flex:1;justify-content:flex-end;gap:8px;flex-wrap:nowrap}
+ .calendarTools .monthLinks{width:auto;margin-left:0;justify-content:flex-end}
+ .calendarTools .calendarLegend{gap:8px}
+ .calendarTools .monthLinks button{padding:0 10px;font-size:10px}
+}
