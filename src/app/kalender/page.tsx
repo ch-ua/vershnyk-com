@@ -1,10 +1,15 @@
+"use client";
 import {site} from "@/data/site";
 import {logo} from "@/data/logo";
 
-const days = Array.from({length:31},(_,i)=>i+1);
-const startOffset = 3;
+const months=[{name:"Oktober 2026",days:31,offset:3},{name:"November 2026",days:30,offset:6},{name:"Dezember 2026",days:31,offset:1},{name:"Januar 2027",days:31,offset:4},{name:"Februar 2027",days:28,offset:0}];
+
+import {useState} from "react";
 
 export default function Kalender(){
+ const [month,setMonth]=useState(0);
+ const current=months[month];
+ const days=Array.from({length:current.days},(_,i)=>i+1);
  return <main className="calendarPage">
   <header className="header">
    <a className="brand" href="/"><img src={logo} alt="VERSHNYK"/><span><strong>VERSHNYK</strong><small>HANDWERK & MONTAGE</small></span></a>
@@ -16,10 +21,10 @@ export default function Kalender(){
    <p>Sehen Sie auf einen Blick, wann VERSHNYK verfügbar ist. Persönliche Termindaten bleiben privat.</p>
   </section>
   <section className="calendarWrap">
-   <div className="calendarTop"><div><p className="eyebrow">VERFÜGBARKEIT</p><h2>Oktober 2026</h2></div><div className="calendarLegend"><span><i className="free"></i> FREI</span><span><i className="busy"></i> BELEGT</span></div></div>
+   <div className="calendarTop"><div><p className="eyebrow">VERFÜGBARKEIT</p><div className="monthNav"><button onClick={()=>setMonth(m=>Math.max(0,m-1))} disabled={month===0} aria-label="Vorheriger Monat">‹</button><h2>{current.name}</h2><button onClick={()=>setMonth(m=>Math.min(months.length-1,m+1))} disabled={month===months.length-1} aria-label="Nächster Monat">›</button></div></div><div className="calendarLegend"><span><i className="free"></i> FREI</span><span><i className="busy"></i> BELEGT</span></div></div>
    <div className="publicCalendar">
     {["Mo","Di","Mi","Do","Fr","Sa","So"].map(d=><b className="weekday" key={d}>{d}</b>)}
-    {Array.from({length:startOffset},(_,i)=><span className="empty" key={"e"+i}/>)}
+    {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
     {days.map(d=><div className="calendarDay" key={d}><strong>{d}</strong><span className="pending">—</span></div>)}
    </div>
    <div className="calendarNotice"><b>Google Kalender wird verbunden</b><p>Die Seite ist vorbereitet. Sobald die Synchronisierung aktiv ist, erscheinen hier automatisch nur FREI oder BELEGT – keine Namen, Adressen oder Termindetails.</p></div>
