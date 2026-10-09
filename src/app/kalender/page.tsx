@@ -23,7 +23,7 @@ export default function Kalender(){
     {days.map(d=><div className="calendarDay" key={d}><strong>{d}</strong><span className="pending">—</span></div>)}
    </div>
    <div className="calendarNotice"><b>Google Kalender wird verbunden</b><p>Die Seite ist vorbereitet. Sobald die Synchronisierung aktiv ist, erscheinen hier automatisch nur FREI oder BELEGT – keine Namen, Adressen oder Termindetails.</p></div>
-   <div className="calendarCta"><div><p className="hand">Termin anfragen</p><h2>PASSENDEN TAG GEFUNDEN?</h2><p>Senden Sie kurz Arbeit, Fotos und Adresse über WhatsApp. Der Termin gilt erst nach Bestätigung.</p></div><a className="heroWa" href={site.whatsapp}>Über WhatsApp anfragen →</a></div>
+   <div className="calendarCta"><div><p className="hand">Termin anfragen</p><h2>PASSENDEN TAG GEFUNDEN?</h2><p>Senden Sie kurz Arbeit, Fotos und Adresse über WhatsApp. Der Termin gilt erst nach Bestätigung.</p></div><a className="heroWa calendarWa" href={site.whatsapp}><span>über WhatsApp<br/><small>anfragen</small></span> →</a></div>
   </section>
  </main>
 }
