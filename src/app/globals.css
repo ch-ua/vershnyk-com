@@ -241,3 +241,6 @@
 
 .monthNav{display:flex;align-items:center;gap:14px}.monthNav h2{margin:5px 0}.monthNav button{width:38px;height:38px;border:1px solid #d7cbb5;border-radius:50%;background:#fffaf0;color:#123f34;font-size:25px;line-height:1;cursor:pointer}.monthNav button:disabled{opacity:.25;cursor:default}
 @media(max-width:800px){.monthNav{gap:9px}.monthNav button{width:34px;height:34px;font-size:22px}}
+
+.calendarTools{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.monthLinks{display:flex;align-items:center;gap:8px}.monthLinks button{min-height:40px;padding:0 15px;border:0;border-radius:999px;background:#123f34;color:#fff;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 3px 8px #123f3420}.monthLinks button:hover{background:#0c884b}
+@media(max-width:800px){.calendarTools{width:100%;justify-content:space-between;gap:10px}.monthLinks{width:100%;justify-content:space-between}.monthLinks button{min-height:42px;padding:0 13px;font-size:11px}}
