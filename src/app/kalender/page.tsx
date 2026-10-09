@@ -25,7 +25,7 @@ export default function Kalender(){
   </header>
   <section className="calendarHero"><p className="hand">Terminplanung</p><h1>FREIE TERMINE.</h1><p>Sehen Sie auf einen Blick, wann VERSHNYK verfügbar ist. Persönliche Termindaten bleiben privat.</p></section>
   <section className="calendarWrap">
-   <div className="calendarTop"><div><p className="eyebrow">VERFÜGBARKEIT</p><h2>{current.name}</h2></div><div className="calendarTools"><div className="calendarLegend"><span><i className="free"></i> FREI</span><span><i className="busy"></i> BELEGT</span></div><div className="monthLinks"><button onClick={()=>move(-1)} aria-label="Vorheriger Monat">← {monthNames[(view.month+11)%12]}</button><button onClick={()=>move(1)} aria-label="Nächster Monat">{monthNames[(view.month+1)%12]} →</button></div></div></div>
+   <div className="calendarTop"><div><p className="eyebrow">VERFÜGBARKEIT</p><h2>{current.name}</h2></div><div className="calendarTools"><div className="calendarLegend"><span><i className="free"></i> FREI</span><span><i className="busy"></i> BELEGT</span></div><div className="monthLinks">{(view.year>initial.year||view.month>initial.month)&&<button onClick={()=>move(-1)} aria-label="Vorheriger Monat">← {monthNames[(view.month+11)%12]}</button>}<button onClick={()=>move(1)} aria-label="Nächster Monat">{monthNames[(view.month+1)%12]} →</button></div></div></div>
    <div className="publicCalendar">
     {["Mo","Di","Mi","Do","Fr","Sa","So"].map(d=><b className="weekday" key={d}>{d}</b>)}
     {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
