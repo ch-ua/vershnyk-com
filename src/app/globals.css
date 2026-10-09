@@ -233,3 +233,8 @@
 /* Calendar WhatsApp CTA: improve readability */
 .calendarWa span{font-size:1.2em}
 .calendarWa small{font-size:1.032em}
+
+/* Keep admin login visible in public mobile header */
+@media(max-width:800px){
+ .header .actions .loginButton{display:inline-flex!important;width:auto!important;min-width:64px!important;height:36px;padding:0 10px;border-radius:999px;font-size:10px}
+}
