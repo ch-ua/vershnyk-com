@@ -255,3 +255,10 @@
  .calendarTools .calendarLegend{gap:8px}
  .calendarTools .monthLinks button{padding:0 10px;font-size:10px}
 }
+
+
+/* Availability calendar: make free/busy days visually distinct */
+.calendarDay:has(.free){background:#e7f4e8;border:1px solid #b8d8bc}
+.calendarDay:has(.busy){background:#f4dfda;border:1px solid #dfb5ac}
+.calendarDay .free{color:#0b7444;font-weight:900}
+.calendarDay .busy{color:#9a4036;font-weight:900}
