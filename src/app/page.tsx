@@ -35,7 +35,7 @@ export default function Home(){
   </header>
 
   <section id="start" className="hero">
-   <div className="heroCopy"><p className="hand">Ihr Handwerker<br/>für Haus und Garten</p><h1>IDEEN.<br/>MONTAGE.<br/><span>ERGEBNISSE.</span></h1><p className="intro">Zuverlässige Handwerksarbeiten<br/>zum fairen Stundenpreis – in Ihrer Region.</p><div className="price"><b>48 €</b><span>pro Stunde<small>zzgl. Fahrtkosten</small></span></div><a className="heroWa" href={site.whatsapp}>◉ &nbsp; Jetzt Anfrage über WhatsApp&nbsp; →</a></div>
+   <div className="heroCopy"><p className="hand">Ihr Handwerker<br/>für Haus und Garten</p><h1>IDEEN.<br/>MONTAGE.<br/><span>ERGEBNISSE.</span></h1><p className="intro">Zuverlässige Handwerksarbeiten<br/>zum fairen Stundenpreis – in Ihrer Region.</p><div className="price"><b>48 €</b><span>pro Stunde<small>zzgl. Fahrtkosten</small></span></div><a className="heroWa" href={site.whatsapp}>◉ &nbsp; <span>Jetzt anfragen<br/><small>über WhatsApp</small></span>&nbsp; →</a></div>
    <div className="heroImage" onTouchStart={e=>touchStart.current=e.touches[0].clientX} onTouchEnd={e=>endTouch(e.changedTouches[0].clientX)} style={{backgroundImage:`url("${slides[slide].image}")`}}><button className="slideArrow prev" onClick={()=>move(-1)} aria-label="Vorheriges Bild">‹</button><button className="slideArrow next" onClick={()=>move(1)} aria-label="Nächstes Bild">›</button><div className="jobTag">{slides[slide].title}</div></div>
    <div className="thumbs">{slides.map((s,i)=><button key={s.title} className={i===slide?"selected":""} onClick={()=>setSlide(i)} style={{backgroundImage:`url("${s.image}")`}}>{s.title}</button>)}</div>
   </section>
