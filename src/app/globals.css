@@ -222,3 +222,10 @@
 .calendarWa{width:max-content;max-width:190px;line-height:1.05}
 .calendarWa span{display:inline-block;text-align:left;font-weight:800}
 .calendarWa small{display:block;margin-top:4px;font-size:.86em;font-weight:700}
+
+.calendarHero{position:relative;overflow:hidden;isolation:isolate}
+.calendarHero>*{position:relative;z-index:2}
+.calendarHero:before,.calendarHero:after{content:"";position:absolute;z-index:1;pointer-events:none;background-repeat:no-repeat;background-size:contain;opacity:.28}
+.calendarHero:before{right:-15px;bottom:-65px;width:330px;height:310px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cpath d='M280 295C235 220 210 145 220 35M220 160C175 145 145 115 125 80M232 205C260 175 275 140 278 105' fill='none' stroke='%23d8c996' stroke-width='5' stroke-linecap='round'/%3E%3Cellipse cx='177' cy='137' rx='43' ry='16' transform='rotate(32 177 137)' fill='%2398aa69'/%3E%3Cellipse cx='216' cy='88' rx='38' ry='15' transform='rotate(-65 216 88)' fill='%23b6bd7a'/%3E%3Cellipse cx='260' cy='160' rx='38' ry='14' transform='rotate(-52 260 160)' fill='%238fa565'/%3E%3Ccircle cx='153' cy='113' r='9' fill='%23d4a24e'/%3E%3C/svg%3E")}
+.calendarHero:after{left:-45px;top:-50px;width:210px;height:220px;transform:rotate(18deg);opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 210 220'%3E%3Cpath d='M18 205C55 145 92 92 170 25' fill='none' stroke='%23eadcad' stroke-width='4'/%3E%3Cellipse cx='70' cy='135' rx='31' ry='12' transform='rotate(25 70 135)' fill='%23a7b477'/%3E%3Cellipse cx='120' cy='85' rx='29' ry='11' transform='rotate(-32 120 85)' fill='%23c0c58a'/%3E%3C/svg%3E")}
+@media(max-width:800px){.calendarHero:before{right:-80px;bottom:-45px;width:250px;height:250px;opacity:.22}.calendarHero:after{left:-80px;top:-55px;opacity:.12}}
