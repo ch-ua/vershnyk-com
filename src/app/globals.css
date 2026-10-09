@@ -218,3 +218,7 @@
 .heroCopy .heroWa{width:max-content;max-width:210px;line-height:1.05}
 .heroCopy .heroWa span{display:inline-block;text-align:left;font-weight:800}
 .heroCopy .heroWa small{display:block;margin-top:4px;font-size:.82em;font-weight:600}
+
+.calendarWa{width:max-content;max-width:190px;line-height:1.05}
+.calendarWa span{display:inline-block;text-align:left;font-weight:800}
+.calendarWa small{display:block;margin-top:4px;font-size:.86em;font-weight:700}
