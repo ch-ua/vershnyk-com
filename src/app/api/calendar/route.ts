@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import ical from "node-ical";
+import * as ical from "node-ical";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +32,7 @@ export async function GET(){
 
     for(const item of Object.values(data)){
       if(!item||item.type!=="VEVENT"||item.status==="CANCELLED"||item.transparency==="TRANSPARENT") continue;
-      const event=item as ical.VEvent;
+      const event=item;
       if(event.rrule){
         const occurrences=event.rrule.between(new Date(now.getFullYear(),now.getMonth(),1),horizon,true);
         const duration=event.end&&event.start?event.end.getTime()-event.start.getTime():0;
