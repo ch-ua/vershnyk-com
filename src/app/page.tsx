@@ -48,6 +48,19 @@ export default function Home(){
 
   <GoogleReviews />
 
+  <section className="socialMediaSection youtubeSection">
+    <div className="mediaHead"><div><p className="hand">Aus Werkstatt & Projekten</p><h2>VERSHNYK AUF YOUTUBE</h2><p>Einblicke in unsere Arbeiten, Montagen und Projekte.</p></div><a href={site.youtube} target="_blank" rel="noreferrer">Mehr auf YouTube →</a></div>
+    <div className="youtubeMediaGrid">
+      <a className="mediaCard mediaMain" href={site.youtube} target="_blank" rel="noreferrer"><span className="mediaBadge">YouTube</span><span className="playButton">▶</span><div><b>Beliebtestes Video</b><small>Auf YouTube ansehen</small></div></a>
+      <div className="shortsRail">{[1,2,3].map((n)=><a key={n} className="mediaCard mediaShort" href={site.youtube} target="_blank" rel="noreferrer"><span className="mediaBadge">Short</span><span className="playButton">▶</span><div><b>VERSHNYK Short {n}</b><small>Auf YouTube ansehen</small></div></a>)}</div>
+    </div>
+  </section>
+
+  <section className="socialMediaSection instagramSection">
+    <div className="mediaHead"><div><p className="hand">Mehr aus dem Alltag</p><h2>VERSHNYK AUF INSTAGRAM</h2><p>Kurze Einblicke in aktuelle Arbeiten und Details.</p></div><a href={site.instagram} target="_blank" rel="noreferrer">Mehr auf Instagram →</a></div>
+    <div className="reelsRail">{[1,2,3].map((n)=><a key={n} className="mediaCard mediaReel" href={site.instagram} target="_blank" rel="noreferrer"><span className="mediaBadge">Reel</span><span className="playButton">▶</span><div><b>VERSHNYK Reel {n}</b><small>Auf Instagram ansehen</small></div></a>)}</div>
+  </section>
+
   <section id="ablauf" className="process"><p className="hand">So funktioniert’s</p><h2>VON DER ANFRAGE ZUR AUSFÜHRUNG</h2><div><span><b>01</b>Arbeit wählen</span><span><b>02</b>Fotos & Adresse senden</span><span><b>03</b>Termin abstimmen</span><span><b>04</b>Ausführung</span></div></section>
 
   <section id="projekte" className="projects"><div className="sectionTitle"><p className="hand">Ausgeführte Arbeiten</p><h2>PROJEKTE</h2></div><div className="projectGrid"><figure style={{backgroundImage:`url("${photos.kitchen}")`}}><figcaption>KÜCHENMONTAGE</figcaption></figure><figure style={{backgroundImage:`url("${photos.fence}")`}}><figcaption>ZAUNMONTAGE</figcaption></figure><figure style={{backgroundImage:`url("${photos.build}")`}}><figcaption>GARTENKONSTRUKTIONEN</figcaption></figure></div></section>
