@@ -2,7 +2,7 @@
 import {site} from "@/data/site";
 import {logo} from "@/data/logo";
 
-const months=[{name:"Oktober 2026",days:31,offset:3},{name:"November 2026",days:30,offset:6},{name:"Dezember 2026",days:31,offset:1},{name:"Januar 2027",days:31,offset:4},{name:"Februar 2027",days:28,offset:0}];
+const months=[{name:"Oktober 2026",days:31,offset:3},{name:"November 2026",days:30,offset:6},{name:"Dezember 2026",days:31,offset:1}];
 
 import {useState} from "react";
 
