@@ -9,10 +9,12 @@ const logo="data:image/webp;base64,UklGRvANAABXRUJQVlA4IOQNAACwLQCdASpgAGAAPoUwk
 
 const photos={
  garden:"https://aimbestmowing.com/_next/image?q=75&url=%2Fhedge-trimming-wide.png&w=3840",
- fence:"https://imgix.obi.de/api/disc/cms/public/dam/DE-AT-Assets/Zaun/zaun-holz-v1/foto-sichtschutz-zaun-holz-handwerker-bau-akkuschrauber.jpg?auto=format%2Ccompress&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&fp-z=1&h=1440&w=1920",
+ fence:"/images/zaun/Anthrazit-Metallzaun.png",
  kitchen:"https://prorenovationohio.com/assets/hero-home-DyClQh-Y.jpg",
  build:"https://media.hornbach.se/cms/nl/chke2-27/54d75079de4e7536438ff61fe1043d/carport5.jpg?size=992"
 };
+
+const fencePhotos=["/images/zaun/Anthrazit-Metallzaun.png","/images/zaun/Anthrazit-Metallzaun1.png","/images/zaun/Anthrazit-Metallzaun2.png"];
 
 const slides=[
  {title:"GARTENPFLEGE",image:photos.garden},
@@ -25,8 +27,11 @@ const slides=[
 
 export default function Home(){
  const [slide,setSlide]=useState(0);
+ const [fencePhoto,setFencePhoto]=useState(fencePhotos[0]);
  const touchStart=useRef<number|null>(null);
  useEffect(()=>{const timer=window.setInterval(()=>setSlide(v=>(v+1)%slides.length),3000);return()=>window.clearInterval(timer)},[]);
+ useEffect(()=>{if(slide===1)setFencePhoto(fencePhotos[Math.floor(Math.random()*fencePhotos.length)])},[slide]);
+ const slideImage=(i:number)=>i===1?fencePhoto:slides[i].image;
  const move=(step:number)=>setSlide(v=>(v+step+slides.length)%slides.length);
  const endTouch=(x:number)=>{if(touchStart.current===null)return;const d=x-touchStart.current;if(Math.abs(d)>35)move(d<0?1:-1);touchStart.current=null};
  return <main className="site">
@@ -38,8 +43,8 @@ export default function Home(){
 
   <section id="start" className="hero">
    <div className="heroCopy"><p className="hand">Ihr Handwerker<br/>für Haus und Garten</p><h1>IDEEN.<br/>MONTAGE.<br/><span>ERGEBNISSE.</span></h1><p className="intro">Zuverlässige Handwerksarbeiten<br/>zum fairen Stundenpreis – in Ihrer Region.</p><div className="price"><b>48 €</b><span>pro Stunde<small>zzgl. Fahrtkosten</small></span></div><a className="heroWa" href={site.whatsapp}>◉ &nbsp; <span>Jetzt anfragen<br/><small>über WhatsApp</small></span>&nbsp; →</a></div>
-   <div className="heroImage" onTouchStart={e=>touchStart.current=e.touches[0].clientX} onTouchEnd={e=>endTouch(e.changedTouches[0].clientX)} style={{backgroundImage:`url("${slides[slide].image}")`}}><button className="slideArrow prev" onClick={()=>move(-1)} aria-label="Vorheriges Bild">‹</button><button className="slideArrow next" onClick={()=>move(1)} aria-label="Nächstes Bild">›</button><div className="jobTag">{slides[slide].title}</div></div>
-   <div className="thumbs">{slides.map((s,i)=><button key={s.title} className={i===slide?"selected":""} onClick={()=>setSlide(i)} style={{backgroundImage:`url("${s.image}")`}}>{s.title}</button>)}</div>
+   <div className="heroImage" onTouchStart={e=>touchStart.current=e.touches[0].clientX} onTouchEnd={e=>endTouch(e.changedTouches[0].clientX)} style={{backgroundImage:`url("${slideImage(slide)}")`}}><button className="slideArrow prev" onClick={()=>move(-1)} aria-label="Vorheriges Bild">‹</button><button className="slideArrow next" onClick={()=>move(1)} aria-label="Nächstes Bild">›</button><div className="jobTag">{slides[slide].title}</div></div>
+   <div className="thumbs">{slides.map((s,i)=><button key={s.title} className={i===slide?"selected":""} onClick={()=>setSlide(i)} style={{backgroundImage:`url("${slideImage(i)}")`}}>{s.title}</button>)}</div>
   </section>
 
   <section className="quick"><div><i>◷</i><p><b>48 € pro Stunde</b><small>zzgl. Fahrtkosten</small></p></div><div><i>⌖</i><p><b>Einsatzgebiet<br/>bis 200 km</b><small>(auf Anfrage auch weiter)</small></p></div><a className="quickLink" href="/kalender"><i>▦</i><p><b>Termine über<br/>Google Kalender</b><small>Kalender öffnen</small></p></a><div><i>◉</i><p><b>Kommunikation nur<br/>über WhatsApp</b><small>kein Telefon</small></p></div></section>
