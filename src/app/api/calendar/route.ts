@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import ical from "node-ical";
+import { sync } from "node-ical";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +24,7 @@ export async function GET(){
   try{
     const res=await fetch(url,{cache:"no-store"});
     if(!res.ok) throw new Error("Calendar fetch failed");
-    const data=ical.sync.parseICS(await res.text());
+    const data=sync.parseICS(await res.text());
     const busy=new Set<string>();
     const now=new Date();
     const horizon=new Date(now);
