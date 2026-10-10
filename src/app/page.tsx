@@ -9,12 +9,12 @@ const logo="data:image/webp;base64,UklGRvANAABXRUJQVlA4IOQNAACwLQCdASpgAGAAPoUwk
 
 const photos={
  garden:"https://aimbestmowing.com/_next/image?q=75&url=%2Fhedge-trimming-wide.png&w=3840",
- fence:"/images/zaun/Anthrazit-Metallzaun.png",
+ fence:"/images/zaun/Anthrazit-Metallzaun.jpg",
  kitchen:"https://prorenovationohio.com/assets/hero-home-DyClQh-Y.jpg",
  build:"https://media.hornbach.se/cms/nl/chke2-27/54d75079de4e7536438ff61fe1043d/carport5.jpg?size=992"
 };
 
-const fencePhotos=["/images/zaun/Anthrazit-Metallzaun.png","/images/zaun/Anthrazit-Metallzaun1.png","/images/zaun/Anthrazit-Metallzaun2.png"];
+const fencePhotos=["/images/zaun/Anthrazit-Metallzaun.jpg","/images/zaun/Anthrazit-Metallzaun1.jpg","/images/zaun/Anthrazit-Metallzaun2.jpg"];
 
 const slides=[
  {title:"GARTENPFLEGE",image:photos.garden},
