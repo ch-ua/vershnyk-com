@@ -393,3 +393,9 @@
  .detailFooter small{font-size:9px}
  .detailFooter p,.detailFooter a{font-size:12px}
 }
+
+/* Slider category links */
+.jobTag{text-decoration:none;color:var(--green);cursor:pointer}
+.thumbs a{height:74px;border:4px solid #fff;border-radius:7px;background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:center;padding:6px;color:#fff;font-size:7px;font-weight:900;text-shadow:0 2px 5px #000;cursor:pointer;text-decoration:none}
+.thumbs a.selected{border-color:#19814d}
+@media(max-width:800px){.thumbs a{min-width:120px;height:78px}}
