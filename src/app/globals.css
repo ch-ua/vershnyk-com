@@ -368,3 +368,17 @@
 .serviceIcon svg{width:31px;height:31px;display:block;fill:none!important;stroke:currentColor!important;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
 .serviceIcon svg path{fill:none!important;stroke:currentColor!important}
 @media(max-width:800px){.serviceIcon svg{width:27px;height:27px;stroke-width:2.7}}
+
+
+/* Service-category navigation repeated at the bottom of every service detail page */
+.serviceCategoryNav{background:var(--cream);padding:58px 4% 66px}
+.serviceCategoryNav .sectionTitle{margin-bottom:28px}
+.serviceCategoryNav .serviceGrid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.serviceNavCard{display:block;min-width:0;background:#fffaf0;border:1px solid var(--line);border-radius:8px;overflow:hidden;text-decoration:none;color:var(--green);transition:transform .18s ease,box-shadow .18s ease}
+.serviceNavCard:hover{transform:translateY(-3px);box-shadow:0 8px 22px #073e3114}
+.serviceNavCard .servicePhoto{height:180px}
+.serviceNavCard h3{font-size:20px;margin:40px 16px 14px;line-height:1.05}
+.serviceNavCard ul{margin:0 16px 24px;padding-left:18px;font-size:11px;line-height:1.7}
+.serviceNavCard .serviceIcon svg{width:30px;height:30px;fill:none;stroke:var(--bright);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1100px){.serviceCategoryNav .serviceGrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.serviceCategoryNav{padding:42px 5% 50px}.serviceCategoryNav .serviceGrid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory}.serviceNavCard{flex:0 0 78%;scroll-snap-align:start}.serviceNavCard .servicePhoto{height:165px}}
