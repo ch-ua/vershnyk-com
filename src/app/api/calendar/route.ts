@@ -62,7 +62,11 @@ export async function GET() {
   }
 
   try {
-    const ical = await import("node-ical");
+    const mod = await import("node-ical");
+    // Next/Vercel may expose CommonJS node-ical either on the module namespace
+    // or under default. Resolve both shapes before parsing.
+    const ical = ((mod as any).sync ? mod : (mod as any).default) as typeof import("node-ical");
+    if (!ical?.sync?.parseICS) throw new Error("node-ical parser unavailable");
     const parsed = ical.sync.parseICS(ics);
     const busy = new Set<string>();
     const now = new Date();
