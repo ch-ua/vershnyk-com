@@ -1,79 +1,104 @@
 import {NextResponse} from "next/server";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 function dayKey(date: Date) {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Berlin",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
+  // sv-SE reliably formats YYYY-MM-DD on Node and in browsers.
+  return new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit"
   }).format(date);
 }
 
 function addRange(busy: Set<string>, start: Date, end?: Date) {
-  const last = new Date((end?.getTime() ?? start.getTime()) - (end ? 1 : 0));
-  const cursor = new Date(start);
-  cursor.setHours(12, 0, 0, 0);
-  const stop = dayKey(last);
-  for (let guard = 0; guard < 370; guard++) {
-    busy.add(dayKey(cursor));
-    if (dayKey(cursor) === stop) break;
-    cursor.setDate(cursor.getDate() + 1);
+  if (!Number.isFinite(start.getTime())) return;
+  const final = end && Number.isFinite(end.getTime()) && end > start
+    ? new Date(end.getTime() - 1) : start;
+  const from = dayKey(start);
+  const to = dayKey(final);
+  // Work with calendar date strings rather than server-local time to avoid timezone shifts.
+  let cursor = new Date(from + "T12:00:00Z");
+  for (let i = 0; i < 370; i++) {
+    const key = cursor.toISOString().slice(0, 10);
+    if (key > to) break;
+    busy.add(key);
+    cursor = new Date(cursor.getTime() + 86400000);
   }
 }
 
+function failure(code: string, status: number) {
+  // Do not expose the secret calendar URL or private event data.
+  return NextResponse.json({error: "Calendar unavailable", code}, {
+    status, headers: {"Cache-Control": "no-store"}
+  });
+}
+
 export async function GET() {
-  const url = process.env.GOOGLE_CALENDAR_ICAL_URL;
-  if (!url) return NextResponse.json({error: "Calendar not configured"}, {status: 503});
+  const url = process.env.GOOGLE_CALENDAR_ICAL_URL?.trim();
+  if (!url) return failure("ICAL_URL_MISSING", 503);
+  if (!/^https:\/\//i.test(url)) return failure("ICAL_URL_INVALID", 503);
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      cache: "no-store", redirect: "follow",
+      headers: {"Accept": "text/calendar, text/plain;q=0.9, */*;q=0.5"},
+      signal: AbortSignal.timeout(12000)
+    });
+  } catch (err) {
+    console.error("Calendar feed request failed", err);
+    return failure("ICAL_FETCH_FAILED", 502);
+  }
+
+  if (!response.ok) {
+    console.error("Calendar feed returned HTTP", response.status);
+    return failure("ICAL_HTTP_" + response.status, 502);
+  }
+
+  const ics = await response.text();
+  if (!ics.includes("BEGIN:VCALENDAR")) {
+    console.error("Calendar feed did not return iCalendar data");
+    return failure("ICAL_NOT_CALENDAR", 502);
+  }
 
   try {
-    const res = await fetch(url, {cache: "no-store"});
-    if (!res.ok) throw new Error("Calendar fetch failed");
-    const ics = await res.text();
-
-    // Load node-ical only when this request runs. This prevents Next.js/Vercel
-    // from evaluating the package while collecting route data at build time.
     const ical = await import("node-ical");
-    const data = ical.sync.parseICS(ics);
+    const parsed = ical.sync.parseICS(ics);
     const busy = new Set<string>();
     const now = new Date();
-    const horizon = new Date(now);
-    horizon.setFullYear(horizon.getFullYear() + 2);
+    const startWindow = new Date(now.getFullYear(), now.getMonth(), 1);
+    const horizon = new Date(now.getFullYear() + 2, now.getMonth() + 1, 1);
 
-    type CalendarEvent = {
-      type: string;
-      status?: string;
-      transparency?: string;
-      start?: Date;
-      end?: Date;
+    type Event = {
+      type?: string; status?: string; transparency?: string;
+      start?: Date; end?: Date;
       rrule?: {between: (start: Date, end: Date, inclusive: boolean) => Date[]};
+      exdate?: Record<string, Date>;
     };
-
-    for (const raw of Object.values(data)) {
-      const item = raw as unknown as CalendarEvent;
-      if (!item || item.type !== "VEVENT" || item.status === "CANCELLED" || item.transparency === "TRANSPARENT") continue;
+    let eventCount = 0;
+    for (const raw of Object.values(parsed)) {
+      const item = raw as Event;
+      if (!item || item.type !== "VEVENT" ||
+          item.status?.toUpperCase() === "CANCELLED" ||
+          item.transparency?.toUpperCase() === "TRANSPARENT") continue;
+      eventCount++;
       if (item.rrule) {
-        const occurrences = item.rrule.between(
-          new Date(now.getFullYear(), now.getMonth(), 1),
-          horizon,
-          true
-        );
-        const duration = item.end && item.start ? item.end.getTime() - item.start.getTime() : 0;
-        for (const start of occurrences) {
-          addRange(busy, start, duration ? new Date(start.getTime() + duration) : undefined);
+        const duration = item.start && item.end ? item.end.getTime() - item.start.getTime() : 0;
+        const excluded = new Set(Object.values(item.exdate || {}).map(d => d.getTime()));
+        for (const occurrence of item.rrule.between(startWindow, horizon, true)) {
+          if (excluded.has(occurrence.getTime())) continue;
+          addRange(busy, occurrence, duration > 0 ? new Date(occurrence.getTime() + duration) : undefined);
         }
       } else if (item.start) {
         addRange(busy, item.start, item.end);
       }
     }
 
-    return NextResponse.json(
-      {busy: [...busy].sort()},
-      {headers: {"Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600"}}
-    );
-  } catch (error) {
-    console.error("Calendar parsing failed", error);
-    return NextResponse.json({error: "Calendar temporarily unavailable"}, {status: 502});
+    return NextResponse.json({busy: [...busy].sort(), source: "google-ical", eventCount}, {
+      headers: {"Cache-Control": "no-store"}
+    });
+  } catch (err) {
+    console.error("Calendar parsing failed", err);
+    return failure("ICAL_PARSE_FAILED", 502);
   }
 }
