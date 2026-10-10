@@ -262,3 +262,14 @@
 .calendarDay:has(.busy){background:#f4dfda;border:1px solid #dfb5ac}
 .calendarDay .free{color:#0b7444;font-weight:900}
 .calendarDay .busy{color:#9a4036;font-weight:900}
+
+
+/* YouTube live feed layout */
+.socialCount{text-align:right;margin:-8px 0 12px;font-size:13px;font-weight:800;color:#123f34}
+.youtubeMediaGrid{grid-template-columns:1.15fr 1fr;align-items:stretch}
+.youtubeMediaGrid .mediaMain{min-height:330px}
+.youtubeVideosRail{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.youtubeVideosRail .mediaVideo{min-height:330px;background-size:cover;background-position:center}
+.youtubeShortsRow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:900px;margin:18px auto 0}
+.youtubeShortsRow .mediaShort{background-size:cover;background-position:center}
+@media(max-width:800px){.socialCount{text-align:left;margin-top:0}.youtubeVideosRail,.youtubeShortsRow{display:flex;overflow-x:auto;gap:12px}.youtubeVideosRail .mediaVideo,.youtubeShortsRow .mediaShort{flex:0 0 62%;min-height:0;aspect-ratio:9/16}.youtubeShortsRow{max-width:none;margin-top:14px}}
