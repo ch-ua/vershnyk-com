@@ -32,6 +32,7 @@ export async function GET(){
   }catch(e){diagnostic=e instanceof Error?e.name:"fetch-error"}
  }
  let subscribers:string|null=null;
+ let shorts:ReturnType<typeof videosFromFeed>=[];
  try{
   const response=await fetch(CHANNEL_URL,{headers:{"User-Agent":"Mozilla/5.0"},next:{revalidate:3600},signal:AbortSignal.timeout(8000)});
   if(response.ok){
@@ -56,5 +57,19 @@ export async function GET(){
    }
   }
  }catch{}
- return NextResponse.json({channelId:CHANNEL_ID,items,subscribers,diagnostic},{headers:{"Cache-Control":"public, s-maxage=900, stale-while-revalidate=1800"}});
+ try{
+  const response=await fetch(CHANNEL_URL+"/shorts",{headers:{"User-Agent":"Mozilla/5.0"},cache:"no-store",signal:AbortSignal.timeout(8000)});
+  if(response.ok){
+   const html=await response.text();
+   const seen=new Set<string>();
+   for(const m of html.matchAll(/"videoId":"([\w-]{11})"/g)){
+    const id=m[1];
+    if(seen.has(id))continue;
+    seen.add(id);
+    shorts.push({videoId:id,title:"VERSHNYK Short",published:"",url:"https://www.youtube.com/shorts/"+id,thumbnail:"https://i.ytimg.com/vi/"+id+"/hqdefault.jpg"});
+    if(shorts.length>=4)break;
+   }
+  }
+ }catch{}
+ return NextResponse.json({channelId:CHANNEL_ID,items,shorts,subscribers,diagnostic},{headers:{"Cache-Control":"public, s-maxage=900, stale-while-revalidate=1800"}});
 }
