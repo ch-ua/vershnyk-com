@@ -71,5 +71,9 @@ export async function GET(){
    }
   }
  }catch{}
- return NextResponse.json({channelId:CHANNEL_ID,items,shorts,subscribers,diagnostic},{headers:{"Cache-Control":"public, s-maxage=900, stale-while-revalidate=1800"}});
+ // Keep the two visual groups strictly separate: the large card may only use
+ // regular videos, never a video that appears in the Shorts feed.
+ const shortIds=new Set(shorts.map(v=>v.videoId));
+ const regularItems=items.filter(v=>!shortIds.has(v.videoId));
+ return NextResponse.json({channelId:CHANNEL_ID,items:regularItems,shorts,subscribers,diagnostic},{headers:{"Cache-Control":"public, s-maxage=900, stale-while-revalidate=1800"}});
 }
