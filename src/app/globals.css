@@ -414,3 +414,10 @@
 .legalSitePage .legalWrap a{color:var(--green);font-weight:700}
 .legalSitePage .legalNote{grid-column:1/-1;font-size:13px;opacity:.7;padding:8px 2px}
 @media(max-width:800px){.legalHero{padding:34px 20px 24px}.legalSitePage .legalPage{padding:24px 16px 44px}.legalSitePage .legalWrap{grid-template-columns:1fr;gap:12px}.legalSitePage .legalWrap section{padding:20px}.legalHero .hand{font-size:18px}}
+
+/* Price transparency: keep the net rate visually primary while showing the consumer gross price nearby */
+.vatNote{display:block;flex-basis:100%;margin-top:4px;font-style:normal;font-size:10px;font-weight:600;line-height:1.25;opacity:.72;color:inherit;background:transparent}
+.price .vatNote{color:var(--green);text-align:left}
+.servicePrice .vatNote{font-size:9px;opacity:.78}
+.reviewDisclosure{max-width:900px;margin:16px auto 0;padding:0 5%;font-size:10px;line-height:1.45;opacity:.65}
+@media(max-width:800px){.vatNote{font-size:9px}.servicePrice .vatNote{font-size:8px}.reviewDisclosure{font-size:9px}}
