@@ -286,3 +286,21 @@
  .youtubeVideosRail .mediaVideo{flex:0 0 78%;min-height:0;aspect-ratio:16/9}
  .youtubeShortsRow .mediaShort,.instagramSection .mediaReel{flex:0 0 62%;min-height:0;aspect-ratio:9/16}
 }
+
+
+/* Keep the whole YouTube composition proportional instead of stretching columns */
+.youtubeMediaGrid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:14px;align-items:start}
+.youtubeVideosRail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.youtubeMediaGrid .mediaMain,.youtubeVideosRail .mediaVideo{aspect-ratio:16/9;height:auto;min-height:0}
+.youtubeMediaGrid .mediaMain{align-self:start}
+.youtubeVideosRail .mediaVideo{align-self:start}
+@media(max-width:1100px) and (min-width:801px){
+ .youtubeMediaGrid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+ .youtubeVideosRail{gap:10px}
+}
+@media(max-width:800px){
+ .youtubeMediaGrid{display:block}
+ .youtubeMediaGrid .mediaMain{width:100%;aspect-ratio:16/9;margin-bottom:14px}
+ .youtubeVideosRail{display:flex;overflow-x:auto;gap:12px}
+ .youtubeVideosRail .mediaVideo{flex:0 0 78%;width:auto;aspect-ratio:16/9}
+}
