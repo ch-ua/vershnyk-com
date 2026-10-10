@@ -452,3 +452,8 @@
 @media(max-width:430px){
  .heroCopy .hand{margin-top:15px}
 }
+
+
+/* Space between calendar grid and appointment request */
+.calendarCta{margin-top:32px}
+@media(max-width:800px){.calendarCta{margin-top:22px}}
