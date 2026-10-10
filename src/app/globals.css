@@ -347,3 +347,18 @@
 .serviceIcon{position:absolute;left:14px;bottom:-25px;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#fffdf7;color:var(--dark);border:1px solid rgba(9,79,54,.12);box-shadow:0 5px 14px rgba(20,52,38,.12);font-size:29px;font-weight:800;line-height:1;z-index:2}
 .serviceGrid article h3{margin-top:34px}
 @media(max-width:800px){.serviceIcon{width:48px;height:48px;bottom:-22px;font-size:25px}.serviceGrid article h3{margin-top:30px}}
+
+/* Service detail project galleries */
+.servicePhotoGallery{padding:52px 5%;background:#f8efdc}
+.detailGalleryGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:250px;gap:12px}
+.detailGalleryGrid figure{margin:0;border-radius:10px;background-size:cover;background-position:center;overflow:hidden}
+.detailGalleryGrid figure.wide{grid-column:span 2;grid-row:span 2}
+@media(max-width:800px){
+ .servicePhotoGallery{padding:36px 4%}
+ .detailGalleryGrid{grid-template-columns:1fr 1fr;grid-auto-rows:180px;gap:8px}
+ .detailGalleryGrid figure.wide{grid-column:1/-1;grid-row:auto;min-height:230px}
+}
+@media(max-width:480px){
+ .detailGalleryGrid{grid-template-columns:1fr;grid-auto-rows:220px}
+ .detailGalleryGrid figure.wide{grid-column:auto;min-height:250px}
+}
