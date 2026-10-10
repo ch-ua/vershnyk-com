@@ -457,3 +457,13 @@
 /* Space between calendar grid and appointment request */
 .calendarCta{margin-top:32px}
 @media(max-width:800px){.calendarCta{margin-top:22px}}
+
+
+/* Desktop hero spacing: same 1–5 proportions as approved mobile review */
+@media(min-width:801px){
+ .heroCopy .hand{margin-bottom:5px} /* 1: -50% */
+ .hero h1{margin-top:18px;margin-bottom:18px} /* 2: -20% */
+ .intro{margin-top:0;margin-bottom:12px} /* 3: -50% */
+ .priceBlock{margin-top:12px;margin-bottom:9px} /* 4: -50% */
+ .heroCopy .heroWa{margin-top:18px} /* 5: +100% */
+}
