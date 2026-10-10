@@ -68,7 +68,6 @@ export default function Home(){
 
   <section id="ablauf" className="process"><p className="hand">So funktioniert’s</p><h2>VON DER ANFRAGE ZUR AUSFÜHRUNG</h2><div><span><b>01</b>Arbeit wählen</span><span><b>02</b>Fotos & Adresse senden</span><span><b>03</b>Termin abstimmen</span><span><b>04</b>Ausführung</span></div></section>
 
-  <section id="projekte" className="projects"><div className="sectionTitle"><p className="hand">Ausgeführte Arbeiten</p><h2>PROJEKTE</h2></div><div className="projectGrid"><figure style={{backgroundImage:`url("${photos.kitchen}")`}}><figcaption>KÜCHENMONTAGE</figcaption></figure><figure style={{backgroundImage:`url("${photos.fence}")`}}><figcaption>ZAUNMONTAGE</figcaption></figure><figure style={{backgroundImage:`url("${photos.build}")`}}><figcaption>GARTENKONSTRUKTIONEN</figcaption></figure></div></section>
   <section id="ueber" className="closing"><p className="hand">Einfach. Persönlich. Direkt.</p><h2>WAS MUSS GEMACHT WERDEN?</h2><a className="heroWa" href={site.whatsapp}>◉ &nbsp; Jetzt über WhatsApp schreiben&nbsp; →</a></section>
   <footer><div className="brand"><img src={logo} alt="VERSHNYK"/><span><strong>VERSHNYK</strong><small>HANDWERK & MONTAGE</small></span></div><p>Memmingen · Allgäu · bis 200 km</p><nav><a href={site.instagram}>Instagram</a><a href={site.youtube}>YouTube</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></nav></footer>
  </main>
