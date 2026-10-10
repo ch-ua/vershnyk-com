@@ -496,3 +496,28 @@
 .radiusCircle{position:absolute;z-index:4;left:48%;top:45%;display:flex;flex-direction:column;align-items:center;gap:3px}.radiusCircle .large{width:50px;height:50px;background:#fffaf0;box-shadow:0 4px 12px #0002}.radiusCircle strong{font-size:18px;background:#fffaf0cc;padding:2px 7px}.radiusCircle small{font-weight:800}.mapLabel{position:absolute;z-index:3;font-size:24px;font-weight:900;letter-spacing:.08em;color:#174b3c;text-shadow:0 1px #fff}.mapLabel.bayern{right:14%;top:28%}.mapLabel.bw{left:8%;top:31%}.mapLabel.tirol{right:22%;bottom:12%}
 .mapRoad{position:absolute;height:2px;background:#e3ae39aa;transform-origin:left}.mapRoad.r1{width:72%;left:8%;top:43%;transform:rotate(12deg)}.mapRoad.r2{width:60%;left:24%;top:65%;transform:rotate(-24deg)}.mapRoad.r3{width:55%;left:35%;top:18%;transform:rotate(67deg)}
 @media(max-width:800px){.contactStrip{grid-template-columns:1fr;padding:26px 4%;gap:12px}.contactStripItem{min-height:160px;padding:24px}.areaHero{padding:48px 6%}.areaHero h1{font-size:38px}.areaContent{grid-template-columns:1fr;padding:30px 4%;gap:18px}.areaText{padding:12px}.areaText h2{font-size:30px}.areaMapVisual{height:380px}.mapLabel{font-size:16px}.mapLabel.bw{left:4%}.radiusCircle{left:43%}}
+
+
+/* Mobile hero alignment + CTA fit + synced thumbnail rail */
+@media(max-width:800px){
+ .heroCopy{padding-left:5%;padding-right:3%;}
+ .heroCopy .hand{margin-left:0;max-width:100%;}
+ .hero h1{margin-left:0;max-width:100%;font-size:clamp(25px,7.1vw,31px);}
+ .intro{margin-left:0;max-width:100%;}
+ .priceBlock{max-width:100%;}
+ .priceBlock .price{max-width:100%;gap:8px;padding-left:16px;padding-right:18px;}
+ .priceBlock .price b{font-size:clamp(25px,7vw,31px);}
+ .priceBlock .price span{font-size:clamp(8px,2.4vw,10px);}
+ .priceMeta{padding-left:12px;}
+ .heroCopy .heroWa{display:flex;width:100%;max-width:168px;min-height:40px;padding:8px 9px;align-items:center;justify-content:center;white-space:normal;line-height:1.15;text-align:left;overflow:hidden;}
+ .heroCopy .heroWa span{min-width:0;font-size:8px;}
+ .heroCopy .heroWa small{font-size:7px;}
+ .thumbs{scroll-behavior:smooth;scroll-snap-type:x proximity;overscroll-behavior-x:contain;}
+ .thumbs a{scroll-snap-align:center;flex:0 0 70px;min-width:70px;width:70px;height:52px;}
+}
+@media(max-width:430px){
+ .heroCopy{padding-left:4.5%;padding-right:2.5%;}
+ .hero h1{font-size:clamp(24px,7vw,28px);}
+ .heroCopy .heroWa{max-width:158px;}
+ .thumbs a{flex-basis:62px;min-width:62px;width:62px;height:46px;}
+}
