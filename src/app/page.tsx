@@ -16,6 +16,7 @@ const photos={
 };
 
 const fencePhotos=["/images/zaun/Anthrazit-Metallzaun.jpg","/images/zaun/Anthrazit-Metallzaun1.jpg","/images/zaun/Anthrazit-Metallzaun2.jpg"];
+const gardenPhotos=["/images/garten/Gartenpflege-Heckenschnitt-03.jpg","/images/garten/Gartenpflege-Heckenschnitt-vershnyk-com.jpg","/images/garten/Gartenpflege-Strauchschnitt.jpg"];
 
 const slides=[
  {title:"GARTENPFLEGE",image:photos.garden},
@@ -29,10 +30,11 @@ const slides=[
 export default function Home(){
  const [slide,setSlide]=useState(0);
  const [fencePhoto,setFencePhoto]=useState(fencePhotos[0]);
+ const [gardenPhoto,setGardenPhoto]=useState(gardenPhotos[0]);
  const touchStart=useRef<number|null>(null);
  useEffect(()=>{const timer=window.setInterval(()=>setSlide(v=>(v+1)%slides.length),3000);return()=>window.clearInterval(timer)},[]);
- useEffect(()=>{if(slide===1)setFencePhoto(fencePhotos[Math.floor(Math.random()*fencePhotos.length)])},[slide]);
- const slideImage=(i:number)=>i===1?fencePhoto:slides[i].image;
+ useEffect(()=>{if(slide===0)setGardenPhoto(gardenPhotos[Math.floor(Math.random()*gardenPhotos.length)]);if(slide===1)setFencePhoto(fencePhotos[Math.floor(Math.random()*fencePhotos.length)])},[slide]);
+ const slideImage=(i:number)=>i===0?gardenPhoto:i===1?fencePhoto:slides[i].image;
  const move=(step:number)=>setSlide(v=>(v+step+slides.length)%slides.length);
  const endTouch=(x:number)=>{if(touchStart.current===null)return;const d=x-touchStart.current;if(Math.abs(d)>35)move(d<0?1:-1);touchStart.current=null};
  return <main className="site">
