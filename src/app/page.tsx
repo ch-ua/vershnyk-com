@@ -1,5 +1,6 @@
 "use client";
 import SiteHeader from "@/app/components/SiteHeader";
+import ContactStrip from "@/app/components/ContactStrip";
 import {useEffect,useRef,useState} from "react";
 import {site} from "@/data/site";
 import GoogleReviews from "./components/GoogleReviews";
@@ -60,7 +61,7 @@ export default function Home(){
 
   <section id="leistungen" className="services"><div className="sectionTitle"><p className="hand">Unsere Leistungen</p><h2>ALLES AUS EINER HAND</h2></div><div className="serviceGrid">{site.serviceDetails.map((s,i)=>{const imgs=[gardenPhoto,fencePhoto,constructionPhoto,furniturePhoto,kitchenPhoto,renovationPhoto];return <article key={s.title} onClick={()=>{window.location.href="/leistungen/"+["gartenpflege","zaunmontage","gartenbau","moebelmontage","kuechenmontage","renovierung"][i]}} role="link" tabIndex={0}><div className="servicePhoto" style={{backgroundImage:`url("${imgs[i]}")`}}><span className="serviceIcon" aria-hidden="true">{[<svg key="garden" viewBox="0 0 48 48"><path d="M24 38V22M23 29C15 29 10 24 9 15c9 0 14 5 14 14Zm2-5c1-8 6-13 15-14-1 9-6 14-15 14Z"/></svg>,<svg key="fence" viewBox="0 0 48 48"><path d="M10 40V10M24 40V10M38 40V10M6 17h36M6 31h36M7 10l3-4 3 4M21 10l3-4 3 4M35 10l3-4 3 4"/></svg>,<svg key="build" viewBox="0 0 48 48"><path d="M7 24 24 9l17 15M11 21v19h26V21M19 40V28h10v12"/></svg>,<svg key="furniture" viewBox="0 0 48 48"><path d="M13 7h22v34H13zM24 7v34M19 23h2M27 23h2M10 41h28"/></svg>,<svg key="kitchen" viewBox="0 0 48 48"><path d="M12 10v28M7 10v10c0 5 10 5 10 0V10M24 10v28M34 10v28M34 10c8 3 8 14 0 18"/></svg>,<svg key="reno" viewBox="0 0 48 48"><path d="m10 31 18-18 8 8-18 18H10v-8ZM25 16l8 8M31 10l7 7"/></svg>][i]}</span></div><h3>{s.title}</h3><ul>{s.items.map(x=><li key={x}>{x}</li>)}</ul></article>})}</div></section>
 
-  <section className="triptych"><article className="areaCard"><div className="regionGraphic"><span>⌖</span><strong>200</strong><small>km Radius</small></div><div><p className="eyebrow">EINSATZGEBIET</p><h3>Unterwegs in Ihrer Region.</h3><p>Ich bin für Sie in einem Radius von <b>bis zu 200 km</b> unterwegs.</p><small>Auf Anfrage sind auch weiter entfernte Orte möglich.</small></div></article><article className="calendarCard"><div className="calendarIcon">▦</div><div><p className="eyebrow">VERFÜGBARKEIT</p><h3>Freie Termine auf einen Blick.</h3><p>Aktuelle Verfügbarkeit im Google Kalender ansehen.</p><div className="availability"><b>FREI</b><b className="busy">BELEGT</b><b>FREI</b></div><small>Keine Direktbuchung – Termin erst nach Bestätigung.</small><a className="textLink" href="/kalender">Kalender ansehen →</a></div></article><article id="kontakt" className="requestCard"><div className="waMark">◉</div><div><p className="eyebrow">ANFRAGE STELLEN</p><h3>Projekt kurz per WhatsApp senden.</h3><p>Beschreiben Sie die Arbeit und senden Sie bei Bedarf Fotos und Adresse mit.</p><a className="requestButton" href={site.whatsapp}>Über WhatsApp anfragen →</a><small>Kommunikation ausschließlich über WhatsApp.</small></div></article></section>
+  <ContactStrip/>
 
   <GoogleReviews />
 
