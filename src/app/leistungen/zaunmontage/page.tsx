@@ -1,5 +1,6 @@
 "use client";
 import SiteHeader from "@/app/components/SiteHeader";
+import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {useState} from "react";
 import {site} from "@/data/site";
 const photos=["/images/zaun/Zaunmontage-01.jpg","/images/zaun/Zaunmontage-02.jpg","/images/zaun/Zaunmontage-03.jpg"];
@@ -13,5 +14,6 @@ export default function ServicePage(){
  <section className="servicePhotoGallery"><div className="sectionTitle"><p className="hand">Ausgeführte Arbeiten</p><h2>EINBLICKE IN MEINE PROJEKTE</h2></div><div className="detailGalleryGrid">{photos.map((p,i)=><figure key={p} className={i===0?"wide":""} style={{backgroundImage:`url("${p}")`}} aria-label={"Projektfoto "+(i+1)}/>)}</div></section>
  <section className="serviceGallery"><div style={{backgroundImage:`url("${photos[photos.length-1]}")`}}></div><div className="galleryCopy"><p className="hand">Einfach anfragen</p><h2>FOTOS SENDEN.<br/>AUFWAND KLÄREN.<br/><span>TERMIN FINDEN.</span></h2><p>Schicken Sie Fotos, Adresse und eine kurze Beschreibung. So kann ich den Aufwand vorab besser einschätzen.</p><a className="heroWa" href={site.whatsapp}>Jetzt über WhatsApp anfragen →</a></div></section>
  <section className="serviceBottom"><div><b>⌖</b><h3>EINSATZGEBIET</h3><p>Rund um Memmingen / Allgäu, in der Regel bis 200 km. Weiter auf Anfrage.</p></div><div><b>▦</b><h3>TERMIN</h3><p>Verfügbarkeit ansehen, Termin nach Bestätigung.</p></div><div><b>◉</b><h3>WHATSAPP</h3><p>Fotos und Projektdetails direkt senden.</p></div></section>
+ <ServiceCategoryNav/>
  <footer className="detailFooter"><div><strong>VERSHNYK</strong><small>HANDWERK & MONTAGE</small></div><p>© 2026 VERSHNYK · Handwerk & Montage</p><nav><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="/">Startseite</a></nav></footer></main>
 }
