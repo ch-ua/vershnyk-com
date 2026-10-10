@@ -20,7 +20,7 @@ const gardenPhotos=["/images/garten/Gartenpflege-Heckenschnitt-03.jpg","/images/
 const kitchenPhotos=["/images/montage-k/Kuechenmontage-01.jpg","/images/montage-k/Kuechenmontage-02.jpg","/images/montage-k/Kuechenmontage-03.jpg","/images/montage-k/Kuechenmontage-04.jpg","/images/montage-k/Kuechenmontage-05.jpg","/images/montage-k/Kuechenmontage-06.jpg","/images/montage-k/Kuechenmontage-Montage-05.jpg"];
 const furniturePhotos=["/images/montage/Moebelmontage-01.jpg","/images/montage/Moebelmontage-02.jpg","/images/montage/Moebelmontage-03.jpg","/images/montage/Moebelmontage-TV-Moebel-04.jpg"];
 const constructionPhotos=["/images/gatren-b/Gartenkonstruktion-Fundament-optimiert.jpg","/images/gatren-b/Gartenkonstruktion-Holz-Metall-01.jpg","/images/gatren-b/Gartenkonstruktionen-Spielplatz.jpg","/images/gatren-b/vershnyk-gartenbau-konstruktionen.jpg"];
-const renovationPhotos=["/images/bau/Innenausbau-Dachgeschoss-01.jpg","/images/bau/Renovierung-Trockenbau-01.jpg","/images/bau/Renovierung-Trockenbau-02.jpg"];
+const renovationPhotos=["/images/bau/Innenausbau-Dachgeschoss-01.jpg","/images/bau/Renovierung-Spachtelarbeiten-01.jpg","/images/bau/Renovierung-Trockenbau-01.jpg","/images/bau/Renovierung-Trockenbau-02.jpg"];
 
 const slides=[
  {title:"GARTENPFLEGE",image:photos.garden},
