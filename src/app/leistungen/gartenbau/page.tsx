@@ -3,7 +3,8 @@ import SiteHeader from "@/app/components/SiteHeader";
 import {useState} from "react";
 import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {site} from "@/data/site";
-const photos=["/images/gatren-b/Gartenkonstruktion-Fundament-optimiert.jpg","/images/gatren-b/Gartenkonstruktion-Holz-Metall-01.jpg","/images/gatren-b/Gartenkonstruktionen-Spielplatz.jpg","/images/gatren-b/vershnyk-gartenbau-konstruktionen.jpg"];
+import imageManifest from "@/data/image-manifest.json";
+const photos=imageManifest.construction;
 const items=["Gartenhäuser","Carports & Überdachungen","Spielgeräte & Spielplätze","Gartenmöbel","Holz- & Metallkonstruktionen","Fundamente & Unterkonstruktionen"];
 export default function ServicePage(){
  const [hero]=useState(()=>photos[Math.floor(Math.random()*photos.length)]);
