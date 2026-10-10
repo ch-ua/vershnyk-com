@@ -17,7 +17,7 @@ const photos={
 
 const fencePhotos=["/images/zaun/Anthrazit-Metallzaun.jpg","/images/zaun/Anthrazit-Metallzaun1.jpg","/images/zaun/Anthrazit-Metallzaun2.jpg"];
 const gardenPhotos=["/images/garten/Gartenpflege-Heckenschnitt-03.jpg","/images/garten/Gartenpflege-Heckenschnitt-vershnyk-com.jpg","/images/garten/Gartenpflege-Strauchschnitt.jpg"];
-const kitchenPhotos=["/images/montage-k/Kuechenmontage-01.jpg","/images/montage-k/Kuechenmontage-02.jpg","/images/montage-k/Kuechenmontage-03.jpg","/images/montage-k/Kuechenmontage-04.jpg"];
+const kitchenPhotos=["/images/montage-k/Kuechenmontage-01.jpg","/images/montage-k/Kuechenmontage-02.jpg","/images/montage-k/Kuechenmontage-03.jpg","/images/montage-k/Kuechenmontage-04.jpg","/images/montage-k/Kuechenmontage-05.jpg","/images/montage-k/Kuechenmontage-06.jpg","/images/montage-k/Kuechenmontage-Montage-05.jpg"];
 const furniturePhotos=["/images/montage/Moebelmontage-01.jpg","/images/montage/Moebelmontage-02.jpg","/images/montage/Moebelmontage-03.jpg","/images/montage/Moebelmontage-TV-Moebel-04.jpg"];
 
 const slides=[
