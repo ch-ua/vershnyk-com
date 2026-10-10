@@ -43,7 +43,9 @@ export default function Home(){
  const [constructionPhoto,setConstructionPhoto]=useState(constructionPhotos[0]);
  const [renovationPhoto,setRenovationPhoto]=useState(renovationPhotos[0]);
  const touchStart=useRef<number|null>(null);
+ const thumbsRef=useRef<HTMLDivElement|null>(null);
  useEffect(()=>{const timer=window.setInterval(()=>setSlide(v=>(v+1)%slides.length),3000);return()=>window.clearInterval(timer)},[]);
+ useEffect(()=>{const el=thumbsRef.current?.children[slide] as HTMLElement|undefined;if(el)el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})},[slide]);
  useEffect(()=>{if(slide===0)setGardenPhoto(gardenPhotos[Math.floor(Math.random()*gardenPhotos.length)]);if(slide===1)setFencePhoto(fencePhotos[Math.floor(Math.random()*fencePhotos.length)]);if(slide===2)setConstructionPhoto(constructionPhotos[Math.floor(Math.random()*constructionPhotos.length)]);if(slide===3)setFurniturePhoto(furniturePhotos[Math.floor(Math.random()*furniturePhotos.length)]);if(slide===4)setKitchenPhoto(kitchenPhotos[Math.floor(Math.random()*kitchenPhotos.length)]);if(slide===5)setRenovationPhoto(renovationPhotos[Math.floor(Math.random()*renovationPhotos.length)])},[slide]);
  const slideImage=(i:number)=>i===0?gardenPhoto:i===1?fencePhoto:i===2?constructionPhoto:i===3?furniturePhoto:i===4?kitchenPhoto:i===5?renovationPhoto:slides[i].image;
  const move=(step:number)=>setSlide(v=>(v+step+slides.length)%slides.length);
@@ -54,7 +56,7 @@ export default function Home(){
   <section id="start" className="hero">
    <div className="heroCopy"><p className="hand">Ihr Handwerker<br/>für Haus und Garten</p><h1>IDEEN.<br/>MONTAGE.<br/><span>ERGEBNISSE.</span></h1><p className="intro">Zuverlässige Handwerksarbeiten<br/>zum fairen Stundenpreis – in Ihrer Region.</p><div className="priceBlock"><div className="price"><b>48 €</b><span>pro Stunde (netto)</span></div><div className="priceMeta"><span>57,12 € inkl. 19 % MwSt.</span><small>zzgl. Fahrtkosten</small></div></div><a className="heroWa" href={site.whatsapp}>◉ &nbsp; <span>Jetzt anfragen<br/><small>über WhatsApp</small></span>&nbsp; →</a></div>
    <div className="heroImage" onTouchStart={e=>touchStart.current=e.touches[0].clientX} onTouchEnd={e=>endTouch(e.changedTouches[0].clientX)} style={{backgroundImage:`url("${slideImage(slide)}")`}}><button className="slideArrow prev" onClick={()=>move(-1)} aria-label="Vorheriges Bild">‹</button><button className="slideArrow next" onClick={()=>move(1)} aria-label="Nächstes Bild">›</button><a className="jobTag" href={servicePaths[slide]}>{slides[slide].title}</a></div>
-   <div className="thumbs">{slides.map((s,i)=><a key={s.title} href={servicePaths[i]} className={i===slide?"selected":""} onMouseEnter={()=>setSlide(i)} style={{backgroundImage:`url("${slideImage(i)}")`}}>{s.title}</a>)}</div>
+   <div className="thumbs" ref={thumbsRef}>{slides.map((s,i)=><a key={s.title} href={servicePaths[i]} className={i===slide?"selected":""} onMouseEnter={()=>setSlide(i)} style={{backgroundImage:`url("${slideImage(i)}")`}}>{s.title}</a>)}</div>
   </section>
 
   <ContactStrip/>
