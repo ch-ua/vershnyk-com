@@ -3,12 +3,9 @@ import SiteHeader from "@/app/components/SiteHeader";
 import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {useState} from "react";
 import {site} from "@/data/site";
+import imageManifest from "@/data/image-manifest.json";
 
-const photos=[
- "/images/garten/Gartenpflege-Heckenschnitt-03.jpg",
- "/images/garten/Gartenpflege-Heckenschnitt-vershnyk-com.jpg",
- "/images/garten/Gartenpflege-Strauchschnitt.jpg"
-];
+const photos=imageManifest.garden;
 const items=["Rasen mähen & pflegen","Hecken schneiden","Baum- und Strauchschnitt","Beete und Gartenflächen pflegen","Saisonale Gartenarbeiten","Aufräum- und Rückschnittarbeiten"];
 
 export default function Gartenpflege(){
