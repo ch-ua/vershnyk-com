@@ -2,7 +2,7 @@ import {NextResponse} from "next/server";
 
 export const dynamic="force-dynamic";
 const CHANNEL_ID="UCv54MwZS5LymBGMKD_n0w6g";
-const CHANNEL_URL="https://www.youtube.com/channel/"+CHANNEL_ID;
+const CHANNEL_URL="https://www.youtube.com/@vershnyk_com";
 const headers={"User-Agent":"Mozilla/5.0 (compatible; VERSHNYKWebsite/1.0)","Accept":"application/atom+xml,application/xml,text/xml,*/*"};
 
 function decodeXml(value:string){
@@ -36,8 +36,13 @@ export async function GET(){
   const response=await fetch(CHANNEL_URL,{headers:{"User-Agent":"Mozilla/5.0"},next:{revalidate:3600},signal:AbortSignal.timeout(8000)});
   if(response.ok){
    const html=await response.text();
-   const match=html.match(/"subscriberCountText":\{"simpleText":"([^"]+)"/)||html.match(/"subscriberCountText":\{"runs":\[\{"text":"([^"]+)"/);
-   if(match) subscribers=decodeJsonText(match[1]);
+   const match=
+    html.match(/"subscriberCountText":\{"simpleText":"([^"]+)"/)||
+    html.match(/"subscriberCountText":\{"runs":\[\{"text":"([^"]+)"/)||
+    html.match(/"subscriberCountText":"([^"]+)"/)||
+    html.match(/"subscriberCount":"([^"]+)"/);
+   if(match) subscribers=decodeJsonText(match[1]).replace(/\s*(subscribers?|Abonnenten)\s*$/i,"").trim();
+   if(!subscribers){const meta=html.match(/([0-9][0-9.,KMkm]*\s*(?:subscribers?|Abonnenten))/i);if(meta)subscribers=meta[1].replace(/\s*(subscribers?|Abonnenten)\s*$/i,"").trim()}
    if(!items.length){
     const seen=new Set<string>();
     for(const m of html.matchAll(/"videoId":"([\w-]{11})"/g)){
