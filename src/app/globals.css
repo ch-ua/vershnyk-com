@@ -362,3 +362,9 @@
  .detailGalleryGrid{grid-template-columns:1fr;grid-auto-rows:220px}
  .detailGalleryGrid figure.wide{grid-column:auto;min-height:250px}
 }
+
+/* Approved service pictograms: clean green outline icons */
+.serviceIcon{color:#087a4b}
+.serviceIcon svg{width:31px;height:31px;display:block;fill:none!important;stroke:currentColor!important;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.serviceIcon svg path{fill:none!important;stroke:currentColor!important}
+@media(max-width:800px){.serviceIcon svg{width:27px;height:27px;stroke-width:2.7}}
