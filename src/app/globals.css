@@ -309,3 +309,13 @@
  .youtubeVideosRail{display:flex;overflow-x:auto;gap:12px}
  .youtubeVideosRail .mediaVideo{flex:0 0 78%;width:auto;aspect-ratio:16/9}
 }
+
+
+/* Shared public header: brand left, utility actions right */
+.siteHeader{justify-content:space-between}
+.siteHeader .actions{margin-left:auto;justify-content:flex-end}
+.siteHeader .loginButton{margin-right:2px}
+@media(max-width:800px){
+ .siteHeader{padding-left:4%;padding-right:4%}
+ .siteHeader .actions{margin-left:auto}
+}
