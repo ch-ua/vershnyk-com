@@ -340,3 +340,10 @@
  .youtubeShortsInline{display:contents}
  .youtubeShortsInline .mediaShort{display:flex!important;flex:0 0 62%;min-width:0;scroll-snap-align:start}
 }
+
+
+/* Service category badge on portfolio image */
+.servicePhoto{position:relative}
+.serviceIcon{position:absolute;left:14px;bottom:-25px;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#fffdf7;color:var(--dark);border:1px solid rgba(9,79,54,.12);box-shadow:0 5px 14px rgba(20,52,38,.12);font-size:29px;font-weight:800;line-height:1;z-index:2}
+.serviceGrid article h3{margin-top:34px}
+@media(max-width:800px){.serviceIcon{width:48px;height:48px;bottom:-22px;font-size:25px}.serviceGrid article h3{margin-top:30px}}
