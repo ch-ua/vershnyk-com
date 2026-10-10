@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import * as ical from "node-ical";
+import ical from "node-ical";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +30,9 @@ export async function GET(){
     const horizon=new Date(now);
     horizon.setFullYear(horizon.getFullYear()+2);
 
-    for(const item of Object.values(data)){
+    type CalendarEvent = {type:string;status?:string;transparency?:string;start?:Date;end?:Date;rrule?:{between:(start:Date,end:Date,inclusive:boolean)=>Date[]}};
+    for(const raw of Object.values(data)){
+      const item=raw as unknown as CalendarEvent;
       if(!item||item.type!=="VEVENT"||item.status==="CANCELLED"||item.transparency==="TRANSPARENT") continue;
       const event=item;
       if(event.rrule){
