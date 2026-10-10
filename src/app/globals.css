@@ -427,3 +427,14 @@
 .price .vatNote{padding-left:0}
 .servicePrice .vatNote{font-size:7.65px}
 @media(max-width:800px){.price .vatNote{font-size:7.65px}.servicePrice .vatNote{font-size:6.8px}}
+
+/* Final price treatment: smooth painted stroke + separate legal price lines */
+.priceBlock{display:inline-flex;flex-direction:column;align-items:flex-start;gap:5px}
+.priceBlock .price,.servicePriceBlock .servicePrice{position:relative;display:flex;align-items:center;gap:18px;width:max-content;min-width:0;padding:9px 34px 10px 30px;background:#f8c52e;clip-path:polygon(1% 20%,7% 7%,25% 10%,39% 3%,57% 9%,72% 4%,91% 9%,99% 23%,96% 48%,100% 73%,91% 91%,72% 87%,56% 96%,38% 89%,19% 95%,3% 83%,5% 59%,0 40%);transform:rotate(-.25deg)}
+.priceBlock .price b,.servicePriceBlock .servicePrice b{white-space:nowrap}
+.priceBlock .price span,.servicePriceBlock .servicePrice span{font-weight:800;white-space:nowrap}
+.priceMeta{display:flex;flex-direction:column;gap:1px;padding-left:22px;color:inherit;background:transparent;line-height:1.25}
+.priceMeta span{font-size:14px;font-style:italic;font-weight:500}
+.priceMeta small{font-size:10px;font-weight:600;opacity:.72}
+.servicePriceBlock .priceMeta span{font-size:12px}.servicePriceBlock .priceMeta small{font-size:9px}
+@media(max-width:800px){.priceBlock .price,.servicePriceBlock .servicePrice{gap:12px;padding:8px 24px 9px 22px}.priceMeta{padding-left:16px}.priceMeta span{font-size:12px}.priceMeta small{font-size:9px}.servicePriceBlock .priceMeta span{font-size:11px}.servicePriceBlock .priceMeta small{font-size:8px}}
