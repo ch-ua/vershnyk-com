@@ -3,7 +3,8 @@ import SiteHeader from "@/app/components/SiteHeader";
 import {useState} from "react";
 import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {site} from "@/data/site";
-const photos=["/images/bau/Innenausbau-Dachgeschoss-01.jpg","/images/bau/Renovierung-Spachtelarbeiten-01.jpg","/images/bau/Renovierung-Trockenbau-01.jpg","/images/bau/Renovierung-Trockenbau-02.jpg"];
+import imageManifest from "@/data/image-manifest.json";
+const photos=imageManifest.renovation;
 const items=["Trockenbau","Spachtelarbeiten","Abgehängte Decken","Maler- & Tapezierarbeiten","Parkett & Laminat","Innenausbau & Anpassungen"];
 export default function ServicePage(){
  const [hero]=useState(()=>photos[Math.floor(Math.random()*photos.length)]);
