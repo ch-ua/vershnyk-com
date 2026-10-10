@@ -3,7 +3,8 @@ import SiteHeader from "@/app/components/SiteHeader";
 import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {useState} from "react";
 import {site} from "@/data/site";
-const photos=["/images/montage/Moebelmontage-01.jpg","/images/montage/Moebelmontage-02.jpg","/images/montage/Moebelmontage-03.jpg","/images/montage/Moebelmontage-TV-Moebel-04.jpg"];
+import imageManifest from "@/data/image-manifest.json";
+const photos=imageManifest.furniture;
 const items=["IKEA & POCO","Schränke & Schiebetürenschränke","Betten & Kommoden","Regale & Wohnmöbel","Anpassungen vor Ort","Demontage & erneute Montage"];
 export default function ServicePage(){
  const [hero]=useState(()=>photos[Math.floor(Math.random()*photos.length)]);
