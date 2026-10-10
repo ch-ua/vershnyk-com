@@ -13,7 +13,15 @@ export async function GET(){
     const res=await fetch(url,{next:{revalidate:1800}});
     if(!res.ok) return NextResponse.json({configured:true,items:[]},{status:200});
     const data=await res.json();
-    return NextResponse.json({configured:true,items:Array.isArray(data.data)?data.data:[]});
+    let followers:number|null=null;
+    try{
+      const profile=await fetch("https://graph.instagram.com/me?fields=followers_count&access_token="+encodeURIComponent(token),{next:{revalidate:3600}});
+      if(profile.ok){
+        const info=await profile.json();
+        if(typeof info.followers_count==="number")followers=info.followers_count;
+      }
+    }catch{}
+    return NextResponse.json({configured:true,items:Array.isArray(data.data)?data.data:[],followers});
   }catch{
     return NextResponse.json({configured:true,items:[]},{status:200});
   }
