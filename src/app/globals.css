@@ -319,3 +319,24 @@
  .siteHeader{padding-left:4%;padding-right:4%}
  .siteHeader .actions{margin-left:auto}
 }
+
+
+/* YouTube: one horizontal composition — random 16:9 feature + responsive Shorts */
+.youtubeOneRow{display:flex;gap:14px;align-items:flex-start;overflow:hidden}
+.youtubeOneRow .youtubeRandomMain{flex:0 0 55%;width:auto;min-height:0;aspect-ratio:16/9;background-size:cover;background-position:center}
+.youtubeShortsInline{display:flex;gap:14px;flex:1;min-width:0;overflow:hidden;align-items:flex-start}
+.youtubeShortsInline .mediaShort{flex:1 1 0;min-width:0;aspect-ratio:9/16;background-size:cover;background-position:center}
+@media(max-width:1200px) and (min-width:801px){
+ .youtubeOneRow .youtubeRandomMain{flex-basis:58%}
+ .youtubeShortsInline .mediaShort:nth-child(n+3){display:none}
+}
+@media(min-width:1201px){
+ .youtubeShortsInline .mediaShort:nth-child(n+4){display:none}
+}
+@media(max-width:800px){
+ .youtubeOneRow{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+ .youtubeOneRow::-webkit-scrollbar{display:none}
+ .youtubeOneRow .youtubeRandomMain{flex:0 0 86%;scroll-snap-align:start}
+ .youtubeShortsInline{display:contents}
+ .youtubeShortsInline .mediaShort{display:flex!important;flex:0 0 62%;min-width:0;scroll-snap-align:start}
+}
