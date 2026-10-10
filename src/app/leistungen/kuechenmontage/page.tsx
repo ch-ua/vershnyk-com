@@ -3,7 +3,8 @@ import SiteHeader from "@/app/components/SiteHeader";
 import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {useState} from "react";
 import {site} from "@/data/site";
-const photos=["/images/montage-k/Kuechenmontage-01.jpg","/images/montage-k/Kuechenmontage-02.jpg","/images/montage-k/Kuechenmontage-03.jpg","/images/montage-k/Kuechenmontage-04.jpg","/images/montage-k/Kuechenmontage-05.jpg","/images/montage-k/Kuechenmontage-06.jpg","/images/montage-k/Kuechenmontage-Montage-05.jpg"];
+import imageManifest from "@/data/image-manifest.json";
+const photos=imageManifest.kitchen;
 const items=["Komplette Küchenmontage","IKEA, Schüller, Nobilia & weitere","Arbeitsplatten anpassen","Schränke & Fronten ausrichten","Demontage & Umbau","Montage von Einbaugeräten"];
 export default function ServicePage(){
  const [hero]=useState(()=>photos[Math.floor(Math.random()*photos.length)]);
