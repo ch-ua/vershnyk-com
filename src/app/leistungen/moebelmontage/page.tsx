@@ -1,11 +1,13 @@
 "use client";
 import SiteHeader from "@/app/components/SiteHeader";
+import {useState} from "react";
 import {site} from "@/data/site";
 const photos=["/images/montage/Moebelmontage-01.jpg","/images/montage/Moebelmontage-02.jpg","/images/montage/Moebelmontage-03.jpg","/images/montage/Moebelmontage-TV-Moebel-04.jpg"];
 const items=["IKEA & POCO","Schränke & Schiebetürenschränke","Betten & Kommoden","Regale & Wohnmöbel","Anpassungen vor Ort","Demontage & erneute Montage"];
 export default function ServicePage(){
+ const [hero]=useState(()=>photos[Math.floor(Math.random()*photos.length)]);
  return <main className="servicePage"><SiteHeader/>
- <section className="detailHero" style={{backgroundImage:`url("${photos[0]}")`}}><div className="detailOverlay"><p className="hand">Handwerk & Montage</p><h1>MÖBELMONTAGE.</h1><p>Schränke, Regale, Betten und andere Möbel – von IKEA, POCO und weiteren Herstellern.</p><div className="detailHeroBottom"><div className="servicePrice"><b>48 €</b><span>pro Stunde<small>zzgl. Fahrtkosten</small></span></div><a className="detailWa" href={site.whatsapp}>Projekt über WhatsApp senden →</a></div></div></section>
+ <section className="detailHero" style={{backgroundImage:`url("${hero}")`}}><div className="detailOverlay"><p className="hand">Handwerk & Montage</p><h1>MÖBELMONTAGE.</h1><p>Schränke, Regale, Betten und andere Möbel – von IKEA, POCO und weiteren Herstellern.</p><div className="detailHeroBottom"><div className="servicePrice"><b>48 €</b><span>pro Stunde<small>zzgl. Fahrtkosten</small></span></div><a className="detailWa" href={site.whatsapp}>Projekt über WhatsApp senden →</a></div></div></section>
  <section className="serviceIntro"><div><p className="hand">Was ich für Sie mache</p><h2>MÖBEL SAUBER UND PRÄZISE MONTIERT.</h2><p>Schränke, Regale, Betten und andere Möbel – von IKEA, POCO und weiteren Herstellern. Senden Sie mir Fotos, Adresse und eine kurze Beschreibung – Umfang und Termin stimmen wir direkt über WhatsApp ab.</p></div><div className="serviceFacts"><b>48 € / Std.</b><span>+ Fahrtkosten</span><b>WhatsApp</b><span>direkte Abstimmung</span><b>Termin wählen</b><span>freie Termine im Kalender ansehen</span></div></section>
  <section className="serviceList"><p className="hand">Leistungen</p><h2>LEISTUNGEN IM ÜBERBLICK</h2><div>{items.map((x,i)=><article key={x}><b>0{i+1}</b><span>{x}</span></article>)}</div></section>
  <section className="servicePhotoGallery"><div className="sectionTitle"><p className="hand">Ausgeführte Arbeiten</p><h2>EINBLICKE IN MEINE PROJEKTE</h2></div><div className="detailGalleryGrid">{photos.map((p,i)=><figure key={p} className={i===0?"wide":""} style={{backgroundImage:`url("${p}")`}} aria-label={"Projektfoto "+(i+1)}/>)}</div></section>
