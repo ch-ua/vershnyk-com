@@ -273,3 +273,16 @@
 .youtubeShortsRow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:900px;margin:18px auto 0}
 .youtubeShortsRow .mediaShort{background-size:cover;background-position:center}
 @media(max-width:800px){.socialCount{text-align:left;margin-top:0}.youtubeVideosRail,.youtubeShortsRow{display:flex;overflow-x:auto;gap:12px}.youtubeVideosRail .mediaVideo,.youtubeShortsRow .mediaShort{flex:0 0 62%;min-height:0;aspect-ratio:9/16}.youtubeShortsRow{max-width:none;margin-top:14px}}
+
+
+/* Lock media proportions: standard YouTube 16:9, Shorts/Reels 9:16 */
+.youtubeMediaGrid{align-items:start}
+.youtubeMediaGrid .mediaMain{width:100%;min-height:0;aspect-ratio:16/9;background-size:cover;background-position:center}
+.youtubeVideosRail{align-items:start}
+.youtubeVideosRail .mediaVideo{width:100%;min-height:0;aspect-ratio:16/9;background-size:cover;background-position:center}
+.youtubeShortsRow .mediaShort,.instagramSection .mediaReel{width:100%;min-height:0;aspect-ratio:9/16;background-size:cover;background-position:center}
+@media(max-width:800px){
+ .youtubeMediaGrid .mediaMain{min-height:0;aspect-ratio:16/9}
+ .youtubeVideosRail .mediaVideo{flex:0 0 78%;min-height:0;aspect-ratio:16/9}
+ .youtubeShortsRow .mediaShort,.instagramSection .mediaReel{flex:0 0 62%;min-height:0;aspect-ratio:9/16}
+}
