@@ -23,6 +23,7 @@ const furniturePhotos=imageManifest.furniture;
 const kitchenPhotos=imageManifest.kitchen;
 const renovationPhotos=imageManifest.renovation;
 
+const servicePaths=["/leistungen/gartenpflege","/leistungen/zaunmontage","/leistungen/gartenbau","/leistungen/moebelmontage","/leistungen/kuechenmontage","/leistungen/renovierung"];
 const slides=[
  {title:"GARTENPFLEGE",image:photos.garden},
  {title:"ZAUNMONTAGE",image:photos.fence},
@@ -51,8 +52,8 @@ export default function Home(){
 
   <section id="start" className="hero">
    <div className="heroCopy"><p className="hand">Ihr Handwerker<br/>für Haus und Garten</p><h1>IDEEN.<br/>MONTAGE.<br/><span>ERGEBNISSE.</span></h1><p className="intro">Zuverlässige Handwerksarbeiten<br/>zum fairen Stundenpreis – in Ihrer Region.</p><div className="price"><b>48 €</b><span>pro Stunde (netto)<small>zzgl. Fahrtkosten</small></span></div><a className="heroWa" href={site.whatsapp}>◉ &nbsp; <span>Jetzt anfragen<br/><small>über WhatsApp</small></span>&nbsp; →</a></div>
-   <div className="heroImage" onTouchStart={e=>touchStart.current=e.touches[0].clientX} onTouchEnd={e=>endTouch(e.changedTouches[0].clientX)} style={{backgroundImage:`url("${slideImage(slide)}")`}}><button className="slideArrow prev" onClick={()=>move(-1)} aria-label="Vorheriges Bild">‹</button><button className="slideArrow next" onClick={()=>move(1)} aria-label="Nächstes Bild">›</button><div className="jobTag">{slides[slide].title}</div></div>
-   <div className="thumbs">{slides.map((s,i)=><button key={s.title} className={i===slide?"selected":""} onClick={()=>setSlide(i)} style={{backgroundImage:`url("${slideImage(i)}")`}}>{s.title}</button>)}</div>
+   <div className="heroImage" onTouchStart={e=>touchStart.current=e.touches[0].clientX} onTouchEnd={e=>endTouch(e.changedTouches[0].clientX)} style={{backgroundImage:`url("${slideImage(slide)}")`}}><button className="slideArrow prev" onClick={()=>move(-1)} aria-label="Vorheriges Bild">‹</button><button className="slideArrow next" onClick={()=>move(1)} aria-label="Nächstes Bild">›</button><a className="jobTag" href={servicePaths[slide]}>{slides[slide].title}</a></div>
+   <div className="thumbs">{slides.map((s,i)=><a key={s.title} href={servicePaths[i]} className={i===slide?"selected":""} onMouseEnter={()=>setSlide(i)} style={{backgroundImage:`url("${slideImage(i)}")`}}>{s.title}</a>)}</div>
   </section>
 
   <section className="quick"><div><i>◷</i><p><b>48 € pro Stunde</b><small>zzgl. Fahrtkosten</small></p></div><div><i>⌖</i><p><b>Einsatzgebiet<br/>bis 200 km</b><small>(auf Anfrage auch weiter)</small></p></div><a className="quickLink" href="/kalender"><i>▦</i><p><b>Termine über<br/>Google Kalender</b><small>Kalender öffnen</small></p></a><div><i>◉</i><p><b>Kommunikation nur<br/>über WhatsApp</b><small>kein Telefon</small></p></div></section>
