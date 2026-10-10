@@ -28,7 +28,7 @@ export default function Kalender(){
     {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
     {days.map(d=>{const isBusy=busy?.has(dateKey(d));return <div className="calendarDay" key={d}><strong>{d}</strong>{busy?<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>:<span className="pending">—</span>}</div>})}
    </div>
-   <div className="calendarNotice"><b>{error?"Kalender vorübergehend nicht verfügbar":"Automatisch mit Google Kalender synchronisiert"}</b><p>Es werden ausschließlich FREI oder BELEGT angezeigt – keine Namen, Adressen oder Termindetails.</p></div>
+   
    <div className="calendarCta"><div><p className="hand">Termin anfragen</p><h2>PASSENDEN TAG GEFUNDEN?</h2><p>Senden Sie kurz Arbeit, Fotos und Adresse über WhatsApp. Der Termin gilt erst nach Bestätigung.</p></div><a className="heroWa calendarWa" href={site.whatsapp}><span>über WhatsApp<br/><small>anfragen</small></span> →</a></div>
   </section>
  </main>
