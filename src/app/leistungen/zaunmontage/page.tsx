@@ -3,7 +3,8 @@ import SiteHeader from "@/app/components/SiteHeader";
 import ServiceCategoryNav from "@/app/components/ServiceCategoryNav";
 import {useState} from "react";
 import {site} from "@/data/site";
-const photos=["/images/zaun/Zaunmontage-01.jpg","/images/zaun/Zaunmontage-02.jpg","/images/zaun/Zaunmontage-03.jpg"];
+import imageManifest from "@/data/image-manifest.json";
+const photos=imageManifest.fence;
 const items=["Metall- & Fertigzäune","Individuelle Holzzäune","Draht- & Gitterzäune","Tore & Gartentüren","Pfosten setzen & ausrichten","Anpassungen vor Ort"];
 export default function ServicePage(){
  const [hero]=useState(()=>photos[Math.floor(Math.random()*photos.length)]);
