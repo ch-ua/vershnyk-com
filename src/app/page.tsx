@@ -20,6 +20,7 @@ const gardenPhotos=["/images/garten/Gartenpflege-Heckenschnitt-03.jpg","/images/
 const kitchenPhotos=["/images/montage-k/Kuechenmontage-01.jpg","/images/montage-k/Kuechenmontage-02.jpg","/images/montage-k/Kuechenmontage-03.jpg","/images/montage-k/Kuechenmontage-04.jpg","/images/montage-k/Kuechenmontage-05.jpg","/images/montage-k/Kuechenmontage-06.jpg","/images/montage-k/Kuechenmontage-Montage-05.jpg"];
 const furniturePhotos=["/images/montage/Moebelmontage-01.jpg","/images/montage/Moebelmontage-02.jpg","/images/montage/Moebelmontage-03.jpg","/images/montage/Moebelmontage-TV-Moebel-04.jpg"];
 const constructionPhotos=["/images/gatren-b/Gartenkonstruktion-Fundament-optimiert.jpg","/images/gatren-b/Gartenkonstruktion-Holz-Metall-01.jpg","/images/gatren-b/Gartenkonstruktionen-Spielplatz.jpg","/images/gatren-b/vershnyk-gartenbau-konstruktionen.jpg"];
+const renovationPhotos=["/images/bau/Innenausbau-Dachgeschoss-01.jpg","/images/bau/Renovierung-Trockenbau-01.jpg","/images/bau/Renovierung-Trockenbau-02.jpg"];
 
 const slides=[
  {title:"GARTENPFLEGE",image:photos.garden},
@@ -27,7 +28,7 @@ const slides=[
  {title:"GARTENBAU & KONSTRUKTIONEN",image:constructionPhotos[0]},
  {title:"MÖBELMONTAGE",image:photos.kitchen},
  {title:"KÜCHENMONTAGE",image:photos.kitchen},
- {title:"RENOVIERUNG & INNENAUSBAU",image:photos.build}
+ {title:"RENOVIERUNG & INNENAUSBAU",image:renovationPhotos[0]}
 ];
 
 export default function Home(){
@@ -37,10 +38,11 @@ export default function Home(){
  const [kitchenPhoto,setKitchenPhoto]=useState(kitchenPhotos[0]);
  const [furniturePhoto,setFurniturePhoto]=useState(furniturePhotos[0]);
  const [constructionPhoto,setConstructionPhoto]=useState(constructionPhotos[0]);
+ const [renovationPhoto,setRenovationPhoto]=useState(renovationPhotos[0]);
  const touchStart=useRef<number|null>(null);
  useEffect(()=>{const timer=window.setInterval(()=>setSlide(v=>(v+1)%slides.length),3000);return()=>window.clearInterval(timer)},[]);
- useEffect(()=>{if(slide===0)setGardenPhoto(gardenPhotos[Math.floor(Math.random()*gardenPhotos.length)]);if(slide===1)setFencePhoto(fencePhotos[Math.floor(Math.random()*fencePhotos.length)]);if(slide===2)setConstructionPhoto(constructionPhotos[Math.floor(Math.random()*constructionPhotos.length)]);if(slide===3)setFurniturePhoto(furniturePhotos[Math.floor(Math.random()*furniturePhotos.length)]);if(slide===4)setKitchenPhoto(kitchenPhotos[Math.floor(Math.random()*kitchenPhotos.length)])},[slide]);
- const slideImage=(i:number)=>i===0?gardenPhoto:i===1?fencePhoto:i===2?constructionPhoto:i===3?furniturePhoto:i===4?kitchenPhoto:slides[i].image;
+ useEffect(()=>{if(slide===0)setGardenPhoto(gardenPhotos[Math.floor(Math.random()*gardenPhotos.length)]);if(slide===1)setFencePhoto(fencePhotos[Math.floor(Math.random()*fencePhotos.length)]);if(slide===2)setConstructionPhoto(constructionPhotos[Math.floor(Math.random()*constructionPhotos.length)]);if(slide===3)setFurniturePhoto(furniturePhotos[Math.floor(Math.random()*furniturePhotos.length)]);if(slide===4)setKitchenPhoto(kitchenPhotos[Math.floor(Math.random()*kitchenPhotos.length)]);if(slide===5)setRenovationPhoto(renovationPhotos[Math.floor(Math.random()*renovationPhotos.length)])},[slide]);
+ const slideImage=(i:number)=>i===0?gardenPhoto:i===1?fencePhoto:i===2?constructionPhoto:i===3?furniturePhoto:i===4?kitchenPhoto:i===5?renovationPhoto:slides[i].image;
  const move=(step:number)=>setSlide(v=>(v+step+slides.length)%slides.length);
  const endTouch=(x:number)=>{if(touchStart.current===null)return;const d=x-touchStart.current;if(Math.abs(d)>35)move(d<0?1:-1);touchStart.current=null};
  return <main className="site">
@@ -54,7 +56,7 @@ export default function Home(){
 
   <section className="quick"><div><i>◷</i><p><b>48 € pro Stunde</b><small>zzgl. Fahrtkosten</small></p></div><div><i>⌖</i><p><b>Einsatzgebiet<br/>bis 200 km</b><small>(auf Anfrage auch weiter)</small></p></div><a className="quickLink" href="/kalender"><i>▦</i><p><b>Termine über<br/>Google Kalender</b><small>Kalender öffnen</small></p></a><div><i>◉</i><p><b>Kommunikation nur<br/>über WhatsApp</b><small>kein Telefon</small></p></div></section>
 
-  <section id="leistungen" className="services"><div className="sectionTitle"><p className="hand">Unsere Leistungen</p><h2>ALLES AUS EINER HAND</h2></div><div className="serviceGrid">{site.serviceDetails.map((s,i)=>{const imgs=[gardenPhoto,fencePhoto,constructionPhoto,furniturePhoto,kitchenPhoto,photos.build];return <article key={s.title} onClick={()=>{window.location.href="/leistungen/"+["gartenpflege","zaunmontage","gartenbau","moebelmontage","kuechenmontage","renovierung"][i]}} role="link" tabIndex={0}><div className="servicePhoto" style={{backgroundImage:`url("${imgs[i]}")`}}><span className="serviceIcon" aria-hidden="true">{["⌁","╫","⌂","▱","▦","◇"][i]}</span></div><h3>{s.title}</h3><ul>{s.items.map(x=><li key={x}>{x}</li>)}</ul></article>})}</div></section>
+  <section id="leistungen" className="services"><div className="sectionTitle"><p className="hand">Unsere Leistungen</p><h2>ALLES AUS EINER HAND</h2></div><div className="serviceGrid">{site.serviceDetails.map((s,i)=>{const imgs=[gardenPhoto,fencePhoto,constructionPhoto,furniturePhoto,kitchenPhoto,renovationPhoto];return <article key={s.title} onClick={()=>{window.location.href="/leistungen/"+["gartenpflege","zaunmontage","gartenbau","moebelmontage","kuechenmontage","renovierung"][i]}} role="link" tabIndex={0}><div className="servicePhoto" style={{backgroundImage:`url("${imgs[i]}")`}}><span className="serviceIcon" aria-hidden="true">{["⌁","╫","⌂","▱","▦","◇"][i]}</span></div><h3>{s.title}</h3><ul>{s.items.map(x=><li key={x}>{x}</li>)}</ul></article>})}</div></section>
 
   <section className="triptych"><article className="areaCard"><div className="regionGraphic"><span>⌖</span><strong>200</strong><small>km Radius</small></div><div><p className="eyebrow">EINSATZGEBIET</p><h3>Unterwegs in Ihrer Region.</h3><p>Ich bin für Sie in einem Radius von <b>bis zu 200 km</b> unterwegs.</p><small>Auf Anfrage sind auch weiter entfernte Orte möglich.</small></div></article><article className="calendarCard"><div className="calendarIcon">▦</div><div><p className="eyebrow">VERFÜGBARKEIT</p><h3>Freie Termine auf einen Blick.</h3><p>Aktuelle Verfügbarkeit im Google Kalender ansehen.</p><div className="availability"><b>FREI</b><b className="busy">BELEGT</b><b>FREI</b></div><small>Keine Direktbuchung – Termin erst nach Bestätigung.</small><a className="textLink" href="/kalender">Kalender ansehen →</a></div></article><article id="kontakt" className="requestCard"><div className="waMark">◉</div><div><p className="eyebrow">ANFRAGE STELLEN</p><h3>Projekt kurz per WhatsApp senden.</h3><p>Beschreiben Sie die Arbeit und senden Sie bei Bedarf Fotos und Adresse mit.</p><a className="requestButton" href={site.whatsapp}>Über WhatsApp anfragen →</a><small>Kommunikation ausschließlich über WhatsApp.</small></div></article></section>
 
