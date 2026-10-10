@@ -467,3 +467,32 @@
  .priceBlock{margin-top:12px;margin-bottom:9px} /* 4: -50% */
  .heroCopy .heroWa{margin-top:18px} /* 5: +100% */
 }
+
+
+/* Unified linked info strip */
+.contactStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:44px 5%;background:#f8f0df}
+.contactStripItem{min-height:255px;padding:38px;border:1px solid #ded2ba;border-radius:14px;background:#fffaf0;text-decoration:none;color:#073e31;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;transition:transform .2s,box-shadow .2s}
+.contactStripItem:hover{transform:translateY(-3px);box-shadow:0 10px 28px #173f3418}
+.contactStripItem:nth-child(3){background:#155744;color:#fff;border-color:#155744}
+.contactStripItem>b{font-size:38px;line-height:1;color:#079341;margin-bottom:20px}
+.contactStripItem:nth-child(3)>b{color:#f4c331}
+.contactStripItem h3{font-size:22px;margin:10px 0}.contactStripItem p{font-size:13px;line-height:1.55;margin:0;max-width:360px}
+.mapPinIcon{width:58px;height:58px;border:2px solid #079341;border-radius:50%;display:grid;place-items:center;position:relative}
+.mapPinIcon:before{content:"";width:20px;height:27px;background:#079341;clip-path:polygon(50% 100%,8% 48%,8% 31%,22% 10%,50% 0,78% 10%,92% 31%,92% 48%);border-radius:50%}
+.mapPinIcon i{position:absolute;width:7px;height:7px;background:#fffaf0;border-radius:50%;top:16px}
+
+/* Einsatzgebiet page + static map */
+.areaHero{background:#174b3c;color:#fff;padding:68px 7%}.areaHero h1{font-size:58px;margin:8px 0 16px}.areaLead{max-width:720px;font-size:17px;line-height:1.55}
+.areaContent{display:grid;grid-template-columns:.72fr 1.5fr;gap:42px;padding:58px 5%;background:#f8f0df;align-items:stretch}
+.areaText{padding:32px 12px 32px 20px}.areaText h2{font-size:39px;line-height:1.02;margin:10px 0 24px}.areaText>p{font-size:15px;line-height:1.65;max-width:470px}
+.areaMapCard{background:#fffaf0;border:1px solid #ded2ba;border-radius:18px;padding:12px;box-shadow:0 12px 35px #173f3410}.areaMapCard>p{font-size:10px;line-height:1.5;opacity:.68;padding:2px 12px 4px}
+.areaMapVisual{height:510px;border-radius:12px;overflow:hidden;position:relative;background:
+ radial-gradient(ellipse at 70% 70%,#d9d1b0 0 2%,transparent 2.4%),
+ radial-gradient(ellipse at 25% 25%,#c8d8b6 0 5%,transparent 5.4%),
+ repeating-linear-gradient(28deg,transparent 0 42px,#d7b95c66 43px 45px,transparent 46px 88px),
+ linear-gradient(135deg,#e8ecd8,#dce4cc 48%,#d4ddc2)}
+.areaMapVisual:before{content:"";position:absolute;inset:8% 12% 10% 13%;border:2px dashed #174b3c;border-radius:50%;background:#9fbd7460}
+.areaMapVisual:after{content:"";position:absolute;left:51%;top:49%;width:32%;border-top:2px dashed #174b3c;transform:rotate(-4deg);transform-origin:left}
+.radiusCircle{position:absolute;z-index:4;left:48%;top:45%;display:flex;flex-direction:column;align-items:center;gap:3px}.radiusCircle .large{width:50px;height:50px;background:#fffaf0;box-shadow:0 4px 12px #0002}.radiusCircle strong{font-size:18px;background:#fffaf0cc;padding:2px 7px}.radiusCircle small{font-weight:800}.mapLabel{position:absolute;z-index:3;font-size:24px;font-weight:900;letter-spacing:.08em;color:#174b3c;text-shadow:0 1px #fff}.mapLabel.bayern{right:14%;top:28%}.mapLabel.bw{left:8%;top:31%}.mapLabel.tirol{right:22%;bottom:12%}
+.mapRoad{position:absolute;height:2px;background:#e3ae39aa;transform-origin:left}.mapRoad.r1{width:72%;left:8%;top:43%;transform:rotate(12deg)}.mapRoad.r2{width:60%;left:24%;top:65%;transform:rotate(-24deg)}.mapRoad.r3{width:55%;left:35%;top:18%;transform:rotate(67deg)}
+@media(max-width:800px){.contactStrip{grid-template-columns:1fr;padding:26px 4%;gap:12px}.contactStripItem{min-height:160px;padding:24px}.areaHero{padding:48px 6%}.areaHero h1{font-size:38px}.areaContent{grid-template-columns:1fr;padding:30px 4%;gap:18px}.areaText{padding:12px}.areaText h2{font-size:30px}.areaMapVisual{height:380px}.mapLabel{font-size:16px}.mapLabel.bw{left:4%}.radiusCircle{left:43%}}
