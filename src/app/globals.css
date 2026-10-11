@@ -1073,3 +1073,6 @@
  .accountMain .accountGrid article b,.accountMain .accountGrid .newProjectCard b{font-size:9px;overflow-wrap:anywhere}
  .accountMain .requestList{margin-top:18px}
 }
+
+/* Approved static service area maps */
+.staticAreaMapCard picture{display:block;width:100%}.staticAreaMapCard .staticAreaMapImage{display:block;width:100%;height:auto;object-fit:contain;border-radius:14px}.staticAreaMapCard{overflow:hidden}.staticAreaMapCard>p{margin:14px 0 0;font-size:12px;line-height:1.5;color:#668078}@media(max-width:700px){.staticAreaMapCard .staticAreaMapImage{width:100%;height:auto}.staticAreaMapCard>p{font-size:11px}}
