@@ -555,3 +555,8 @@
 .mapMemmingenPin{position:absolute;z-index:4;left:50%;top:54%;transform:translate(-50%,-50%);width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fffaf0;border:1px solid #d9cdb0;box-shadow:0 4px 12px #173f3430;pointer-events:none}
 .mapMemmingenPin .mapPinIcon{width:25px;height:25px;margin:0}
 @media(max-width:800px){.mapMemmingenPin{top:55%;width:30px;height:30px}.mapMemmingenPin .mapPinIcon{width:22px;height:22px}}
+
+
+/* Pin aligned to Memmingen on the current Google map viewport */
+.mapMemmingenPin{left:55.1%;top:51.5%}
+@media(max-width:800px){.mapMemmingenPin{left:55.1%;top:51.5%}}
