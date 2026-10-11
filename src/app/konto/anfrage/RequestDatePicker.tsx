@@ -49,15 +49,15 @@ export default function RequestDatePicker(){
    {["Mo","Di","Mi","Do","Fr","Sa","So"].map(x=><small key={x} style={{textAlign:"center",fontSize:11}}>{x}</small>)}
    {Array.from({length:info.offset},(_,i)=><i key={"e"+i}/>)}
    {Array.from({length:info.days},(_,i)=>i+1).map(d=>{
-    const k=key(d),blocked=isBlocked(k);
+    const k=key(d),offDay=weekend(k)||bavarianHoliday(k),blocked=isBlocked(k);
     return <button type="button" key={d} disabled={blocked} aria-label={k} aria-pressed={selected===k}
-     className={selected===k?"selected":""}
-     style={{width:"100%",minHeight:0,height:38,padding:0,fontSize:12,borderRadius:7}}
+     className={offDay?"requestDayOff":selected===k?"selected":""}
+     style={{width:"100%",minHeight:0,height:38,padding:0,fontSize:12,borderRadius:7,...(offDay?{background:"#e5e9f3",color:"#596a88",textDecoration:"none",opacity:1,border:"1px solid #c6d0e2"}:{})}}
      onClick={()=>setSelected(selected===k?"":k)}>{d}</button>
    })}
   </div>
   {status==="loading"&&<p role="status" style={{fontSize:12}}>Kalender wird aktualisiert …</p>}
   {status==="error"&&<p role="alert" style={{fontSize:12,color:"#9b392c"}}>Termine derzeit nicht verfügbar. Bitte versuchen Sie es später erneut oder senden Sie die Anfrage ohne Wunschtermin.</p>}
-  <div className="requestDateLegend"><span><i/> frei</span><span><i/> belegt</span>{selected&&<button type="button" onClick={()=>setSelected("")}>Auswahl löschen</button>}</div>
+  <div className="requestDateLegend"><span><i/> frei</span><span><i/> belegt</span><span><i style={{background:"#b8c7e2"}}/> Wochenende / Feiertag</span>{selected&&<button type="button" onClick={()=>setSelected("")}>Auswahl löschen</button>}</div>
  </div>;
 }
