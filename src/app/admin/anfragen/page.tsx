@@ -1,13 +1,3 @@
-export default function AnfragenPage() {
-  return (
-    <>
-      <p style={{ textTransform: "uppercase", letterSpacing: ".16em", fontSize: 12, opacity: .7 }}>Kunden</p>
-      <h1 style={{ fontSize: 42, margin: "8px 0 10px" }}>Anfragen</h1>
-      <p style={{ lineHeight: 1.6, maxWidth: 760 }}>Hier werden die Anfragen aus dem VERSHNYK-Kontaktprozess zusammengeführt. Die Datenanbindung folgt im nächsten Schritt.</p>
-      <div style={{ marginTop: 28, background: "#fff", border: "1px solid #d8d0bf", borderRadius: 18, overflow: "hidden" }}>
-        <div style={{ padding: 18, borderBottom: "1px solid #e8e1d4", fontWeight: 700 }}>Aktuelle Anfragen</div>
-        <div style={{ padding: 34, opacity: .65 }}>Noch keine verbundenen Kundendaten.</div>
-      </div>
-    </>
-  );
-}
+import Link from "next/link";import {createClient} from "@/lib/supabase/server";
+const labels:Record<string,string>={new:"Neu",reviewing:"In Prüfung",confirmed:"Bestätigt",done:"Erledigt",cancelled:"Storniert"};
+export default async function AnfragenPage(){const s=await createClient();const {data:rows}=await s.from("requests").select("id,service,description,address,preferred_date,status,created_at,profiles(name)").order("created_at",{ascending:false});return <><section className="adminHero adminSubHero"><div><p className="hand">Kundenprojekte</p><p className="authEyebrow">VERSHNYK · ANFRAGEN</p><h1>Anfragen.</h1><p>Neue Projekte prüfen, priorisieren und bis zur Ausführung begleiten.</p></div></section><section className="adminPanel"><div className="adminPanelHead"><div><h2>Alle Anfragen</h2><small>{rows?.length||0} Projekte</small></div></div>{rows?.length?<div className="adminRequestList">{rows.map((r:any)=><Link href={"/admin/anfragen/"+r.id} key={r.id}><div className="adminRequestIcon">{r.service?.slice(0,1)}</div><div><b>{r.service}</b><small>{r.profiles?.name||"Kunde"} · {r.address}</small><p>{r.description}</p></div><div className="adminRequestMeta"><span className={"requestStatus "+r.status}>{labels[r.status]||r.status}</span><time>{new Date(r.created_at).toLocaleDateString("de-DE")}</time></div></Link>)}</div>:<div className="adminEmpty"><b>Noch keine Anfragen.</b><p>Neue Kundenanfragen erscheinen hier automatisch.</p></div>}</section></>}
