@@ -86,10 +86,13 @@ export async function GET() {
           item.status?.toUpperCase() === "CANCELLED" ||
           item.transparency?.toUpperCase() === "TRANSPARENT") continue;
       eventCount++;
-      try {\n      if (item.rrule) {
+      try {
+      if (item.rrule) {
         const duration = item.start && item.end ? item.end.getTime() - item.start.getTime() : 0;
         const excluded = new Set(Object.values(item.exdate || {}).map(d => d instanceof Date ? d.getTime() : NaN).filter(Number.isFinite));
-        const rule = item.rrule as any;\n        const occurrences = typeof rule.between === "function" ? rule.between(startWindow, horizon, true) : [];\n        for (const occurrence of occurrences) {
+        const rule = item.rrule as any;
+        const occurrences = typeof rule.between === "function" ? rule.between(startWindow, horizon, true) : [];
+        for (const occurrence of occurrences) {
           if (excluded.has(occurrence.getTime())) continue;
           addRange(busy, occurrence, duration > 0 ? new Date(occurrence.getTime() + duration) : undefined);
         }
