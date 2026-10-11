@@ -823,3 +823,16 @@
 .customerCancelRequest{border:1px solid #c99f92;background:transparent;color:#a24837;border-radius:7px;padding:7px 10px;font-size:13px;font-weight:700;cursor:pointer}
 .customerCancelRequest:hover{background:#f9e9e4}
 .customerCancelRequest:disabled{opacity:.6;cursor:wait}
+
+.requestCurrentStatus{margin:12px 0 18px}.requestCurrentStatus .requestStatus{display:inline-flex;font-size:15px;font-weight:800;padding:9px 15px;border-radius:9px}
+.requestStatusPicker{border:0;padding:0;margin:0}.requestStatusPicker legend{font-size:16px;font-weight:800;margin-bottom:12px}
+.requestStatusButtons{display:flex;flex-wrap:wrap;gap:9px}
+.requestStatusChoice{display:inline-flex!important;cursor:pointer;position:relative;font-size:14px!important;font-weight:800!important}
+.requestStatusChoice input{position:absolute;opacity:0;width:1px;height:1px}
+.requestStatusChoice span{display:inline-flex;padding:11px 15px;border-radius:9px;border:2px solid transparent;background:#f0eee7;color:#29473b;transition:background .15s}
+.requestStatusChoice input:checked+span{outline:3px solid #123f33;outline-offset:2px}
+.requestStatusChoice input:focus-visible+span{outline:3px solid #007f55;outline-offset:3px}
+.status-new span{background:#fff0af;color:#685000}.status-reviewing span{background:#e0eafa;color:#234d83}.status-offered span{background:#eadffa;color:#62438a}.status-confirmed span{background:#d4f0d9;color:#11602e}.status-done span{background:#cde8e4;color:#135f59}.status-cancelled span{background:#f2d9d6;color:#a03629}
+.requestStatus.new{background:#fff0af!important;color:#685000!important}.requestStatus.reviewing{background:#e0eafa!important;color:#234d83!important}.requestStatus.offered{background:#eadffa!important;color:#62438a!important}.requestStatus.confirmed{background:#d4f0d9!important;color:#11602e!important}.requestStatus.done{background:#cde8e4!important;color:#135f59!important}.requestStatus.cancelled{background:#f2d9d6!important;color:#a03629!important}
+.requestSavedNotice{background:#e2f2e2;border:1px solid #8fc69b;border-radius:10px;padding:14px 18px;color:#12592d;font-size:15px;margin:18px 0}
+.photoLoadError{color:#9c3c30;font-size:14px}
