@@ -801,3 +801,20 @@
 .requestManageForm button{justify-self:start;background:#009b45;color:white;border:0;border-radius:9px;padding:14px 22px;font-weight:700;cursor:pointer}
 .requestManageForm>p{font-size:13px;color:#68776f}
 @media(max-width:600px){.requestDetail{padding:18px}.requestDetailInfo,.requestFormRow{grid-template-columns:1fr}}
+
+.photoPicker{display:block!important}
+.photoPickerHeading{margin-bottom:18px}
+.photoPickerHeading b{font-size:17px}
+.photoPickerHeading b span{font-size:14px;color:#6d866f}
+.photoPickerHeading p{font-size:14px;line-height:1.5;margin:5px 0 0}
+.photoPickerInput{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important;pointer-events:none!important}
+.photoPickerGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.photoPickerTile{position:relative;aspect-ratio:1.4;border:2px dashed #c8cbbd;border-radius:12px;background:rgba(226,236,216,.42);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;min-height:90px}
+.photoPickerTile.emptyPhoto:hover{background:#e3eddb;border-color:#008e49}
+.photoPickerTile.emptyPhoto span{font-size:42px;line-height:1;color:#54846c;font-weight:300}
+.photoPickerTile.hasPhoto{border:2px solid #68a76e;background:#e3eddb}
+.photoPickerTile.hasPhoto img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.photoPickerTile.hasPhoto>button{position:absolute;right:5px;top:5px;border:0;border-radius:50%;width:30px;height:30px;background:#fffaf0;color:#073e31;font-size:22px;line-height:1;cursor:pointer;z-index:1}
+.photoPickerTile.hasPhoto>span{position:absolute;left:7px;bottom:7px;border-radius:50%;width:25px;height:25px;display:grid;place-items:center;background:#009b45;color:white;font-size:15px}
+.photoPickerMessage{font-size:14px;color:#a23d2e;margin:10px 0 0}
+@media(max-width:650px){.photoPickerGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.photoPickerTile{min-height:100px}}
