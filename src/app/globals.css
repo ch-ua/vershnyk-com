@@ -660,3 +660,26 @@
 .photoUpload{min-height:50px;padding:14px 24px!important;font-size:11px!important;border-radius:10px!important;background:#174b3c!important;color:#fff!important;border-color:#174b3c!important}
 .photoUpload:hover{background:#0d684b!important;border-color:#0d684b!important}
 @media(max-width:800px){.requestLocation{grid-template-columns:1fr}.photoUpload{width:100%;min-height:52px}}
+
+
+/* Accessible type sizes for the request form, desktop and mobile */
+.quickRequestHead>p:last-child{font-size:15px;line-height:1.65}
+.quickPhotos b{font-size:16px}
+.quickPhotos p{font-size:13px;line-height:1.5}
+.quickRequestFinish p{font-size:14px;line-height:1.6;opacity:.95}
+.quickRequestFinish button{font-size:16px;line-height:1.3}
+.quickBack{font-size:14px;line-height:1.5}
+.serviceChoiceCard b{font-size:14px}
+.serviceChoiceCard small{font-size:12px;line-height:1.45}
+.photoUpload{font-size:14px!important;line-height:1.4}
+.requestDateTop>b{font-size:14px}
+.requestDateTop>span{font-size:13px}
+.requestMiniCalendar small{font-size:11px}
+.requestDateLegend{font-size:12px;gap:16px;flex-wrap:wrap}
+.requestDateLegend button{font-size:12px}
+.requestDateLegend span i{width:9px;height:9px}
+@media(max-width:800px){
+.quickRequestFinish p{font-size:14px}
+.quickPhotos p{font-size:13px}
+.quickBack{font-size:14px}
+}
