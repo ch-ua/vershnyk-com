@@ -1,0 +1,2 @@
+import Link from "next/link";import SiteHeader from "@/app/components/SiteHeader";import {logout} from "@/app/auth/actions";
+export default function AccountShell({children,loggedIn=false}:{children:React.ReactNode;loggedIn?:boolean}){return <div className="customerSite"><SiteHeader/><div className="customerBotanical botanicalLeft" aria-hidden="true"/><div className="customerBotanical botanicalRight" aria-hidden="true"/>{loggedIn&&<div className="customerBar"><Link href="/konto">Mein VERSHNYK</Link><form action={logout}><button>Abmelden</button></form></div>}{children}</div>}
