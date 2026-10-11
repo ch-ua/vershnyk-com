@@ -917,3 +917,61 @@
 .adminNav nav a{font-size:11px;padding:7px 4px}
 .adminNavEnd button{font-size:10px;padding:9px 8px}
 }
+
+
+/* Admin request workflow, filters, compact detail and customer cards */
+.adminListPanel{margin-top:0}
+.adminFilters{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:6px;margin:0 0 13px}
+.adminFilters button{border:1px solid #d8cfbc;background:#fffaf0;color:#315447;padding:9px 12px;border-radius:999px;font-weight:700;cursor:pointer;font-size:12px}
+.adminFilters button.selected{background:#174b3c;color:white;border-color:#174b3c}
+.filterDot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f4c331;margin-left:5px}
+.adminRequestList .requestRow{border-left:5px solid #d5d5d5;padding:13px 12px;grid-template-columns:42px minmax(0,1fr) auto;gap:10px;border-radius:9px;margin-bottom:7px;background:#f8f7f3;align-items:center}
+.adminRequestList .statusRow-new{background:#fff3c9;border-left-color:#e9b91f}
+.adminRequestList .statusRow-reviewing{background:#e7f0ff;border-left-color:#6d9cdd}
+.adminRequestList .statusRow-offered{background:#f0e8ff;border-left-color:#9a78cf}
+.adminRequestList .statusRow-confirmed{background:#e0f5e7;border-left-color:#2b9c58}
+.adminRequestList .statusRow-done{background:#e6ede7;border-left-color:#6d967b}
+.adminRequestList .statusRow-cancelled{background:#f8e8e6;border-left-color:#c98780}
+.requestRowBody{min-width:0}.requestRowBody b{font-size:14px}.requestRowBody small{font-size:11px;overflow-wrap:anywhere}.requestRowBody p{font-size:12px;margin:5px 0}.requestRowBody time{display:block;color:#65796d;font-size:10px;margin-top:5px}
+.adminRequestList .requestRow>.requestStatus{position:static;justify-self:end;align-self:start;white-space:nowrap}
+.requestQuickStatuses{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 20px}
+.requestQuickStatuses form{margin:0}
+.quickStatus{border:1px solid #c8d0c7;background:#fffaf0;color:#52665c;border-radius:9px;padding:10px 12px;cursor:pointer;font-weight:800;font-size:12px}
+.quickStatus.active{color:#073e31;border-width:2px}
+.quickStatus.active.new{background:#fbe79a;border-color:#d6ad23}
+.quickStatus.active.reviewing{background:#dceafe;border-color:#6d9cdd}
+.quickStatus.active.offered{background:#e9dcff;border-color:#9a78cf}
+.quickStatus.active.confirmed{background:#d8f3df;border-color:#2b9c58}
+.quickStatus.active.done{background:#dce9df;border-color:#6d967b}
+.quickStatus.active.cancelled{background:#f8dcd7;border-color:#c98780}
+.requestDetail>.requestCurrentStatus{display:none}
+.requestDetail .requestDetailInfo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
+.requestDetail .requestDetailInfo>p{margin:0;padding:12px 14px;min-height:0}
+.requestDetail .requestDetailInfo>p b{margin-bottom:5px}
+.requestDetail .requestDetailInfo>p span{overflow-wrap:anywhere}
+.clientGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.clientCard{border:1px solid #ded4bf;border-radius:13px;padding:18px;background:#fffdf7;min-width:0}
+.clientCard h2{margin:0 0 12px;font-size:21px}
+.clientCard h3{font-size:15px;margin:16px 0 7px}
+.clientCard p{font-size:13px;overflow-wrap:anywhere}
+.clientCard>a{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #e8dfce;padding:10px 0;text-decoration:none;font-size:13px}
+.calendarMonthNav button:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
+@media(max-width:800px){
+.adminListPanel{padding:14px 12px}
+.adminFilters{justify-content:flex-start;gap:5px}
+.adminFilters button{font-size:11px;padding:8px 10px}
+.adminRequestList .requestRow{grid-template-columns:30px minmax(0,1fr) auto;padding:10px 7px;gap:7px}
+.adminRequestList .requestRow .adminRequestIcon{width:30px;height:30px;font-size:12px}
+.adminRequestList .requestRow>.requestStatus{font-size:10px;padding:5px 6px;max-width:94px;white-space:normal;text-align:center}
+.requestRowBody b{font-size:13px}
+.requestRowBody small{font-size:10px}
+.requestDetail{padding:15px 12px}
+.requestDetail h1{font-size:26px;line-height:1.1}
+.requestDetail .requestDetailInfo{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.requestDetail .requestDetailInfo>p{padding:10px;min-width:0}
+.requestDetail .requestDetailInfo>p b{font-size:11px}
+.requestDetail .requestDetailInfo>p span{font-size:13px}
+.requestQuickStatuses{gap:5px}
+.quickStatus{font-size:11px;padding:9px 8px}
+.clientGrid{grid-template-columns:1fr}
+}
