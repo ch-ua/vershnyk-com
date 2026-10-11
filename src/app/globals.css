@@ -627,3 +627,23 @@
  .calendarNotice{max-width:100%;box-sizing:border-box;margin:14px 0 20px;padding:16px}
  .calendarCta{width:100%;box-sizing:border-box;overflow:hidden}
 }
+
+
+/* Compact desktop availability calendar */
+@media(min-width:801px){
+ .calendarHero{padding:48px 8% 38px}
+ .calendarHero h1{font-size:46px;margin:6px 0 12px}
+ .calendarHero>p:last-child{font-size:13px;max-width:620px}
+ .calendarWrap{max-width:900px;padding:34px 4% 52px}
+ .calendarTop{margin-bottom:16px}
+ .calendarTop h2{font-size:28px;margin:3px 0}
+ .calendarLegend{font-size:10px;gap:14px}
+ .publicCalendar{gap:5px;padding:5px;border-radius:11px}
+ .weekday{padding:8px 4px;font-size:10px}
+ .calendarDay,.publicCalendar .empty{min-height:72px;padding:9px;border-radius:6px}
+ .calendarDay strong{font-size:13px}
+ .calendarDay span{font-size:9px}
+ .calendarCta{margin-top:28px;padding:24px 26px}
+ .calendarCta h2{font-size:23px}
+ .calendarCta p{font-size:12px}
+}
