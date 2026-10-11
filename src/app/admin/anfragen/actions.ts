@@ -35,3 +35,13 @@ export async function updateRequest(form:FormData){
  revalidatePath("/admin");revalidatePath("/admin/anfragen");revalidatePath("/admin/anfragen/"+id);
  redirect("/admin/anfragen/"+id+"?saved=1");
 }
+
+export async function setRequestStatus(form:FormData){
+ const s=await adminClient();
+ const id=String(form.get("id")||"");
+ const status=String(form.get("status")||"");
+ if(!["new","reviewing","offered","confirmed","done","cancelled"].includes(status))throw new Error("Ungültiger Status");
+ const {error}=await s.from("requests").update({status,viewed_at:new Date().toISOString()}).eq("id",id);
+ if(error)throw new Error(error.message);
+ revalidatePath("/admin");revalidatePath("/admin/anfragen");revalidatePath("/admin/anfragen/"+id);revalidatePath("/admin/kunden");
+}
