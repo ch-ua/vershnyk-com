@@ -1043,3 +1043,33 @@
  overflow-wrap:anywhere!important;
 }
 }
+
+
+/* Compact customer dashboard: four proportional tiles in a single row */
+.accountMain{padding-top:12px}
+.accountMain .accountWelcome{padding:8px 0 15px}
+.accountMain .accountWelcome .authEyebrow{margin:0 0 5px;font-size:10px;letter-spacing:.12em}
+.accountMain .accountWelcome h1{font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;margin:0;line-height:1.2}
+.accountMain .accountWelcome h1 small{font-size:clamp(12px,1.5vw,16px);font-weight:500;letter-spacing:normal;color:#66806d}
+.accountMain .accountGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:stretch}
+.accountMain .accountGrid article,.accountMain .accountGrid .newProjectCard{min-width:0;min-height:112px;padding:14px 10px;border-radius:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px}
+.accountMain .accountGrid i,.accountMain .accountGrid .newProjectCard i{width:27px;height:27px;font-size:16px;margin:0;flex-shrink:0}
+.accountMain .accountGrid article strong{font-size:29px;line-height:1.1;margin:0;order:2}
+.accountMain .accountGrid article b{font-size:10px;line-height:1.2;letter-spacing:0;order:3}
+.accountMain .accountGrid article i{order:1}
+.accountMain .accountGrid .newProjectCard{background:#174b3c;color:#f4c331;border-color:#174b3c}
+.accountMain .accountGrid .newProjectCard i{background:#f4c331;color:#073e31;font-size:22px}
+.accountMain .accountGrid .newProjectCard b{font-size:11px;color:#f4c331;letter-spacing:0;line-height:1.2;text-transform:none}
+.accountMain .requestList{margin-top:22px}
+@media(max-width:600px){
+ .accountMain{padding:10px 4% 55px}
+ .accountMain .accountWelcome{padding:5px 0 13px}
+ .accountMain .accountWelcome h1{font-size:23px}
+ .accountMain .accountWelcome h1 small{display:block;font-size:12px;margin-top:3px}
+ .accountMain .accountGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+ .accountMain .accountGrid article,.accountMain .accountGrid .newProjectCard{min-height:88px;padding:9px 3px;border-radius:12px;gap:4px}
+ .accountMain .accountGrid i,.accountMain .accountGrid .newProjectCard i{width:24px;height:24px;font-size:13px}
+ .accountMain .accountGrid article strong{font-size:23px}
+ .accountMain .accountGrid article b,.accountMain .accountGrid .newProjectCard b{font-size:9px;overflow-wrap:anywhere}
+ .accountMain .requestList{margin-top:18px}
+}
