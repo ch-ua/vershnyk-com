@@ -836,3 +836,40 @@
 .requestStatus.new{background:#fff0af!important;color:#685000!important}.requestStatus.reviewing{background:#e0eafa!important;color:#234d83!important}.requestStatus.offered{background:#eadffa!important;color:#62438a!important}.requestStatus.confirmed{background:#d4f0d9!important;color:#11602e!important}.requestStatus.done{background:#cde8e4!important;color:#135f59!important}.requestStatus.cancelled{background:#f2d9d6!important;color:#a03629!important}
 .requestSavedNotice{background:#e2f2e2;border:1px solid #8fc69b;border-radius:10px;padding:14px 18px;color:#12592d;font-size:15px;margin:18px 0}
 .photoLoadError{color:#9c3c30;font-size:14px}
+
+
+/* Mobile spacing and type refinement, October 2026 */
+@media(max-width:800px){
+.serviceIntro{padding:34px 6%;gap:22px}
+.serviceIntro h2,.serviceList h2,.serviceGallery h2{font-size:clamp(24px,6vw,30px);line-height:1.15;margin:8px 0 16px}
+.serviceIntro>div>p:last-child{font-size:16px;line-height:1.55}
+.serviceFacts{gap:10px 14px;padding-left:16px}
+.serviceFacts b{font-size:15px;line-height:1.35}
+.serviceFacts span{font-size:13px;line-height:1.4}
+.serviceList{padding:36px 5%}
+.serviceList>div{gap:10px}
+.serviceList article{padding:13px 11px;gap:10px;min-height:72px}
+.serviceList article span{font-size:13px;line-height:1.3}
+.serviceGallery>div:first-child{height:230px}
+.galleryCopy{padding:34px 6%}
+.galleryCopy>p:not(.hand){font-size:15px;line-height:1.5}
+.socialMediaSection{padding:34px 5% 38px}
+.mediaHead{margin-bottom:18px;gap:12px}
+.mediaHead .hand{font-size:19px;line-height:1.25}
+.mediaHead h2{font-size:clamp(24px,6vw,30px);line-height:1.14;margin:0 0 10px;overflow-wrap:break-word}
+.mediaHead p:not(.hand){font-size:14px;line-height:1.5}
+.mediaHead>a{font-size:14px}
+.mediaCard b{font-size:13px;line-height:1.35}
+.mediaCard small{font-size:11px}
+.serviceHeroCopy>p:not(.hand){font-size:14px;line-height:1.5}
+.serviceHeroCopy .heroWa{font-size:12px;line-height:1.35;padding:12px}
+.serviceHero h1{font-size:clamp(30px,7vw,40px);line-height:1.05;overflow-wrap:break-word}
+.serviceBottom{padding:25px 5%;gap:8px}
+.serviceBottom h3{font-size:13px}
+.serviceBottom p{font-size:11px;line-height:1.4}
+}
+@media(max-width:520px){
+.mediaHead{align-items:flex-start;flex-direction:column}
+.serviceList article span{font-size:12px}
+.serviceList article{padding:12px 9px}
+}
