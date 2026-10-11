@@ -45,10 +45,10 @@ export default function RequestDatePicker(){
     <button type="button" aria-label="Nächster Monat" onClick={()=>move(1)} style={{fontSize:24,minWidth:36,minHeight:36}}>→</button>
    </span>
   </div>
-  <div className="requestMiniCalendar" style={{display:"grid",gridTemplateColumns:"repeat(5,minmax(0,1fr))",gap:4}}>
-   {["Mo","Di","Mi","Do","Fr"].map(x=><small key={x} style={{textAlign:"center",fontSize:11}}>{x}</small>)}
-   {Array.from({length:Math.min(info.offset,5)},(_,i)=><i key={"e"+i}/>)}
-   {Array.from({length:info.days},(_,i)=>i+1).filter(d=>!weekend(key(d))).map(d=>{
+  <div className="requestMiniCalendar" style={{display:"grid",gridTemplateColumns:"repeat(7,minmax(0,1fr))",gap:4}}>
+   {["Mo","Di","Mi","Do","Fr","Sa","So"].map(x=><small key={x} style={{textAlign:"center",fontSize:11}}>{x}</small>)}
+   {Array.from({length:info.offset},(_,i)=><i key={"e"+i}/>)}
+   {Array.from({length:info.days},(_,i)=>i+1).map(d=>{
     const k=key(d),blocked=isBlocked(k);
     return <button type="button" key={d} disabled={blocked} aria-label={k} aria-pressed={selected===k}
      className={selected===k?"selected":""}
