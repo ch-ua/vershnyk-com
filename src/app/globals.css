@@ -683,3 +683,31 @@
 .quickPhotos p{font-size:13px}
 .quickBack{font-size:14px}
 }
+
+
+/* Admin: readable typography on desktop and mobile */
+.adminBrand b{font-size:14px}
+.adminBrand small{font-size:11px}
+.adminNav nav a,.adminNavEnd>a{font-size:13px;line-height:1.4}
+.adminNavEnd button{font-size:13px;line-height:1.4}
+.adminHero .hand{font-size:22px}
+.adminHero>div>p:last-child{font-size:15px;line-height:1.55}
+.adminHero>a{font-size:14px;line-height:1.4}
+.adminStats i{font-size:11px}
+.adminStats b{font-size:13px;line-height:1.4}
+.adminStats span{font-size:12px;line-height:1.5}
+.adminPanelHead>a{font-size:13px}
+.adminPanelHead small{font-size:12px}
+.adminRows b,.adminRequestList b{font-size:14px}
+.adminRows small,.adminRequestList small{font-size:12px;line-height:1.5}
+.adminRows time,.adminRequestMeta time{font-size:12px}
+.adminEmpty p{font-size:13px;line-height:1.6}
+.adminRequestList p{font-size:13px;line-height:1.5}
+.requestStatus{font-size:11px}
+@media(max-width:800px){
+ .adminNav nav a,.adminNavEnd>a,.adminNavEnd button{font-size:12px}
+ .adminHero>div>p:last-child{font-size:14px}
+ .adminHero>a{font-size:13px}
+ .adminStats b{font-size:12px}
+ .adminStats span{font-size:12px}
+}
