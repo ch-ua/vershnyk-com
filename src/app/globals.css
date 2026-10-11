@@ -529,3 +529,12 @@
  .heroCopy{padding-bottom:34px}
  .jobTag{bottom:9%}
 }
+
+
+/* Einsatzgebiet: real Google map framed in VERSHNYK visual language */
+.realMapCard{position:relative;overflow:hidden;background:#fffaf0}
+.realAreaMap{display:block;width:100%;height:510px;border:0;border-radius:12px;filter:sepia(.16) saturate(.72) hue-rotate(78deg) brightness(1.04) contrast(.92)}
+.mapBrandOverlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;display:flex;align-items:center;gap:12px;padding:10px 15px 10px 10px;border:1px solid #d9cdaF;border-radius:12px;background:#fffaf0eF;color:#073e31;box-shadow:0 8px 24px #173f3426;pointer-events:none}
+.mapBrandOverlay .mapPinIcon{flex:none;width:44px;height:44px}
+.mapBrandOverlay div{display:flex;flex-direction:column;white-space:nowrap}.mapBrandOverlay strong{font-size:14px}.mapBrandOverlay small{font-size:9px;margin-top:2px}
+@media(max-width:800px){.realAreaMap{height:380px}.mapBrandOverlay{top:54%;padding:8px 11px 8px 8px}.mapBrandOverlay .mapPinIcon{width:38px;height:38px}.mapBrandOverlay strong{font-size:12px}.mapBrandOverlay small{font-size:8px}}
