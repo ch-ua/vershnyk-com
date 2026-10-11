@@ -67,7 +67,7 @@ export async function GET(){
     if(seen.has(id))continue;
     seen.add(id);
     shorts.push({videoId:id,title:"VERSHNYK Short",published:"",url:"https://www.youtube.com/shorts/"+id,thumbnail:"https://i.ytimg.com/vi/"+id+"/hqdefault.jpg"});
-    if(shorts.length>=4)break;
+    if(shorts.length>=6)break;
    }
   }
  }catch{}
