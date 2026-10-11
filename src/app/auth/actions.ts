@@ -8,6 +8,8 @@ export async function login(formData:FormData){
  const password=String(formData.get("password")||"");
  const {error}=await supabase.auth.signInWithPassword({email,password});
  if(error) redirect("/login?error="+encodeURIComponent("E-Mail oder Passwort ist nicht korrekt."));
+ const {data:{user}}=await supabase.auth.getUser();
+ if(user){const {data:profile}=await supabase.from("profiles").select("role").eq("id",user.id).single();if(profile?.role==="admin")redirect("/admin");}
  redirect("/konto");
 }
 export async function signup(formData:FormData){
