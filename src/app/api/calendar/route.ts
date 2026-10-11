@@ -4,19 +4,21 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 function dayKey(date: Date) {
-  // sv-SE reliably formats YYYY-MM-DD on Node and in browsers.
   return new Intl.DateTimeFormat("sv-SE", {
-    timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit"
+    timeZone: "Europe/Berlin",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
   }).format(date);
 }
 
 function addRange(busy: Set<string>, start: Date, end?: Date) {
   if (!Number.isFinite(start.getTime())) return;
   const final = end && Number.isFinite(end.getTime()) && end > start
-    ? new Date(end.getTime() - 1) : start;
+    ? new Date(end.getTime() - 1)
+    : start;
   const from = dayKey(start);
   const to = dayKey(final);
-  // Work with calendar date strings rather than server-local time to avoid timezone shifts.
   let cursor = new Date(from + "T12:00:00Z");
   for (let i = 0; i < 370; i++) {
     const key = cursor.toISOString().slice(0, 10);
@@ -27,10 +29,24 @@ function addRange(busy: Set<string>, start: Date, end?: Date) {
 }
 
 function failure(code: string, status: number) {
-  // Do not expose the secret calendar URL or private event data.
-  return NextResponse.json({error: "Calendar unavailable", code}, {
-    status, headers: {"Cache-Control": "no-store"}
-  });
+  return NextResponse.json(
+    {error: "Calendar unavailable", code},
+    {status, headers: {"Cache-Control": "no-store"}}
+  );
+}
+
+function parseDate(value: string): Date | null {
+  const v = value.trim();
+  const m = v.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2}))?(Z)?$/);
+  if (!m) return null;
+  if (!m[4]) return new Date(`${m[1]}-${m[2]}-${m[3]}T12:00:00Z`);
+  const suffix = m[7] ? "Z" : "";
+  return new Date(`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}${suffix}`);
+}
+
+function valueOf(event: string[], key: string) {
+  const row = event.find(x => x.startsWith(key + ":") || x.startsWith(key + ";"));
+  return row ? row.slice(row.indexOf(":") + 1) : null;
 }
 
 export async function GET() {
@@ -41,77 +57,57 @@ export async function GET() {
   let response: Response;
   try {
     response = await fetch(url, {
-      cache: "no-store", redirect: "follow",
+      cache: "no-store",
+      redirect: "follow",
       headers: {"Accept": "text/calendar, text/plain;q=0.9, */*;q=0.5"},
       signal: AbortSignal.timeout(12000)
     });
-  } catch (err) {
-    console.error("Calendar feed request failed", err);
+  } catch (error) {
+    console.error("Calendar feed request failed", error);
     return failure("ICAL_FETCH_FAILED", 502);
   }
 
-  if (!response.ok) {
-    console.error("Calendar feed returned HTTP", response.status);
-    return failure("ICAL_HTTP_" + response.status, 502);
-  }
-
+  if (!response.ok) return failure("ICAL_HTTP_" + response.status, 502);
   const ics = await response.text();
-  if (!ics.includes("BEGIN:VCALENDAR")) {
-    console.error("Calendar feed did not return iCalendar data");
-    return failure("ICAL_NOT_CALENDAR", 502);
-  }
+  if (!ics.includes("BEGIN:VCALENDAR")) return failure("ICAL_NOT_CALENDAR", 502);
 
   try {
-    // node-ical expects a callable BigInt helper in some bundled Vercel builds.\n    // Avoid that dependency entirely by parsing only the iCalendar fields we need.\n    const unfolded = ics.replace(/\\r?\\n[ \\t]/g, "");\n    const lines = unfolded.split(/\\r?\\n/);\n    const busy = new Set<string>();\n    const events: string[][] = [];\n    let current: string[] | null = null;\n    for (const line of lines) {\n      if (line === "BEGIN:VEVENT") current = [];\n      else if (line === "END:VEVENT" && current) { events.push(current); current = null; }\n      else if (current) current.push(line);\n    }\n    const parseDate = (value: string) => {\n      const v = value.trim();\n      const m = v.match(/^(\\d{4})(\\d{2})(\\d{2})(?:T(\\d{2})(\\d{2})(\\d{2}))?(Z)?$/);\n      if (!m) return null;\n      if (!m[4]) return new Date(`${m[1]}-${m[2]}-${m[3]}T12:00:00Z`);\n      return new Date(`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}${m[7] ? "Z" : ""}`);\n    };\n    const valueOf = (event: string[], key: string) => {\n      const row = event.find(x => x.startsWith(key + ":") || x.startsWith(key + ";"));\n      return row ? row.slice(row.indexOf(":") + 1) : null;\n    };\n    for (const event of events) {\n      if (valueOf(event, "STATUS")?.toUpperCase() === "CANCELLED" || valueOf(event, "TRANSP")?.toUpperCase() === "TRANSPARENT") continue;\n      const startValue = valueOf(event, "DTSTART");\n      if (!startValue) continue;\n      const start = parseDate(startValue);\n      const endValue = valueOf(event, "DTEND");\n      const end = endValue ? parseDate(endValue) : null;\n      if (start) addRange(busy, start, end || undefined);\n    }\n    return NextResponse.json({busy: [...busy].sort(), source: "google-ical", eventCount: events.length}, {headers: {"Cache-Control": "no-store"}});\n\n    /* legacy node-ical parser disabled\n    const mod = await import("node-ical");
-    const root: any = (mod as any).default ?? mod;
-    const parseICS =
-      (mod as any).sync?.parseICS ??
-      root?.sync?.parseICS ??
-      (mod as any).parseICS ??
-      root?.parseICS;
-    if (typeof parseICS !== "function") throw new Error("node-ical parser unavailable");
-    const parsed = parseICS(ics);
-    const busy = new Set<string>();
-    const now = new Date();
-    const startWindow = new Date(now.getFullYear(), now.getMonth(), 1);
-    const horizon = new Date(now.getFullYear() + 2, now.getMonth() + 1, 1);
+    const unfolded = ics.replace(/\r?\n[ \t]/g, "");
+    const lines = unfolded.split(/\r?\n/);
+    const events: string[][] = [];
+    let current: string[] | null = null;
 
-    type Event = {
-      type?: string; status?: string; transparency?: string;
-      start?: Date; end?: Date;
-      rrule?: {between: (start: Date, end: Date, inclusive: boolean) => Date[]};
-      exdate?: Record<string, Date>;
-    };
-    let eventCount = 0;
-    for (const raw of Object.values(parsed)) {
-      const item = raw as Event;
-      if (!item || item.type !== "VEVENT" ||
-          item.status?.toUpperCase() === "CANCELLED" ||
-          item.transparency?.toUpperCase() === "TRANSPARENT") continue;
-      eventCount++;
-      try {
-      if (item.rrule) {
-        const duration = item.start && item.end ? item.end.getTime() - item.start.getTime() : 0;
-        const excluded = new Set(Object.values(item.exdate || {}).map(d => d instanceof Date ? d.getTime() : NaN).filter(Number.isFinite));
-        const rule = item.rrule as any;
-        const occurrences = typeof rule.between === "function" ? rule.between(startWindow, horizon, true) : [];
-        for (const occurrence of occurrences) {
-          if (excluded.has(occurrence.getTime())) continue;
-          addRange(busy, occurrence, duration > 0 ? new Date(occurrence.getTime() + duration) : undefined);
-        }
-      } else if (item.start) {
-        addRange(busy, item.start, item.end);
-      }
-      } catch (eventError) {
-        console.error("Skipping malformed calendar event", eventError);
-      }
+    for (const line of lines) {
+      if (line === "BEGIN:VEVENT") current = [];
+      else if (line === "END:VEVENT" && current) {
+        events.push(current);
+        current = null;
+      } else if (current) current.push(line);
     }
 
-    return NextResponse.json({busy: [...busy].sort(), source: "google-ical", eventCount}, {
-      headers: {"Cache-Control": "no-store"}
-    });
-  } catch (err) {
-    console.error("Calendar parsing failed", err);
+    const busy = new Set<string>();
+    for (const event of events) {
+      if (
+        valueOf(event, "STATUS")?.toUpperCase() === "CANCELLED" ||
+        valueOf(event, "TRANSP")?.toUpperCase() === "TRANSPARENT"
+      ) continue;
+
+      const startValue = valueOf(event, "DTSTART");
+      if (!startValue) continue;
+      const start = parseDate(startValue);
+      if (!start) continue;
+
+      const endValue = valueOf(event, "DTEND");
+      const end = endValue ? parseDate(endValue) : null;
+      addRange(busy, start, end || undefined);
+    }
+
+    return NextResponse.json(
+      {busy: [...busy].sort(), source: "google-ical", eventCount: events.length},
+      {headers: {"Cache-Control": "no-store"}}
+    );
+  } catch (error) {
+    console.error("Calendar parsing failed", error);
     return failure("ICAL_PARSE_FAILED", 502);
   }
 }
