@@ -1076,3 +1076,40 @@
 
 /* Approved static service area maps */
 .staticAreaMapCard picture{display:block;width:100%}.staticAreaMapCard .staticAreaMapImage{display:block;width:100%;height:auto;object-fit:contain;border-radius:14px}.staticAreaMapCard{overflow:hidden}.staticAreaMapCard>p{margin:14px 0 0;font-size:12px;line-height:1.5;color:#668078}@media(max-width:700px){.staticAreaMapCard .staticAreaMapImage{width:100%;height:auto}.staticAreaMapCard>p{font-size:11px}}
+
+/* Unified YouTube / Instagram six-card media layout */
+.youtubeSection .youtubeShortsGrid,
+.instagramSection .reelsRail{
+ display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+ gap:10px;width:100%;max-width:none;margin:0;overflow:visible;
+}
+.youtubeSection .youtubeShortCard,
+.instagramSection .mediaReel{
+ display:flex;min-width:0;max-width:none;width:100%;
+ height:auto;min-height:0;aspect-ratio:9/16;flex:none;
+ background-size:cover;background-position:center;
+ border-radius:13px;
+}
+.youtubeSection .socialCount,
+.instagramSection .socialCount{
+ text-align:right;margin:0 0 12px;
+ font-size:14px;font-weight:800;line-height:1.4;
+ color:#123f34;letter-spacing:0;
+}
+@media(max-width:800px){
+ .youtubeSection .youtubeShortsGrid,
+ .instagramSection .reelsRail{
+  display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scrollbar-width:thin;
+  padding-bottom:8px;
+ }
+ .youtubeSection .youtubeShortCard,
+ .instagramSection .mediaReel{
+  flex:0 0 42%;width:42%;min-width:42%;max-width:none;
+  aspect-ratio:9/16;scroll-snap-align:start;
+ }
+ .youtubeSection .socialCount,
+ .instagramSection .socialCount{
+  text-align:left;font-size:13px;margin:0 0 10px;
+ }
+}
