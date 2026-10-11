@@ -560,3 +560,9 @@
 /* Pin aligned to Memmingen on the current Google map viewport */
 .mapMemmingenPin{left:55.1%;top:51.5%}
 @media(max-width:800px){.mapMemmingenPin{left:55.1%;top:51.5%}}
+
+
+/* Always-visible admin entry in public header */
+.siteHeader .actions .loginButton{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-width:68px!important;height:38px!important;padding:0 13px!important;border:1px solid #d8cdb8!important;border-radius:999px!important;background:#fffaf0!important;color:#073e31!important;font-size:11px!important;font-weight:900!important;opacity:1!important;visibility:visible!important}
+.siteHeader .actions .loginButton:hover{background:#f4c331!important;color:#073e31!important}
+@media(max-width:800px){.siteHeader .actions .loginButton{display:inline-flex!important;min-width:0!important;width:38px!important;height:38px!important;padding:0!important;font-size:0!important}.siteHeader .actions .loginButton:before{content:"⚙";font-size:18px;line-height:1}.siteHeader .actions{gap:7px}.siteHeader .actions>a:not(.whatsapp){flex:none}}
