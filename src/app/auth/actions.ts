@@ -12,6 +12,18 @@ export async function login(formData:FormData){
  if(user){const {data:profile}=await supabase.from("profiles").select("role").eq("id",user.id).single();if(profile?.role==="admin")redirect("/admin");}
  redirect("/konto");
 }
+export async function adminLogin(formData:FormData){
+ const supabase=await createClient();
+ const email=String(formData.get("email")||"").trim();
+ const password=String(formData.get("password")||"");
+ const {error}=await supabase.auth.signInWithPassword({email,password});
+ if(error) redirect("/admin-login?error="+encodeURIComponent("E-Mail oder Passwort ist nicht korrekt."));
+ const {data:{user}}=await supabase.auth.getUser();
+ if(!user) redirect("/admin-login?error="+encodeURIComponent("Anmeldung fehlgeschlagen."));
+ const {data:profile}=await supabase.from("profiles").select("role").eq("id",user.id).single();
+ if(profile?.role!=="admin"){await supabase.auth.signOut();redirect("/admin-login?error="+encodeURIComponent("Dieser Zugang ist nicht für die Verwaltung freigeschaltet."));}
+ redirect("/admin");
+}
 export async function signup(formData:FormData){
  const supabase=await createClient();
  const email=String(formData.get("email")||"");
