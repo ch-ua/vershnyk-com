@@ -221,7 +221,10 @@
 @media(max-width:800px){.calendarHero{padding:48px 5% 38px}.calendarHero h1{font-size:38px}.calendarWrap{padding:32px 3% 50px}.calendarTop{align-items:flex-start;flex-direction:column}.calendarTop h2{font-size:28px}.publicCalendar{gap:3px;padding:3px}.calendarDay,.publicCalendar .empty{min-height:67px;padding:7px}.weekday{font-size:9px;padding:8px 2px}.calendarDay strong{font-size:12px}.calendarDay .pending{font-size:9px}.calendarCta{align-items:flex-start;flex-direction:column;padding:23px}}
 
 .heroCopy .heroWa{width:max-content;max-width:210px;line-height:1.05}
-.heroCopy .heroWa span{display:inline-block;text-align:left;font-weight:800}
+.heroCopy .heroWa{display:inline-flex;align-items:center;gap:10px}
+.heroWa span{display:inline-block;text-align:left;font-weight:800}
+.heroWa .heroWaIcon{font-size:24px;line-height:1;flex:0 0 auto}
+.heroWa .heroWaArrow{font-size:17px;line-height:1;margin-left:2px}
 .heroCopy .heroWa small{display:block;margin-top:4px;font-size:.82em;font-weight:600}
 
 .calendarWa{width:max-content;max-width:190px;line-height:1.05}
