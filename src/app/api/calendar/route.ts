@@ -99,7 +99,38 @@ export async function GET() {
 
       const endValue = valueOf(event, "DTEND");
       const end = endValue ? parseDate(endValue) : null;
-      addRange(busy, start, end || undefined);
+      const rrule = valueOf(event, "RRULE");
+
+      if (rrule) {
+        const parts = Object.fromEntries(rrule.split(";").map(part => {
+          const [k, ...rest] = part.split("=");
+          return [k, rest.join("=")];
+        }));
+        const freq = parts.FREQ;
+        const interval = Math.max(1, Number(parts.INTERVAL || "1") || 1);
+        const count = parts.COUNT ? Math.max(1, Number(parts.COUNT) || 1) : null;
+        const until = parts.UNTIL ? parseDate(parts.UNTIL) : null;
+        const duration = end && end > start ? end.getTime() - start.getTime() : 0;
+        let occurrence = new Date(start);
+        let generated = 0;
+
+        for (let i = 0; i < 370; i++) {
+          if (count !== null && generated >= count) break;
+          if (until && occurrence > until) break;
+          addRange(busy, occurrence, duration ? new Date(occurrence.getTime() + duration) : undefined);
+          generated++;
+
+          const next = new Date(occurrence);
+          if (freq === "DAILY") next.setUTCDate(next.getUTCDate() + interval);
+          else if (freq === "WEEKLY") next.setUTCDate(next.getUTCDate() + 7 * interval);
+          else if (freq === "MONTHLY") next.setUTCMonth(next.getUTCMonth() + interval);
+          else if (freq === "YEARLY") next.setUTCFullYear(next.getUTCFullYear() + interval);
+          else break;
+          occurrence = next;
+        }
+      } else {
+        addRange(busy, start, end || undefined);
+      }
     }
 
     return NextResponse.json(
