@@ -521,3 +521,11 @@
  .heroCopy .heroWa{max-width:158px;}
  .thumbs a{flex-basis:62px;min-width:62px;width:62px;height:46px;}
 }
+
+
+/* Mobile: simplify hero slider and prevent thumbnail rail from affecting viewport */
+@media(max-width:800px){
+ .hero .thumbs{display:none!important}
+ .heroCopy{padding-bottom:34px}
+ .jobTag{bottom:9%}
+}
