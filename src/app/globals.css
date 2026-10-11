@@ -975,3 +975,13 @@
 .quickStatus{font-size:11px;padding:9px 8px}
 .clientGrid{grid-template-columns:1fr}
 }
+
+
+.adminDashboardRows>a{border-left:5px solid #d4d4d4;border-radius:9px;margin:6px 0;padding:12px 10px}
+.adminDashboardRows>a.statusRow-new{background:#fff3c9;border-left-color:#e9b91f}
+.adminDashboardRows>a.statusRow-reviewing{background:#e7f0ff;border-left-color:#6d9cdd}
+.adminDashboardRows>a.statusRow-offered{background:#f0e8ff;border-left-color:#9a78cf}
+.adminDashboardRows>a.statusRow-confirmed{background:#e0f5e7;border-left-color:#2b9c58}
+.adminDashboardRows>a.statusRow-done{background:#e6ede7;border-left-color:#6d967b}
+.adminDashboardRows>a.statusRow-cancelled{background:#f8e8e6;border-left-color:#c98780}
+.adminListPanel .adminPanelHead,.requestDetail .requestStatus{position:static}
