@@ -1,5 +1,5 @@
 "use server";
-import {revalidatePath} from "next/cache";
+import {revalidatePath} from "next/cache";import {redirect} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";
 async function adminClient(){
  const s=await createClient();
@@ -33,4 +33,5 @@ export async function updateRequest(form:FormData){
  }).eq("id",id);
  if(error)throw new Error(error.message);
  revalidatePath("/admin");revalidatePath("/admin/anfragen");revalidatePath("/admin/anfragen/"+id);
+ redirect("/admin/anfragen/"+id+"?saved=1");
 }
