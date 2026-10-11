@@ -572,3 +572,9 @@
 .youtubeShortsGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
 .youtubeShortCard{aspect-ratio:9/16;min-height:0;background-size:cover;background-position:center;position:relative}
 @media(max-width:800px){.youtubeShortsGrid{display:flex;gap:9px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px}.youtubeShortCard{flex:0 0 42%;width:42%;aspect-ratio:9/16;scroll-snap-align:start}}
+
+
+/* Compact admin/account icon */
+.siteHeader .actions .loginButton{width:38px!important;min-width:38px!important;height:38px!important;padding:0!important;border-radius:50%!important;font-size:0!important}
+.siteHeader .actions .loginButton:before{content:none!important}
+.siteHeader .actions .loginButton .adminIcon{display:block!important;width:20px!important;height:20px!important;fill:none!important;stroke:#073e31!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
