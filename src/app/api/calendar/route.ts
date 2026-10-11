@@ -96,6 +96,9 @@ export async function GET() {
       } else if (item.start) {
         addRange(busy, item.start, item.end);
       }
+      } catch (eventError) {
+        console.error("Skipping malformed calendar event", eventError);
+      }
     }
 
     return NextResponse.json({busy: [...busy].sort(), source: "google-ical", eventCount}, {
