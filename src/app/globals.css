@@ -647,3 +647,16 @@
  .calendarCta h2{font-size:23px}
  .calendarCta p{font-size:12px}
 }
+
+
+/* Request UX refinements */
+.customerBar button{transition:background .16s ease,color .16s ease,border-color .16s ease}
+.customerBar button:hover{background:#174b3c;color:#fff;border-color:#174b3c}
+.requestLocation{display:grid;grid-template-columns:1.5fr .55fr 1fr;gap:12px;margin-top:12px}
+.requestLocation label{display:grid;gap:7px}
+.requestLocation b{font-size:10px}
+.requestLocation input{height:50px;border:1px solid #d8cdb8;border-radius:10px;background:#fffdf8;padding:0 13px;font:inherit;color:#073e31}
+.calendarChoice{margin-top:14px}
+.photoUpload{min-height:50px;padding:14px 24px!important;font-size:11px!important;border-radius:10px!important;background:#174b3c!important;color:#fff!important;border-color:#174b3c!important}
+.photoUpload:hover{background:#0d684b!important;border-color:#0d684b!important}
+@media(max-width:800px){.requestLocation{grid-template-columns:1fr}.photoUpload{width:100%;min-height:52px}}
