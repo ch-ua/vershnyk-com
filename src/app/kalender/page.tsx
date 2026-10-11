@@ -20,7 +20,7 @@ export default function Kalender(){
  useEffect(()=>{let active=true;setLoading(true);setError(false);setErrorCode("");setBusy(null);fetch("/api/calendar",{cache:"no-store"}).then(async r=>{const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.code || `HTTP_${r.status}`);return data;}).then(d=>{if(!Array.isArray(d.busy))throw new Error("Invalid calendar response");if(active)setBusy(new Set(d.busy));}).catch((err)=>{if(active){setError(true);setErrorCode(err instanceof Error?err.message:"UNKNOWN");}}).finally(()=>{if(active)setLoading(false)});return()=>{active=false};},[reload]);
  const move=(delta:number)=>setView(v=>{const d=new Date(v.year,v.month+delta,1);return {year:d.getFullYear(),month:d.getMonth()};});
  const dateKey=(d:number)=>`${view.year}-${pad(view.month+1)}-${pad(d)}`;
- const isSunday=(d:number)=>new Date(view.year,view.month,d).getDay()===0;
+ const isWeekend=(d:number)=>{const day=new Date(view.year,view.month,d).getDay();return day===0||day===6;};
  const holidays=new Set([`${view.year}-01-01`,`${view.year}-01-06`,`${view.year}-05-01`,`${view.year}-10-03`,`${view.year}-11-01`,`${view.year}-12-25`,`${view.year}-12-26`]);
  const isHoliday=(d:number)=>holidays.has(dateKey(d));
  return <main className="calendarPage">
@@ -32,7 +32,7 @@ export default function Kalender(){
    <div className="publicCalendar" aria-busy={loading}>
     {["Mo","Di","Mi","Do","Fr","Sa","So"].map(d=><b className="weekday" key={d}>{d}</b>)}
     {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
-    {days.map(d=>{const inactive=isSunday(d)||isHoliday(d);const isBusy=busy?.has(dateKey(d));return <div className={`calendarDay${inactive?" inactive":""}`} key={d} aria-disabled={inactive}><strong>{d}</strong>{inactive?null:busy?<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>:<span className="pending">{error?"NICHT VERFÜGBAR":"LÄDT…"}</span>}</div>})}
+    {days.map(d=>{const inactive=isWeekend(d)||isHoliday(d);const isBusy=busy?.has(dateKey(d));return <div className={`calendarDay${inactive?" inactive":""}`} key={d} aria-disabled={inactive}><strong>{d}</strong>{inactive?null:busy?<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>:<span className="pending">{error?"NICHT VERFÜGBAR":"LÄDT…"}</span>}</div>})}
    </div>
    
    <div className="calendarCta"><div><p className="hand">Termin anfragen</p><h2>PASSENDEN TAG GEFUNDEN?</h2><p>Senden Sie kurz Arbeit, Fotos und Adresse über WhatsApp. Der Termin gilt erst nach Bestätigung.</p></div><a className="heroWa calendarWa" href={site.whatsapp}><span>über WhatsApp<br/><small>anfragen</small></span> →</a></div>
