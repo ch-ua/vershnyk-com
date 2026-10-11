@@ -3,6 +3,9 @@ import {useEffect,useMemo,useState} from "react";
 const months=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
 const pad=(n:number)=>String(n).padStart(2,"0");
 const berlinToday=()=>new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Berlin",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+function easter(year:number){const a=year%19,b=Math.floor(year/100),c=year%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k+7)%7,m=Math.floor((a+11*h+22*l)/451),n=h+l-7*m+114;return new Date(Date.UTC(year,Math.floor(n/31)-1,n%31+1))}
+function bavarianHoliday(date:string){const [y,m,d]=date.split("-").map(Number);const fixed=new Set(["01-01","01-06","05-01","10-03","11-01","12-25","12-26"]);if(fixed.has(`${pad(m)}-${pad(d)}`))return true;const eas=easter(y).getTime();const current=Date.UTC(y,m-1,d);const days=Math.round((current-eas)/86400000);return [-2,1,39,50,60].includes(days)}
+function weekend(date:string){const [y,m,d]=date.split("-").map(Number);return new Date(Date.UTC(y,m-1,d)).getUTCDay()%6===0}
 export default function RequestDatePicker(){
  const today=berlinToday();
  const [view,setView]=useState(()=>{const [y,m]=today.split("-").map(Number);return {y,m:m-1}});
@@ -30,22 +33,22 @@ export default function RequestDatePicker(){
  const firstMonth=today.slice(0,7);
  const currentMonth=`${view.y}-${pad(view.m+1)}`;
  const canGoBack=currentMonth>firstMonth;
- const isBlocked=(date:string)=>date<today||busy.has(date)||status!=="ready";
+ const isBlocked=(date:string)=>date<today||weekend(date)||bavarianHoliday(date)||busy.has(date)||status!=="ready";
  useEffect(()=>{if(selected&&isBlocked(selected))setSelected("")},[selected,busy,status,today]);
  return <div className="requestDatePicker" style={{maxWidth:410,width:"100%",margin:"0 auto"}}>
   <input type="hidden" name="preferred_date" value={selected}/>
   <div className="requestDateTop" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,flexWrap:"wrap"}}>
    <b>Wunschtermin <em>optional</em></b>
    <span style={{display:"flex",alignItems:"center",gap:8}}>
-    <button type="button" disabled={!canGoBack} aria-label="Vorheriger Monat" onClick={()=>move(-1)}>←</button>
+    {canGoBack&&<button type="button" aria-label="Vorheriger Monat" onClick={()=>move(-1)} style={{fontSize:24,minWidth:36,minHeight:36}}>←</button>}
     <strong style={{fontSize:13,whiteSpace:"nowrap"}}>{months[view.m]} {view.y}</strong>
-    <button type="button" aria-label="Nächster Monat" onClick={()=>move(1)}>→</button>
+    <button type="button" aria-label="Nächster Monat" onClick={()=>move(1)} style={{fontSize:24,minWidth:36,minHeight:36}}>→</button>
    </span>
   </div>
-  <div className="requestMiniCalendar" style={{display:"grid",gridTemplateColumns:"repeat(7,minmax(0,1fr))",gap:4}}>
-   {["Mo","Di","Mi","Do","Fr","Sa","So"].map(x=><small key={x} style={{textAlign:"center",fontSize:11}}>{x}</small>)}
-   {Array.from({length:info.offset},(_,i)=><i key={"e"+i}/>)}
-   {Array.from({length:info.days},(_,i)=>i+1).map(d=>{
+  <div className="requestMiniCalendar" style={{display:"grid",gridTemplateColumns:"repeat(5,minmax(0,1fr))",gap:4}}>
+   {["Mo","Di","Mi","Do","Fr"].map(x=><small key={x} style={{textAlign:"center",fontSize:11}}>{x}</small>)}
+   {Array.from({length:Math.min(info.offset,5)},(_,i)=><i key={"e"+i}/>)}
+   {Array.from({length:info.days},(_,i)=>i+1).filter(d=>!weekend(key(d))).map(d=>{
     const k=key(d),blocked=isBlocked(k);
     return <button type="button" key={d} disabled={blocked} aria-label={k} aria-pressed={selected===k}
      className={selected===k?"selected":""}
