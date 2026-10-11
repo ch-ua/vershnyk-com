@@ -711,3 +711,45 @@
  .adminStats b{font-size:12px}
  .adminStats span{font-size:12px}
 }
+
+
+/* Customer dashboard: balanced spacing and accessible text */
+.accountMain{padding-top:22px}
+.accountWelcome{padding:18px 0 24px}
+.accountWelcome .hand{font-size:20px;line-height:1.35}
+.accountWelcome .authEyebrow{margin-top:10px;font-size:13px}
+.accountWelcome h1{font-size:clamp(32px,4vw,48px);line-height:1.12;letter-spacing:-.035em;margin:10px 0 12px}
+.accountWelcome>span{font-size:14px}
+.accountWelcome .welcomeText{font-size:15px;line-height:1.55;margin-top:22px;max-width:720px}
+.accountGrid{gap:14px}
+.accountGrid article,.accountGrid .newProjectCard{min-height:195px;padding:23px}
+.accountGrid i,.newProjectCard i{margin-bottom:14px}
+.accountGrid article b,.newProjectCard b{font-size:14px;line-height:1.45}
+.accountGrid article strong{font-size:36px;line-height:1.1}
+.accountGrid article p,.newProjectCard p{font-size:14px;line-height:1.5;margin-top:10px}
+.newProjectCard strong{font-size:27px;line-height:1.2;margin:8px 0}
+.newProjectCard span{font-size:14px;line-height:1.45;margin-top:12px}
+.requestList{margin-top:28px}
+.listHeading{margin-bottom:14px}
+.listHeading .hand{font-size:17px}
+.listHeading h2{font-size:28px;line-height:1.2}
+.listHeading>a,.emptyRequests a{font-size:14px;line-height:1.4;padding:12px 16px}
+.emptyRequests{padding:26px}
+.emptyRequests b{font-size:19px}
+.emptyRequests p{font-size:14px;line-height:1.55;margin:10px 0 18px}
+@media(max-width:800px){
+ .accountMain{padding-top:18px}
+ .accountWelcome{padding:14px 0 22px}
+ .accountWelcome h1{font-size:clamp(30px,6vw,38px)}
+ .accountGrid article,.accountGrid .newProjectCard{min-height:175px;padding:18px}
+ .accountGrid article p,.newProjectCard p{font-size:13px}
+ .requestList{margin-top:24px}
+}
+@media(max-width:520px){
+ .accountGrid{gap:12px}
+ .accountGrid article,.accountGrid .newProjectCard{min-height:150px}
+ .listHeading{align-items:center}
+ .listHeading h2{font-size:23px}
+ .listHeading>a{font-size:12px;padding:10px 12px}
+ .emptyRequests{padding:22px}
+}
