@@ -753,3 +753,11 @@
  .listHeading>a{font-size:12px;padding:10px 12px}
  .emptyRequests{padding:22px}
 }
+
+/* Optional WhatsApp contact in request form */
+.whatsappContact{display:grid;gap:8px;max-width:500px;margin:20px 0 10px;color:#073e31}
+.whatsappContact>b{display:flex;align-items:center;gap:8px;font-size:15px}
+.whatsappContact>b small{font-size:12px;color:#687a70;font-weight:500}
+.whatsappContact>input{width:100%;padding:13px 15px;min-height:48px;border:1px solid #d8cdb8;border-radius:10px;background:#fffdf8;font-size:16px;color:#073e31}
+.whatsappContact>small{font-size:13px;line-height:1.5;color:#61756b}
+.whatsappMark{display:inline-flex;align-items:center;justify-content:center;background:#25d366;color:white;width:24px;height:24px;border-radius:50%;font-size:17px}
