@@ -32,7 +32,7 @@ export default function Kalender(){
    <div className="publicCalendar" aria-busy={loading}>
     {["Mo","Di","Mi","Do","Fr","Sa","So"].map(d=><b className="weekday" key={d}>{d}</b>)}
     {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
-    {days.map(d=>{const inactive=isWeekend(d)||isHoliday(d);const isBusy=busy?.has(dateKey(d));return <div className={`calendarDay${inactive?" inactive":""}`} key={d} aria-disabled={inactive}><strong>{d}</strong>{inactive?null:busy?<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>:<span className="pending">{error?"NICHT VERFÜGBAR":"LÄDT…"}</span>}</div>})}
+    {days.map(d=>{const inactive=isWeekend(d)||isHoliday(d);const isBusy=busy?.has(dateKey(d));const isToday=dateKey(d)===`${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;return <div className={`calendarDay${inactive?" inactive":""}${isToday?" calendarToday":""}`} key={d} aria-disabled={inactive} aria-current={isToday?"date":undefined}><strong>{d}</strong>{inactive?null:busy?<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>:<span className="pending">{error?"NICHT VERFÜGBAR":"LÄDT…"}</span>}</div>})}
    </div>
    
    <div className="calendarCta"><div><p className="hand">Termin anfragen</p><h2>PASSENDEN TAG GEFUNDEN?</h2><p>Senden Sie kurz Arbeit, Fotos und Adresse über WhatsApp. Der Termin gilt erst nach Bestätigung.</p></div><a className="heroWa calendarWa" href={site.whatsapp}><span>über WhatsApp<br/><small>anfragen</small></span> →</a></div>
