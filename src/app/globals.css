@@ -1136,3 +1136,25 @@ body footer:not(.globalSiteFooter){display:none!important}
  .globalSiteFooter nav{width:100%;gap:12px 18px}
  .globalSiteFooter nav a{font-size:12px}
 }
+
+
+/* Today's date: strong, accessible outline over free/busy coloring */
+.publicCalendar .calendarDay.calendarToday{
+ position:relative;
+ outline:3px solid #d49c00;
+ outline-offset:-3px;
+ box-shadow:inset 0 0 0 2px #fffdf6,0 0 0 1px #a67c0d;
+ z-index:1;
+}
+.publicCalendar .calendarDay.calendarToday::after{
+ content:"HEUTE";
+ position:absolute;top:5px;right:5px;
+ font-size:8px;font-weight:900;letter-spacing:.02em;
+ color:#123f34;background:#f6ca3c;
+ padding:3px 5px;border-radius:4px;
+}
+@media(max-width:600px){
+ .publicCalendar .calendarDay.calendarToday::after{
+  font-size:6px;top:3px;right:3px;padding:2px 3px;
+ }
+}
