@@ -20,7 +20,33 @@ export default function Kalender(){
  const [reload,setReload]=useState(0);
  const current=useMemo(()=>({name:`${monthNames[view.month]} ${view.year}`,days:new Date(view.year,view.month+1,0).getDate(),offset:(new Date(view.year,view.month,1).getDay()+6)%7}),[view]);
  const days=Array.from({length:current.days},(_,i)=>i+1);
- useEffect(()=>{let active=true;setLoading(true);setError(false);setErrorCode("");setBusy(null);fetch("/api/calendar",{cache:"no-store"}).then(async r=>{const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.code || `HTTP_${r.status}`);return data;}).then(d=>{if(!Array.isArray(d.busy))throw new Error("Invalid calendar response");if(active)setBusy(new Set(d.busy));}).catch((err)=>{if(active){setError(true);setErrorCode(err instanceof Error?err.message:"UNKNOWN");}}).finally(()=>{if(active)setLoading(false)});return()=>{active=false};},[reload]);
+ useEffect(()=>{
+  let active=true;
+  let controller:AbortController|null=null;
+  const refresh=async()=>{
+   if(!active)return;
+   controller?.abort();
+   controller=new AbortController();
+   setLoading(true);
+   try{
+    const response=await fetch("/api/calendar",{cache:"no-store",signal:controller.signal});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(data.code||`HTTP_${response.status}`);
+    if(!Array.isArray(data.busy))throw new Error("Invalid calendar response");
+    if(active){setBusy(new Set(data.busy));setError(false);setErrorCode("");}
+   }catch(err){
+    if(active&&!(err instanceof Error&&err.name==="AbortError")){
+     setError(true);setErrorCode(err instanceof Error?err.message:"UNKNOWN");setBusy(null);
+    }
+   }finally{if(active)setLoading(false);}
+  };
+  const onVisible=()=>{if(document.visibilityState==="visible")void refresh();};
+  void refresh();
+  const timer=window.setInterval(()=>{if(document.visibilityState==="visible")void refresh();},60000);
+  document.addEventListener("visibilitychange",onVisible);
+  window.addEventListener("focus",onVisible);
+  return()=>{active=false;controller?.abort();window.clearInterval(timer);document.removeEventListener("visibilitychange",onVisible);window.removeEventListener("focus",onVisible);};
+ },[reload]);
  const move=(delta:number)=>setView(v=>{const d=new Date(v.year,v.month+delta,1);return {year:d.getFullYear(),month:d.getMonth()};});
  const dateKey=(d:number)=>`${view.year}-${pad(view.month+1)}-${pad(d)}`;
  const isWeekend=(d:number)=>{const day=new Date(view.year,view.month,d).getDay();return day===0||day===6;};
