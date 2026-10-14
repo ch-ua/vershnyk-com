@@ -114,7 +114,75 @@ function expandRule(start: Date, rrule: string, maxDate: Date) {
   return out;
 }
 
+
+/** Direct Google Calendar API. Service account must be shared onto the calendar. */
+async function googleAccessToken(email:string,privateKey:string){
+ const {createSign}=await import("node:crypto");
+ const encode=(value:unknown)=>Buffer.from(JSON.stringify(value)).toString("base64url");
+ const now=Math.floor(Date.now()/1000);
+ const header=encode({alg:"RS256",typ:"JWT"});
+ const payload=encode({iss:email,scope:"https://www.googleapis.com/auth/calendar.readonly",aud:"https://oauth2.googleapis.com/token",iat:now,exp:now+3600});
+ const unsigned=`${header}.${payload}`;
+ const signer=createSign("RSA-SHA256");signer.update(unsigned);signer.end();
+ const assertion=`${unsigned}.${signer.sign(privateKey.replace(/\\n/g,"\n"),"base64url")}`;
+ const response=await fetch("https://oauth2.googleapis.com/token",{method:"POST",cache:"no-store",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({grant_type:"urn:ietf:params:oauth:grant-type:jwt-bearer",assertion}),signal:AbortSignal.timeout(12000)});
+ if(!response.ok)throw new Error(`GOOGLE_AUTH_${response.status}`);
+ const data=await response.json();
+ if(typeof data.access_token!=="string")throw new Error("GOOGLE_TOKEN_MISSING");
+ return data.access_token as string;
+}
+async function directGoogleCalendar(){
+ const calendarId=process.env.GOOGLE_CALENDAR_ID?.trim()||"vershnyk.com@gmail.com";
+ const email=process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_EMAIL?.trim();
+ const privateKey=process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_PRIVATE_KEY;
+ const apiKey=process.env.GOOGLE_CALENDAR_API_KEY?.trim();
+ if(!(email&&privateKey)&&!apiKey)return null;
+ const token=email&&privateKey?await googleAccessToken(email,privateKey):null;
+ const now=new Date();
+ const from=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth()-2,1));
+ const until=new Date(Date.UTC(now.getUTCFullYear()+2,now.getUTCMonth()+1,1));
+ const busy=new Set<string>();
+ let pageToken:string|undefined;
+ let eventCount=0;
+ for(let page=0;page<40;page++){
+  const endpoint=new URL(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`);
+  endpoint.searchParams.set("singleEvents","true");
+  endpoint.searchParams.set("orderBy","startTime");
+  endpoint.searchParams.set("maxResults","2500");
+  endpoint.searchParams.set("timeMin",from.toISOString());
+  endpoint.searchParams.set("timeMax",until.toISOString());
+  if(pageToken)endpoint.searchParams.set("pageToken",pageToken);
+  if(!token&&apiKey)endpoint.searchParams.set("key",apiKey);
+  const response=await fetch(endpoint,{cache:"no-store",headers:token?{Authorization:`Bearer ${token}`}:{},signal:AbortSignal.timeout(15000)});
+  if(!response.ok)throw new Error(`GOOGLE_EVENTS_HTTP_${response.status}`);
+  const data=await response.json();
+  if(!Array.isArray(data.items))throw new Error("GOOGLE_EVENTS_INVALID");
+  for(const event of data.items){
+   if(event.status==="cancelled")continue;
+   const start=event.start?.dateTime||event.start?.date;
+   const end=event.end?.dateTime||event.end?.date;
+   if(typeof start!=="string")continue;
+   const startDate=event.start?.date?new Date(start+"T12:00:00Z"):new Date(start);
+   const endDate=typeof end==="string"?(event.end?.date?new Date(end+"T12:00:00Z"):new Date(end)):undefined;
+   addRange(busy,startDate,endDate);
+   eventCount++;
+  }
+  pageToken=typeof data.nextPageToken==="string"?data.nextPageToken:undefined;
+  if(!pageToken)return {busy:[...busy].sort(),source:"google-calendar-api",eventCount};
+ }
+ throw new Error("GOOGLE_EVENTS_PAGINATION_LIMIT");
+}
+
 export async function GET() {
+  if(process.env.GOOGLE_CALENDAR_API_KEY || (process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_PRIVATE_KEY)) {
+    try {
+      const data=await directGoogleCalendar();
+      if(data)return NextResponse.json(data,{headers:{"Cache-Control":"no-store, max-age=0"}});
+    } catch(error) {
+      console.error("Direct Google Calendar API failed",error);
+      return failure("GOOGLE_API_FAILED",502);
+    }
+  }
   const url = process.env.GOOGLE_CALENDAR_ICAL_URL?.trim();
   if (!url) return failure("ICAL_URL_MISSING", 503);
   if (!/^https:\/\//i.test(url)) return failure("ICAL_URL_INVALID", 503);
