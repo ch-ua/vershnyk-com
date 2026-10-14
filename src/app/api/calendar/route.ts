@@ -163,7 +163,8 @@ export async function GET() {
 
     for (const event of events) {
       if (
-        valueOf(event, "STATUS")?.toUpperCase() === "CANCELLED"
+        valueOf(event, "STATUS")?.toUpperCase() === "CANCELLED" ||
+        valueOf(event, "TRANSP")?.toUpperCase() === "TRANSPARENT"
       ) continue;
 
       const startValue = valueOf(event, "DTSTART");
