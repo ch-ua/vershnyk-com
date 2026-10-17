@@ -184,7 +184,14 @@ async function appsScriptCalendar(){
  return {busy:[...new Set<string>(data.busy)].sort(),source:"google-apps-script",eventCount:typeof data.eventCount==="number"?data.eventCount:null};
 }
 
-export async function GET() {\n  try {\n    const data=await appsScriptCalendar();\n    return NextResponse.json(data,{headers:{"Cache-Control":"no-store, max-age=0"}});\n  } catch(error) {\n    console.error("Apps Script calendar unavailable",error);\n    return failure("APPS_SCRIPT_UNAVAILABLE",502);\n  }\n
+export async function GET() {
+  try {
+    const data = await appsScriptCalendar();
+    return NextResponse.json(data, {headers: {"Cache-Control": "no-store, max-age=0"}});
+  } catch (error) {
+    console.error("Apps Script calendar unavailable", error);
+    return failure("APPS_SCRIPT_UNAVAILABLE", 502);
+  }
   if(process.env.GOOGLE_CALENDAR_API_KEY || (process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_PRIVATE_KEY)) {
     try {
       const data=await directGoogleCalendar();
