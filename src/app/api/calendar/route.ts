@@ -173,7 +173,18 @@ async function directGoogleCalendar(){
  throw new Error("GOOGLE_EVENTS_PAGINATION_LIMIT");
 }
 
-export async function GET() {
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyamwlocgK43OYO6DdowD6gvPB9JFer_Gv9Yse750CpnL-W_zoTOqsLpK5umOX3xB6Gjw/exec";
+
+async function appsScriptCalendar(){
+ const response=await fetch(APPS_SCRIPT_URL,{cache:"no-store",redirect:"follow",signal:AbortSignal.timeout(20000),headers:{"Accept":"application/json"}});
+ if(!response.ok)throw new Error("APPS_SCRIPT_HTTP_"+response.status);
+ const data=await response.json();
+ if(!data||!Array.isArray(data.busy)||data.busy.some((d:unknown)=>typeof d!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(d)))throw new Error("APPS_SCRIPT_INVALID_DATA");
+ if(data.error)throw new Error("APPS_SCRIPT_ERROR");
+ return {busy:[...new Set<string>(data.busy)].sort(),source:"google-apps-script",eventCount:typeof data.eventCount==="number"?data.eventCount:null};
+}
+
+export async function GET() {\n  try {\n    const data=await appsScriptCalendar();\n    return NextResponse.json(data,{headers:{"Cache-Control":"no-store, max-age=0"}});\n  } catch(error) {\n    console.error("Apps Script calendar unavailable",error);\n    return failure("APPS_SCRIPT_UNAVAILABLE",502);\n  }\n
   if(process.env.GOOGLE_CALENDAR_API_KEY || (process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_CALENDAR_SERVICE_ACCOUNT_PRIVATE_KEY)) {
     try {
       const data=await directGoogleCalendar();
