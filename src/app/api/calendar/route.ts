@@ -104,7 +104,7 @@ async function directGoogleCalendar() {
     const data = await response.json();
     if (!Array.isArray(data.items)) throw new Error("GOOGLE_EVENTS_INVALID");
     for (const event of data.items) {
-      if (event.status === "cancelled" || event.transparency === "transparent") continue;
+      if (event.status === "cancelled") continue;
       if (event.start?.date) addAllDay(slots, event.start.date, event.end?.date);
       else if (typeof event.start?.dateTime === "string") addTimed(slots, new Date(event.start.dateTime), new Date(event.end?.dateTime ?? event.start.dateTime));
       else continue;
