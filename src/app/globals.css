@@ -1158,3 +1158,13 @@ body footer:not(.globalSiteFooter){display:none!important}
   font-size:6px;top:3px;right:3px;padding:2px 3px;
  }
 }
+
+.calendarDay.calendarHalf{border:1px solid #dfb5ac}
+.calendarDay.halfAm{background:linear-gradient(to bottom,#f4dfda 50%,#e7f4e8 50%)}
+.calendarDay.halfPm{background:linear-gradient(to bottom,#e7f4e8 50%,#f4dfda 50%)}
+.calendarDay .halfLabels{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:space-between;margin-top:4px}
+.calendarDay .halfLabels span{font-size:9px!important;font-weight:900;line-height:1.1}
+.calendarDay.halfPm .halfLabels{flex-direction:column}
+.calendarDay .halfBusy{color:#9a4036}
+.calendarDay .halfFree{color:#0b7444}
+@media(max-width:800px){.calendarDay .halfLabels span{font-size:6.5px!important}}

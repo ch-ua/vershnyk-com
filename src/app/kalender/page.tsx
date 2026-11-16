@@ -14,6 +14,7 @@ export default function Kalender(){
  useEffect(()=>{const update=()=>setTodayKey(berlinToday());update();const timer=window.setInterval(update,30000);document.addEventListener("visibilitychange",update);window.addEventListener("focus",update);return()=>{window.clearInterval(timer);document.removeEventListener("visibilitychange",update);window.removeEventListener("focus",update)};},[]);
  const [view,setView]=useState(initial);
  const [busy,setBusy]=useState<Set<string>|null>(null);
+ const [partial,setPartial]=useState<Record<string,"am"|"pm">>({});
  const [error,setError]=useState(false);
  const [errorCode,setErrorCode]=useState("");
  const [loading,setLoading]=useState(true);
@@ -33,7 +34,7 @@ export default function Kalender(){
     const data=await response.json().catch(()=>({}));
     if(!response.ok)throw new Error(data.code||`HTTP_${response.status}`);
     if(!Array.isArray(data.busy))throw new Error("Invalid calendar response");
-    if(active){setBusy(new Set(data.busy));setError(false);setErrorCode("");}
+    if(active){setBusy(new Set(data.busy));setPartial(data.partial&&typeof data.partial==="object"?data.partial:{});setError(false);setErrorCode("");}
    }catch(err){
     if(active&&!(err instanceof Error&&err.name==="AbortError")){
      setError(true);setErrorCode(err instanceof Error?err.message:"UNKNOWN");setBusy(null);
@@ -61,7 +62,7 @@ export default function Kalender(){
    <div className="publicCalendar" aria-busy={loading}>
     {["Mo","Di","Mi","Do","Fr","Sa","So"].map(d=><b className="weekday" key={d}>{d}</b>)}
     {Array.from({length:current.offset},(_,i)=><span className="empty" key={"e"+i}/>)}
-    {days.map(d=>{const inactive=isWeekend(d)||isHoliday(d);const isBusy=busy?.has(dateKey(d));const isToday=dateKey(d)===todayKey;return <div className={`calendarDay${inactive?" inactive":""}${isToday?" calendarToday":""}`} key={d} aria-disabled={inactive} aria-current={isToday?"date":undefined}><strong>{d}</strong>{inactive?null:busy?<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>:<span className="pending">{error?"NICHT VERFÜGBAR":"LÄDT…"}</span>}</div>})}
+    {days.map(d=>{const inactive=isWeekend(d)||isHoliday(d);const isBusy=busy?.has(dateKey(d));const half=partial[dateKey(d)];const isToday=dateKey(d)===todayKey;return <div className={`calendarDay${inactive?" inactive":""}${!inactive&&!isBusy&&half?" calendarHalf "+(half==="am"?"halfAm":"halfPm"):""}${isToday?" calendarToday":""}`} key={d} aria-disabled={inactive} aria-current={isToday?"date":undefined}><strong>{d}</strong>{inactive?null:busy?(!isBusy&&half?<span className="halfLabels"><span className={half==="am"?"halfBusy":"halfFree"}>VORM. {half==="am"?"BELEGT":"FREI"}</span><span className={half==="am"?"halfFree":"halfBusy"}>NACHM. {half==="am"?"FREI":"BELEGT"}</span></span>:<span className={isBusy?"busy":"free"}>{isBusy?"BELEGT":"FREI"}</span>):<span className="pending">{error?"NICHT VERFÜGBAR":"LÄDT…"}</span>}</div>})}
    </div>
    
    <div className="calendarCta"><div><p className="hand">Termin anfragen</p><h2>PASSENDEN TAG GEFUNDEN?</h2><p>Senden Sie kurz Arbeit, Fotos und Adresse über WhatsApp. Der Termin gilt erst nach Bestätigung.</p></div><a className="heroWa calendarWa" href={site.whatsapp}><span>über WhatsApp<br/><small>anfragen</small></span> →</a></div>
