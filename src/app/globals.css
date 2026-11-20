@@ -1169,6 +1169,5 @@ body footer:not(.globalSiteFooter){display:none!important}
 .calendarDay .halfFree{color:#0b7444}
 @media(max-width:800px){.calendarDay .halfLabels span{font-size:6.5px!important}}
 
-/* Hero price: no yellow background behind the net rate */
-.heroCopy .priceBlock .price{background:transparent;clip-path:none;transform:none;padding-left:0;padding-right:0}
-.heroCopy .priceBlock .priceMeta{padding-left:0}
+/* Hero price: yellow brush-stroke behind the net rate (smooth edges, no jagged clip) */
+.heroCopy .priceBlock .price{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' preserveAspectRatio='none'%3E%3Cpath fill='%23f8c52e' d='M7 24C42 9 120 15 200 11S338 12 393 21C399 39 391 58 395 77C340 92 262 87 200 91S62 91 9 82C2 62 11 43 7 24Z'/%3E%3Cpath fill='%23efb71c' opacity='.45' d='M14 70C80 77 150 72 215 76S330 74 388 68C386 76 388 80 391 80C336 90 262 86 200 90S62 90 12 82C10 78 12 74 14 70Z'/%3E%3C/svg%3E") no-repeat center/100% 100%;clip-path:none;transform:rotate(-1deg);padding:16px 44px 18px 36px}
