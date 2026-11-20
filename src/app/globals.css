@@ -1168,3 +1168,7 @@ body footer:not(.globalSiteFooter){display:none!important}
 .calendarDay .halfBusy{color:#9a4036}
 .calendarDay .halfFree{color:#0b7444}
 @media(max-width:800px){.calendarDay .halfLabels span{font-size:6.5px!important}}
+
+/* Hero price: no yellow background behind the net rate */
+.heroCopy .priceBlock .price{background:transparent;clip-path:none;transform:none;padding-left:0;padding-right:0}
+.heroCopy .priceBlock .priceMeta{padding-left:0}
